@@ -430,6 +430,13 @@ Ride       . . X . . . X . . . X . . . X .
       5. Everything is armed: press **`[PLAY]`** (step f).
     - **f. Record:** press **`[PLAY]`**. After the 4 count-in clicks, `NEXT` shows the bar being recorded (e.g. `6.3` = bar 6). Tap the row's hits from each drum's entry bar to the end of bar 32. **Hands off the knobs.**
     - **g. Stop:** after bar 32 comes the blank `Loop Rest` bar (nothing is recorded)—press **`[STOP]`** there.
+      - **Need to redo a drum? Clear just that drum first.** Loop Mix *adds* new hits to what is already on Part R, so re-tapping a drum without clearing it doubles it and keeps the wrong hits. **Realtime Erase** (manual pp.49–50) removes one drum and leaves the others alone:
+        1. *(Skip this if you are still looping in the pass—the pads are already right.)* Stopped, select the same pattern, **`[PART SELECT]`** → **`PART [R]`**, set **`OCTAVE`** to that drum's shift (cheat card, 6.2) and tap its pad to confirm it plays that drum. Then press **`[REC]`**, check `PART [R]` is lit and press **`[PLAY]`**.
+        2. Once recording is running, hold **`[SHIFT]`** and press **`[TRANSPOSE/ERASE]`**: `CURRENT` shows **`ErS`**. Don't touch a pad before `ErS` shows (it would record a hit). Nothing is erased yet, so you can switch it on early, e.g. in the blank `Loop Rest` bar.
+        3. **Hold that drum's pad** while the bars you want cleared play (watch `NEXT` for the bar): from the first bad bar to the end of bar 32, or all 32 bars to remove the drum completely. Its hits are erased only while the pad is held.
+        4. Release the pad, press **`[EXIT]`** (or **`[SHIFT]` + `[TRANSPOSE/ERASE]`** again) to leave `ErS`, then press **`[STOP]`** in the blank `Loop Rest` bar.
+        5. Press **`[PLAY]`** to check the drum is gone from those bars, then repeat steps a–g for it, tapping **only the erased drum(s), in the cleared bars** (tapping the others again would double them).
+      - **Cautions:** in `ErS`, holding **`[REC]`** wipes *all* of Part R (every drum) and holding **`[TAP]`** wipes knob data only. Holding two pads erases every note between them (handy for the two congas, pads `5` and `6` at `OCTAVE` `0`). To wipe everything on Part R for some bars instead, use *Erase Bars* (Section 4E). No undo is documented. Every erase route needs `[SHIFT]` to start, so if yours is flaky (see [repair.md](./repair.md)), switch `ErS` on early and retry.
     - **h. Listen:** press **`[PLAY]`** to hear it *(while recording, hits sound exactly as you play them; the quantized result can be heard after you finish recording—manual p.47)*, then **`[STOP]`**.
 48. **The seven passes** (everything already on Part R keeps playing, so you tap along to the groove as it builds):
 
@@ -446,7 +453,7 @@ Ride       . . X . . . X . . . X . . . X .
 **Pass tips**
 - **Entry bars:** watch `NEXT`—start the open hat when it reads bar `9`, the clap and tambourine at bar `17`, and the closed hat and ride at bar `25`.
 - **Rehearse first:** press **`[REC]`** during a pass to enter rehearsal (`CURRENT` shows `rHS`): play along without recording, then press `[REC]` again to record (manual p.48).
-- **Flubbed a hit?** Don't stop the pass. Fix it afterwards with **Realtime Erase** (Section 4E, *Single Note or Single Drum Sound*): `[REC]` → `PART [R]` → `[PLAY]` → `[SHIFT] + [TRANSPOSE/ERASE]` → hold *that drum's pad* over the bad bars only, `[STOP]`, then re-tap the missing hits in a new pass.
+- **Flubbed a hit?** Don't stop the pass. Afterwards clear just that drum and re-tap it: see *Need to redo a drum?* under step 47g.
 - **Struggling with the fast hats or shaker?** Before step (e), slow the tempo (`SELECT` → `TEMPO` → `[VALUE]` to about `100.0`). The manual (p.47) says tempo changes during recording aren't recorded, so the hits still play at 120 later. Re-select the pattern (or set `TEMPO` back to `120.0`) afterwards, and never run a Setup Write while the tempo is slowed.
 
 ---
@@ -485,7 +492,7 @@ Press **`[PART SELECT]`** to return. **Un-mute everything before any Setup Write
 | :--- | :--- |
 | Pads play the wrong sounds | The Rhythm Set isn't `d07` (step 37) or the `OCTAVE` shift is wrong—compare with the cheat card. |
 | Hits are loose or off the grid | Quantize wasn't on (GRID not lit) or `TIMING` was near 0%. Tighten all of Part R afterwards: steps 42–44, `[QUANTIZE]` to GRID, then Edit Quantize (step 52, sub-step 3). Do this *before* adding swing. |
-| One drum is too loud or too quiet | Velocity is stored per hit: erase that drum (Realtime Erase, Section 4E) and re-record it in a pass at another Pad Velocity. For overall drum level see step 51. |
+| One drum is too loud or too quiet | Velocity is stored per hit: clear that drum (step 47g, *Need to redo a drum?*) and re-record it in a pass at another Pad Velocity. For overall drum level see step 51. |
 | The lead's starting sound changed after Phase 6 | A Setup Write happened after playback or knob moves. Re-set Part 1's starting values as in Section 5, steps 19 and 22, and write the setup again (the recorded knob sweeps themselves are not affected). |
 
 > **Going past 64 bars:** for a 4-minute+ track, build `U03`/`U04` the same way (a new lead pattern per Section 5, drums per this section with the entry bars changed to suit—for example a breakdown that drops the kick), then append them to `S-1` (Section 5, Phase 5).
