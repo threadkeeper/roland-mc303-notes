@@ -11,13 +11,7 @@ The left **`SELECT [<]`** button stopped responding, and the **`[SHIFT]`** and *
 ### 1.1 Left SELECT `[<]`
 
 - **Symptom:** `SELECT [<]` does nothing; `SELECT [>]` still works.
-- The two SELECT buttons move a lit indicator along a row of five LEDs, and the `VALUE` dial then edits whichever one is lit (manual pp. 14–15, 17):
-
-```text
-TEMPO · PTN SET · PTN/SONG · RPS SET · TONE
- ◄ [<] moves left      [>] moves right ►
-```
-
+- The two SELECT buttons move a lit indicator along a row of five LEDs, and the `VALUE` dial then edits whichever one is lit (manual pp. 14–15, 17). Left to right they are **`TEMPO`** · **`PTN SET`** · **`PTN/SONG`** · **`RPS SET`** · **`TONE`**; `[<]` moves the lit one left and `[>]` moves it right.
 - **With `[<]` dead you can only move right.** From `PTN/SONG`, `[>]` reaches `RPS SET`, then `TONE`. `PTN SET` and `TEMPO` are to the *left*, so SELECT can't reach them (the manual's tempo figure shows the left button being pressed, p. 15), and you can't step back.
 - *(Unconfirmed — the manual is silent)* Which indicator is lit at power-on, whether the row wraps around, and whether a power cycle returns it to `PTN/SONG`.
 
@@ -54,20 +48,18 @@ The MC-303 has a service test mode (Service Notes pp. 7–13). Its **Switch/LED 
 3. Jump to the switch test with **`[FUNC] + Pad [6]`**. `CURRENT` shows `t06` and **all LEDs should light** (if not, the notes say to check the main and panel boards).
 4. Press the buttons one at a time in this order. Each correct press plays the next note of a scale and shows the button's number in `NEXT`. Buttons with several LEDs need several presses (`×4` etc.) to switch them all off:
 
-   ```text
-   ARPEGGIO ON → PLAY QUANTIZE ×4 → EFFECT
-   → PORTAMENTO → LFO → ENVELOPE
-   → PART SELECT → PART MUTE → RHYTHM MUTE
-   → PART R, 1, 2, 3, 4, 5, 6, 7
-   → SEL L → SEL R ×5      ← SEL L is yours
-   → BWD → FWD → REC → STOP → PLAY
-   → ENTER → EXIT → OCTAVE -
-   → OCTAVE +      ← OCTAVE + is also yours
-   → TRANSPOSE → PTN SET → RPS SET
-   → PLAY MODE ×3 → SCALE → FUNC
-   → SHIFT ×4      ← SHIFT is also yours
-   → PAD 1–16 → TAP
-   ```
+   - `ARPEGGIO ON` → `PLAY QUANTIZE` ×4 → `EFFECT`
+   - then `PORTAMENTO` → `LFO` → `ENVELOPE`
+   - then `PART SELECT` → `PART MUTE` → `RHYTHM MUTE`
+   - then `PART R`, `1`, `2`, `3`, `4`, `5`, `6`, `7`
+   - then `SEL L` *(yours)* → `SEL R` ×5
+   - then `BWD` → `FWD` → `REC` → `STOP` → `PLAY`
+   - then `ENTER` → `EXIT` → `OCTAVE -`
+   - then `OCTAVE +` *(also yours)*
+   - then `TRANSPOSE` → `PTN SET` → `RPS SET`
+   - then `PLAY MODE` ×3 → `SCALE` → `FUNC`
+   - then `SHIFT` ×4 *(also yours)*
+   - then `PAD 1–16` → `TAP`
 
 5. **Result for the left SELECT button:** at `SEL L` nothing registers (no note and no new number in `NEXT`) while the buttons around it respond. Counting the sequence, `SEL L` is the 18th of 52 buttons. That points to the `[<]` switch (**`SW34`**) or its circuit, and replacing the switch is the cheapest first fix. (`Err` in `NEXT` is a different fault: the notes label it *Button Conflict NG* and say to check the main and panel boards, p. 10.)
 6. **What to look for with SHIFT:** it is the 35th of 52 and takes four presses to switch off the four `SCALE 1`–`4` LEDs (p. 10). Needing more than four presses, or a `SCALE` LED left lit, means `[SHIFT]` (**`SW1`**) is probably missing presses.

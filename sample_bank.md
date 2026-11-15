@@ -14,12 +14,12 @@ The MC-303 organizes its 448 tones into **29 banks** by instrument type. On the 
 2. Use **SELECT** `[◄][►]` until the **TONE** indicator lights.
 3. Turn the **VALUE** dial to pick the tone. Hold **[SHIFT]** while turning to jump the tens digit quickly.
 
-| Part | Left display | Right display | Where to look |
-| :--- | :-: | :-: | :--- |
-| Parts 1–7 (tones) | `T1`–`T29` | `01`–`99` | The **Panel** column in banks 01–29 below |
-| Part R (rhythm sets) | `d01`–`d12` | `909` / `808` / `JAZ` … | The **Rhythm Sets** table at the bottom |
+- **Parts 1–7 (tones):** left display `T1`–`T29`, right display `01`–`99`. Look in the **Panel** column of banks 01–29 below.
+- **Part R (rhythm sets):** left display `d01`–`d12`, right display `909` / `808` / `JAZ` … Look in the **Rhythm Sets** list at the bottom.
 
 > Banks `T20`–`T29` are the single-hit percussion/drum tones; "Kit" tones spread several drum sounds across the keys.
+
+> **Reading on a phone:** the summary matrix and the per-bank tone tables below are wide data tables, so they scroll sideways. The rest of this file fits the screen.
 
 ---
 
@@ -916,19 +916,19 @@ In MIDI/DAW patch maps (such as `.reabank` files), the 448 tones are addressed u
 
 **Sections in This Bank:** `Vintage Roland Kits (d01–d03)` · `Acoustic / Jazz Kits (d04–d05)` · `Dance & Electronic Kits (d06–d12)`
 
-| Panel (Left) | Panel (Right) | Section | Rhythm Set Name | MIDI PC# (0-based / 1-based) | Character / Notes |
-| :-: | :-: | :--- | :--- | :--- | :--- |
-| `d01` | `909` | Vintage Roland | **TR-909 Set** | `00` / `1` | Punchy 909 kicks, snappy snares, crisp 909 hi-hats, & rides for house/techno |
-| `d02` | `808` | Vintage Roland | **TR-808 & Elec. Set** | `08` / `9` | Booming 808 sub-kicks, cowbells, claps, & electro percussion |
-| `d03` | — | Vintage Roland | **CR-78 & TR-606 Set** | `16` / `17` | Metallic CompuRhythm CR-78 & crisp Drumatix TR-606 analog hits |
-| `d04` | `JAZ` | Acoustic / Jazz | **Jazz Set** | `24` / `25` | Acoustic jazz drum kit with natural room snares and cymbals |
-| `d05` | — | Acoustic / Jazz | **Brush Set** | `25` / `26` | Soft jazz brush taps, slaps, and swirls |
-| `d06` | — | Dance & Electronic | **Jungle Set** | `32` / `33` | Fast breakbeat snares, tight kicks, & jungle percussion |
-| `d07` | — | Dance & Electronic | **House Set** | `40` / `41` | Four-on-the-floor house kicks, claps, & Latin percussion |
-| `d08` | — | Dance & Electronic | **Techno Set 1** | `48` / `49` | Hard-hitting techno kicks, distorted hits, & industrial hats |
-| `d09` | — | Dance & Electronic | **Techno Set 2** | `56` / `57` | Alternative driving techno kit |
-| `d10` | — | Dance & Electronic | **Techno Set 3** | `64` / `65` | Minimal/acid techno drum kit |
-| `d11` | — | Dance & Electronic | **Abstract Set** | `72` / `73` | Experimental, glitchy, & FX-heavy percussion kit |
-| `d12` | — | Dance & Electronic | **HipHop Set** | `80` / `81` | Boom-bap kicks, crispy snares, & vinyl/scratch hits |
+Each line: panel left · panel right · set name (section) · MIDI PC# (0-based / 1-based): character.
 
-> **Note:** The right-hand display text is a short abbreviation of the set name. `909`, `808`, and `JAZ` are confirmed from the unit; fill in the `—` cells as you confirm them on your own MC-303.
+- **`d01` · `909` · TR-909 Set** (Vintage Roland) · PC `00` / `1`: punchy 909 kicks, snappy snares, crisp 909 hi-hats, & rides for house/techno.
+- **`d02` · `808` · TR-808 & Elec. Set** (Vintage Roland) · PC `08` / `9`: booming 808 sub-kicks, cowbells, claps, & electro percussion.
+- **`d03` · — · CR-78 & TR-606 Set** (Vintage Roland) · PC `16` / `17`: metallic CompuRhythm CR-78 & crisp Drumatix TR-606 analog hits.
+- **`d04` · `JAZ` · Jazz Set** (Acoustic / Jazz) · PC `24` / `25`: acoustic jazz drum kit with natural room snares and cymbals.
+- **`d05` · — · Brush Set** (Acoustic / Jazz) · PC `25` / `26`: soft jazz brush taps, slaps, and swirls.
+- **`d06` · — · Jungle Set** (Dance & Electronic) · PC `32` / `33`: fast breakbeat snares, tight kicks, & jungle percussion.
+- **`d07` · — · House Set** (Dance & Electronic) · PC `40` / `41`: four-on-the-floor house kicks, claps, & Latin percussion.
+- **`d08` · — · Techno Set 1** (Dance & Electronic) · PC `48` / `49`: hard-hitting techno kicks, distorted hits, & industrial hats.
+- **`d09` · — · Techno Set 2** (Dance & Electronic) · PC `56` / `57`: alternative driving techno kit.
+- **`d10` · — · Techno Set 3** (Dance & Electronic) · PC `64` / `65`: minimal/acid techno drum kit.
+- **`d11` · — · Abstract Set** (Dance & Electronic) · PC `72` / `73`: experimental, glitchy, & FX-heavy percussion kit.
+- **`d12` · — · HipHop Set** (Dance & Electronic) · PC `80` / `81`: boom-bap kicks, crispy snares, & vinyl/scratch hits.
+
+> **Note:** The right-hand display text is a short abbreviation of the set name. `909`, `808`, and `JAZ` are confirmed from the unit; fill in the `—` entries as you confirm them on your own MC-303.

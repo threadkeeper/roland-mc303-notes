@@ -8,32 +8,15 @@ A button-by-button reference for recording **Parts**, **Phrases (RPS)**, **Patte
 
 ## 1. MC-303 Sequencer Hierarchy & Memory Architecture
 
-```text
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ SONG (S-1 to S-10 | up to 999 steps per Song)                               │
-│  Stores: Pattern playback order + Song Setup (Master Tempo & Global EFX)    │
-│   │      *Save Song Tempo/EFX via Song Setup Write: [SHIFT]+[FUNC]+Pad[15]  │
-│   │                                                                         │
-│   ├─► USER PATTERNS (U01–U50; shown as lowercase u01–u50 when empty)        │
-│   │    • 1–32 bars | 2/4, 3/4, or 4/4 | Notes + Realtime Knob Modify data   │
-│   │    • Pattern Setup (Tones, Part levels/knobs, Mutes, Standard Tempo)    │
-│   │      *MUST save Tone/Tempo/Knob init via Pattern Setup Write:           │
-│   │       [SHIFT]+[FUNC]+Pad[15] → [ENTER] (otherwise lost on pattern swap) │
-│   │        ├─► PART R (Drums — MIDI Ch 10, 1 of 12 Rhythm Sets)             │
-│   │        └─► PARTS 1–7 (Melodic — MIDI Ch 1–7, 448 Tones, e.g. t01-15)    │
-│   │                                                                         │
-│   ├─► VARIATION PATTERNS (L01–Q50 | 300 slots across 6 banks)               │
-│   │    • Stores Part Mute & Rhythm Mute states pointing to any Preset/User  │
-│   │      Pattern (save via [SHIFT]+[FUNC]+Pad[13] → [VALUE] → [ENTER]×2)    │
-│   │                                                                         │
-│   └─► PRESET PATTERNS (Read-Only — copy to U01–U50 to edit)                 │
-│        • A01–C33 (133 Dance Patterns) & E01–I11 (211 RPS Phrase Patterns)   │
-│                                                                             │
-│ PERFORMANCE SETS (30 Sets each, triggered from Keyboard Pads 1–16)          │
-│  • RPS SETS (1–30): Triggers 1 isolated Part from any Pattern per Pad       │
-│  • PATTERN SETS (1–30): Switches full Patterns (+ Arpeggio setup) per Pad   │
-└─────────────────────────────────────────────────────────────────────────────┘
-```
+- **Song** (`S-1`–`S-10`, up to 999 steps each) stores the pattern playback order plus the Song Setup (master tempo and global effects). Save it with Song Setup Write: **`[SHIFT] + [FUNC]` + Pad `[15]`**.
+  - **User Patterns** (`U01`–`U50`, shown as lowercase `u01`–`u50` when empty) hold 1–32 bars in 2/4, 3/4 or 4/4: notes plus Realtime Knob Modify data. Their Pattern Setup (Tones, Part levels and knobs, mutes, standard tempo) **must** be saved with Pattern Setup Write (**`[SHIFT] + [FUNC]` + Pad `[15]`** → **`[ENTER]`**), otherwise it is lost when you swap patterns.
+    - **Part R:** drums, MIDI Ch 10, 1 of 12 Rhythm Sets.
+    - **Parts 1–7:** melodic, MIDI Ch 1–7, 448 Tones (e.g. `t01-15`).
+  - **Variation Patterns** (`L01`–`Q50`, 300 slots across 6 banks) store Part Mute and Rhythm Mute states that point to any Preset or User pattern. Save with **`[SHIFT] + [FUNC]` + Pad `[13]`** → **`[VALUE]`** → **`[ENTER]`** ×2.
+  - **Preset Patterns** are read-only (copy to `U01`–`U50` to edit): `A01`–`C33` (133 Dance patterns) and `E01`–`I11` (211 RPS phrase patterns).
+- **Performance Sets** (30 of each, triggered from Keyboard Pads 1–16):
+  - **RPS Sets** (1–30): trigger one isolated Part from any pattern per pad.
+  - **Pattern Sets** (1–30): switch whole patterns (plus the Arpeggio set-up) per pad.
 
 > **Critical MC-303 Memory Rule (No `WRITE` Button, Two Distinct Data Types):**
 > 1. **Musical Data (Notes, Knob Movements, Song Steps):** Stored into memory **immediately** as you record them—there is no `[WRITE]` button for notes or song steps.
@@ -52,24 +35,36 @@ A button-by-button reference for recording **Parts**, **Phrases (RPS)**, **Patte
 
 The MC-303 has a **6-character 7-segment LED display** with a **`CURRENT`** area (left) and a **`NEXT`** area (right).
 
-| Control Group | Exact Panel Label | Function & Display Behavior |
-| :--- | :--- | :--- |
-| **Play Mode** | `[PLAY MODE]` | Toggles between **`SONG`** and **`PATTERN`** LEDs (`[SHIFT] + [PLAY MODE]` = Demo mode). |
-| **Select Cursor** | `SELECT [<] [>]` | Moves LED across **`PTN/SONG` · `PTN SET` · `RPS SET` · `TONE` · `TEMPO`**. Inside `[REC]` standby or `[SHIFT]` menus, steps through sub-parameters (`bEt`, `LGH`, `Cnt`, `LoP`). |
-| **Data Dial** | `[VALUE]` | Edits the active parameter. Hold **`[SHIFT] + [VALUE]`** to jump by 10s (or `1.0` BPM in `TEMPO`). |
-| **Transport** | `[BWD/TIE]`, `[FWD/REST]`, `[REC]`, `[STOP]`, `[PLAY]` | Rewind/Fast-Forward (`[SHIFT]+[BWD]` jumps to start; `[SHIFT]+[FWD]` jumps to end). In Step Rec 1: `[BWD/TIE]` = Tie, `[FWD/REST]` = Rest. `[REC]` blinks in standby, lights solid when recording. |
-| **Confirm / Cancel** | `[ENTER]`, `[EXIT]` | `[ENTER]` confirms edits/prompts (`SUrE`); `[EXIT]` cancels or backs out of menus. |
-| **Modifiers** | `[SHIFT]`, `[FUNC]` | **`[SHIFT]`** + Pad `[1]–[16]` opens black-framed parameter menus.<br>**`[FUNC]`** (press so LED **blinks**) switches all dual-label knobs to their secondary function.<br>**`[SHIFT] + [FUNC]` + Pad `[1]–[16]`** opens white-framed Edit/Write commands.<br>**`[SHIFT] + [FUNC]` + turn a knob** shows that knob's value: `CURRENT` shows the parameter name (the manual's cutoff example reads `CUt`) and `NEXT` shows the number. |
-| **Cutoff / Level Knob** | `CUTOFF / LEVEL` | **Same physical knob!**<br>• **`[FUNC]` LED dark:** Adjusts **`CUTOFF`** (`-50` to `+50`).<br>• **`[FUNC]` LED blinking:** Adjusts Part **`LEVEL` / Volume** (`0` to `127`). |
-| **Resonance / Pan Knob** | `RESONANCE / PANPOT` | • **`[FUNC]` LED dark:** **`RESONANCE`** (`-50` to `+50`).<br>• **`[FUNC]` LED blinking:** **`PANPOT`** (`L63`–`0`–`R63`). |
-| **Envelope Knob** | `ENVELOPE / RELEASE` + `[ENVELOPE]` | • **`[FUNC]` dark + `[ENVELOPE]` dark:** **`ATTACK`** (`-50` to `+50`).<br>• **`[FUNC]` dark + `[ENVELOPE]` lit:** **`DECAY`** (`-50` to `+50`).<br>• **`[FUNC]` blinking:** **`RELEASE`** (`-50` to `+50`). |
-| **LFO / Porta Knob** | `LFO / PORTA TIME` + `[LFO]` | • **`[FUNC]` dark + `[LFO]` dark:** **`LFO RATE`** (`-50` to `+50`).<br>• **`[FUNC]` dark + `[LFO]` lit:** **`LFO MOD` depth** (`0` to `127`).<br>• **`[FUNC]` blinking:** **`PORTA TIME`** (`0` to `127`). |
-| **Scale / Metronome** | `[SCALE / MEASURE]` | Hold while playing/stopped to view total bars (`CURRENT`) & `bar.beat` (`NEXT`). Selects step grid in Step Rec. **`[FUNC] + [SCALE/MEASURE]` toggles Metronome On/Off!** |
-| **Tap / Loop Rest** | `[TAP / LOOP REST]` | Tap 3+ times for Tap Tempo. **`[SHIFT] + [TAP/LOOP REST]`** toggles Loop Rest (`LoP`) in `[REC]` standby. Hold `[TAP]` in Erase mode (`ErS`) to erase **knob tweaks only**. |
-| **Part Mode & Tracks** | `[PART SELECT]`, `[PART MUTE]`, `[RHYTHM MUTE]`, `PART [R] [1]–[7]` | Make sure **`[PART SELECT]`** is lit so pressing `PART [R, 1–7]` selects the active Part (instead of muting Parts or Rhythm drum groups). |
-| **Pads & Octave** | `[KEYBOARD PADS 1–16]`, `OCTAVE [-]` / `[+]` | 16-key pad keyboard (`Pad [2]` = `C4` when Octave = `0`; shift `-4` to `+4` octaves). Ensure `[PTN SET]` and `[RPS SET]` are **dark** to play notes! |
-| **Transpose / Erase** | `[TRANSPOSE / ERASE]` | Live transpose (`[TRANSPOSE]` + `[VALUE]`). During recording, **`[SHIFT] + [TRANSPOSE/ERASE]`** toggles Realtime Erase (**`ErS`**). |
-| **Rear Bass Boost** | `LOW BOOST` (rear) | Hardware bass-boost circuit on the audio output (not recorded in sequencer). |
+- **Play Mode** · `[PLAY MODE]`: toggles between the **`SONG`** and **`PATTERN`** LEDs (`[SHIFT] + [PLAY MODE]` = Demo mode).
+- **Select Cursor** · `SELECT [<] [>]`: moves the LED across **`PTN/SONG` · `PTN SET` · `RPS SET` · `TONE` · `TEMPO`**. Inside `[REC]` standby or `[SHIFT]` menus it steps through sub-parameters (`bEt`, `LGH`, `Cnt`, `LoP`).
+- **Data Dial** · `[VALUE]`: edits the active parameter. Hold **`[SHIFT] + [VALUE]`** to jump by 10s (or `1.0` BPM in `TEMPO`).
+- **Transport** · `[BWD/TIE]`, `[FWD/REST]`, `[REC]`, `[STOP]`, `[PLAY]`: rewind / fast-forward (`[SHIFT]+[BWD]` jumps to start; `[SHIFT]+[FWD]` jumps to end). In Step Rec 1, `[BWD/TIE]` = Tie and `[FWD/REST]` = Rest. `[REC]` blinks in standby and lights solid when recording.
+- **Confirm / Cancel** · `[ENTER]`, `[EXIT]`: `[ENTER]` confirms edits and prompts (`SUrE`); `[EXIT]` cancels or backs out of menus.
+- **Modifiers** · `[SHIFT]`, `[FUNC]`:
+  - **`[SHIFT]`** + Pad `[1]–[16]` opens the black-framed parameter menus.
+  - **`[FUNC]`** (press so its LED **blinks**) switches all dual-label knobs to their secondary function.
+  - **`[SHIFT] + [FUNC]` + Pad `[1]–[16]`** opens the white-framed Edit/Write commands.
+  - **`[SHIFT] + [FUNC]` + turn a knob** shows that knob's value: `CURRENT` shows the parameter name (the manual's cutoff example reads `CUt`) and `NEXT` shows the number.
+- **Cutoff / Level Knob** · `CUTOFF / LEVEL` (**same physical knob!**):
+  - **`[FUNC]` LED dark:** adjusts **`CUTOFF`** (`-50` to `+50`).
+  - **`[FUNC]` LED blinking:** adjusts Part **`LEVEL` / Volume** (`0` to `127`).
+- **Resonance / Pan Knob** · `RESONANCE / PANPOT`:
+  - **`[FUNC]` LED dark:** **`RESONANCE`** (`-50` to `+50`).
+  - **`[FUNC]` LED blinking:** **`PANPOT`** (`L63`–`0`–`R63`).
+- **Envelope Knob** · `ENVELOPE / RELEASE` + `[ENVELOPE]`:
+  - **`[FUNC]` dark + `[ENVELOPE]` dark:** **`ATTACK`** (`-50` to `+50`).
+  - **`[FUNC]` dark + `[ENVELOPE]` lit:** **`DECAY`** (`-50` to `+50`).
+  - **`[FUNC]` blinking:** **`RELEASE`** (`-50` to `+50`).
+- **LFO / Porta Knob** · `LFO / PORTA TIME` + `[LFO]`:
+  - **`[FUNC]` dark + `[LFO]` dark:** **`LFO RATE`** (`-50` to `+50`).
+  - **`[FUNC]` dark + `[LFO]` lit:** **`LFO MOD`** depth (`0` to `127`).
+  - **`[FUNC]` blinking:** **`PORTA TIME`** (`0` to `127`).
+- **Scale / Metronome** · `[SCALE / MEASURE]`: hold while playing or stopped to view the total bars (`CURRENT`) and `bar.beat` (`NEXT`). Selects the step grid in Step Rec. **`[FUNC] + [SCALE/MEASURE]` toggles the metronome on/off!**
+- **Tap / Loop Rest** · `[TAP / LOOP REST]`: tap 3+ times for Tap Tempo. **`[SHIFT] + [TAP/LOOP REST]`** toggles Loop Rest (`LoP`) in `[REC]` standby. Hold `[TAP]` in Erase mode (`ErS`) to erase **knob tweaks only**.
+- **Part Mode & Tracks** · `[PART SELECT]`, `[PART MUTE]`, `[RHYTHM MUTE]`, `PART [R] [1]–[7]`: make sure **`[PART SELECT]`** is lit so pressing `PART [R, 1–7]` selects the active Part (instead of muting Parts or Rhythm drum groups).
+- **Pads & Octave** · `[KEYBOARD PADS 1–16]`, `OCTAVE [-]` / `[+]`: a 16-key pad keyboard (`Pad [2]` = `C4` when Octave = `0`; shift `-4` to `+4` octaves). Make sure `[PTN SET]` and `[RPS SET]` are **dark** to play notes!
+- **Transpose / Erase** · `[TRANSPOSE / ERASE]`: live transpose (`[TRANSPOSE]` + `[VALUE]`). During recording, **`[SHIFT] + [TRANSPOSE/ERASE]`** toggles Realtime Erase (**`ErS`**).
+- **Rear Bass Boost** · `LOW BOOST` (rear): hardware bass-boost circuit on the audio output (not recorded in the sequencer).
 
 > **Realtime Modify (`RTM`) Recording Rule:** All 10 parameters in the `REALTIME MODIFY` section (`CUTOFF`, `LEVEL`, `RESONANCE`, `PANPOT`, `ATTACK`, `DECAY`, `RELEASE`, `LFO RATE`, `LFO MOD`, `PORTA TIME`) are permanently recorded into a User Pattern (`U01–U50`) when moved during **Pattern Realtime Recording** (`[REC]` + `[PLAY]`). **`SONG` mode cannot record knob tweaks**—it plays back the automation recorded inside each Pattern.
 >
@@ -81,14 +76,24 @@ The MC-303 has a **6-character 7-segment LED display** with a **`CURRENT`** area
 
 ## 3. Recording Modes Overview
 
-| Mode | Best For | Exact Key Sequence to Enter | How Data Is Captured |
-| :--- | :--- | :--- | :--- |
-| **Realtime Recording** | Live melodies, chords, arpeggios, & **recording knob sweeps (`CUTOFF`, `LEVEL`, etc.)** | `PATTERN` mode (`U01–U50`) → `[REC]` (blinks) → set `bEt/LGH/Cnt/LoP` → `PART [R/1–7]` → `[PLAY]` | **Notes:** Loop Mix (overdubs on each pass).<br>**Knobs:** Loop Replace per parameter (re-turning `CUTOFF` overwrites `CUTOFF`; turning `LEVEL` on pass 2 layers `LEVEL` alongside `CUTOFF`). |
-| **Step Recording 1 (Melodic `1–7`)** | Tight 16th-note acid basslines, arpeggios, chords, ties/slides | `PATTERN` mode (`U01–U50`) → `[REC]` → `PART [1–7]` → **`[REC]` again** (`STEP REC` lights) → `[PLAY]` | Step-by-step entry via `[PADS 1–16]`, `[FWD/REST]` (Rest), `[BWD/TIE]` (Tie), `[SCALE/MEASURE]` (grid), `PART [R–3]` (Vel), `PART [4–7]` (Gate). *Overwrites from start point forward.* |
-| **Step Recording 2 (Drum Grid `R`)** | Classic TR-808/909 16-step drum machine programming | `PATTERN` mode (`U01–U50`) → `[REC]` → `PART [R]` → **`[REC]` again** (`STEP REC` lights) → `[PLAY]` | Pattern loops live! Hold `[SHIFT] + Pad [1–16]` to pick drum sound, release `[SHIFT]`, tap `Pads [1–16]` to toggle steps on/off; `[FWD]`/`[BWD]` switches bars. |
-| **Microscope Edit** | Surgical single-note velocity/gate edits, note delete, or TB-303 slides | `PATTERN` mode → `[REC]` (standby) → `PART [R/1–7]` → **`[REC]` again** (`STEP REC` lit, `bar-beat` / `clock` shown). *(Inside Step Recording, `[REC]` toggles between the step-input display and the Microscope. During **Realtime** Recording, `[REC]` enters Rehearsal mode `rHS` instead.)* | Turn `[VALUE]` (or `[FWD]`/`[BWD]`) to inspect notes at 96 PPQN resolution; edit Vel/Gate, insert Portamento slides or Hold messages, or delete individual notes. |
-| **RPS Phrase Reg.** | Triggering isolated single-Part loops live from Pads `1–16` | `[PART MUTE]` all parts except 1 → `[RPS SET]` lit → hold **`[RPS SET] + Pad [1–16]`** | Registers pointer to that Pattern + Part on the Pad; can be triggered live or recorded into another User Pattern. |
-| **Song Recording** | Chaining up to 999 Patterns into a linear song (`S-1` to `S-10`) | `[PLAY MODE]` (`SONG` lit) → `S-1..S-10` → `[REC]` → `[PLAY]` | Select Pattern with `[VALUE]` → press `[ENTER]` to append step → `[STOP]` when done. |
+- **Realtime Recording:** best for live melodies, chords, arpeggios and **recording knob sweeps (`CUTOFF`, `LEVEL`, etc.)**.
+  - **Enter:** `PATTERN` mode (`U01–U50`) → `[REC]` (blinks) → set `bEt/LGH/Cnt/LoP` → `PART [R/1–7]` → `[PLAY]`.
+  - **Captured:** **Notes:** Loop Mix (overdubs on each pass). **Knobs:** Loop Replace per parameter (re-turning `CUTOFF` overwrites `CUTOFF`; turning `LEVEL` on pass 2 layers `LEVEL` alongside `CUTOFF`).
+- **Step Recording 1 (Melodic `1–7`):** best for tight 16th-note acid basslines, arpeggios, chords, ties and slides.
+  - **Enter:** `PATTERN` mode (`U01–U50`) → `[REC]` → `PART [1–7]` → **`[REC]` again** (`STEP REC` lights) → `[PLAY]`.
+  - **Captured:** step-by-step entry via `[PADS 1–16]`, `[FWD/REST]` (Rest), `[BWD/TIE]` (Tie), `[SCALE/MEASURE]` (grid), `PART [R–3]` (Vel), `PART [4–7]` (Gate). *Overwrites from the start point forward.*
+- **Step Recording 2 (Drum Grid `R`):** best for classic TR-808/909 16-step drum machine programming.
+  - **Enter:** `PATTERN` mode (`U01–U50`) → `[REC]` → `PART [R]` → **`[REC]` again** (`STEP REC` lights) → `[PLAY]`.
+  - **Captured:** the pattern loops live! Hold `[SHIFT] + Pad [1–16]` to pick a drum sound, release `[SHIFT]`, tap `Pads [1–16]` to toggle steps on/off; `[FWD]`/`[BWD]` switches bars.
+- **Microscope Edit:** best for surgical single-note velocity/gate edits, note delete, or TB-303 slides.
+  - **Enter:** `PATTERN` mode → `[REC]` (standby) → `PART [R/1–7]` → **`[REC]` again** (`STEP REC` lit, `bar-beat` / `clock` shown). *(Inside Step Recording, `[REC]` toggles between the step-input display and the Microscope. During **Realtime** Recording, `[REC]` enters Rehearsal mode `rHS` instead.)*
+  - **Captured:** turn `[VALUE]` (or `[FWD]`/`[BWD]`) to inspect notes at 96 PPQN resolution; edit Vel/Gate, insert Portamento slides or Hold messages, or delete individual notes.
+- **RPS Phrase Reg.:** best for triggering isolated single-Part loops live from Pads `1–16`.
+  - **Enter:** `[PART MUTE]` all Parts except 1 → `[RPS SET]` lit → hold **`[RPS SET] + Pad [1–16]`**.
+  - **Captured:** registers a pointer to that Pattern + Part on the pad; it can be triggered live or recorded into another User Pattern.
+- **Song Recording:** best for chaining up to 999 patterns into a linear song (`S-1` to `S-10`).
+  - **Enter:** `[PLAY MODE]` (`SONG` lit) → `S-1..S-10` → `[REC]` → `[PLAY]`.
+  - **Captured:** select a pattern with `[VALUE]` → press `[ENTER]` to append a step → `[STOP]` when done.
 
 ---
 
@@ -150,18 +155,21 @@ The MC-303 has a **6-character 7-segment LED display** with a **`CURRENT`** area
 
 ### E. Deleting & Erasing Everything (Single Note, Knob Tweaks, Part, Measure, Pattern, Song)
 
-| What You Want to Delete | Exact Hardware Key Sequence |
-| :--- | :--- |
-| **Single Note or Single Drum Sound (Realtime)** | During Realtime Recording (`[REC]` + `[PLAY]`): press **`[SHIFT] + [TRANSPOSE/ERASE]`** (`CURRENT` shows **`ErS`**). **Hold the specific Keyboard Pad** while the playhead passes over the unwanted note(s). Press `[SHIFT]+[TRANSPOSE/ERASE]` or `[EXIT]` to leave `ErS`. |
-| **Range of Notes (Realtime)** | In **`ErS`** mode (`[SHIFT] + [TRANSPOSE/ERASE]`), **hold the lowest and highest Keyboard Pads** of the range to erase everything between them. |
-| **Knob Tweaks ONLY — Keep Notes! (Realtime)** | In **`ErS`** mode (`[SHIFT] + [TRANSPOSE/ERASE]`), **hold `[TAP / LOOP REST]`** over the section where you want to wipe `Modify data` (`CUTOFF`, `LEVEL`, etc.) without erasing notes! |
-| **All Data in Active Part (Realtime)** | In **`ErS`** mode (`[SHIFT] + [TRANSPOSE/ERASE]`), **hold `[REC]`** for one full loop pass. |
-| **Single Specific Note (Microscope Precision)** | Stopped in `PATTERN` mode: press **`[REC]`** (standby) → select the Part → press **`[REC]`** again (`STEP REC` lit, Microscope shown). Turn **`[VALUE]`** (or `[FWD]`/`[BWD]`) to locate the note (its Keyboard Pad lights up; check `OCTAVE [-]/[+]` if unlit). Hold **`[SHIFT] + [FUNC]` + press the lit Keyboard Pad** (pad goes dark = deleted). Press `[STOP]`. |
-| **Single Drum Step (Step Rec 2)** | In Step Rec 2 (`PART [R]`), select that drum (`[SHIFT] + Pad`), move to the bar (`[FWD]`/`[BWD]`), and **tap the lit step Pad `1–16`** so its LED goes dark. |
-| **Erase Bars (Leaves Blank Bars in Place)** | Stopped in `PATTERN` mode: **`[SHIFT] + [FUNC] + Pad [3]`** (`ErS`) → light target `PART [R/1–7]` → `[VALUE]` start bar → `[ENTER]` → `[VALUE]` bar count (`1–32` or `ALL`) → `[ENTER]` (`SUrE`) → `[ENTER]`. *(Does not erase Setup data or shorten pattern.)* |
-| **Delete Entire User Pattern (`U01` → `u01`)** | Stopped in `PATTERN` mode on `U01–U50`:<br>1. Hold **`[SHIFT] + [FUNC]` + press Pad `[4]`** (Delete Measure).<br>2. Press **`PART [R]` and `[1]–[7]`** so **all 8 Part LEDs are lit solid**, and turn **`[VALUE]`** to the data type **`ALL`** *(not `PHRASE`/`SETUP`—`ALL` is what removes the pattern itself)*.<br>3. Press **`[ENTER]`** (`CURRENT` = `1` blinking).<br>4. Press **`[ENTER]`** (`NEXT` blinks) → turn **`[VALUE]`** to **`ALL`** *(number of measures)*.<br>5. Press **`[ENTER]`** (`SUrE`) → press **`[ENTER]`** again. *(Per Roland: a deleted pattern shows a lowercase `u` and holds no note or setup data; an erased pattern shows an uppercase `U` and keeps its setup, e.g. its length.)* |
-| **Shorten a Pattern (Delete Bars, Closes the Gap)** | Stopped in `PATTERN` mode: **`[SHIFT] + [FUNC] + Pad [4]`** (Delete Measure) → press the target `PART` button(s) (all of `R, 1–7` shortens the pattern itself) → turn **`[VALUE]`** to the data type **`PHRASE`** (notes + knob data only) → `[ENTER]` → `[VALUE]` first bar to delete → `[ENTER]` → `[VALUE]` number of bars (`1–32`, or `ALL` = to the end) → `[ENTER]` (`SUrE`) → `[ENTER]`. *(The manual says data type `ALL` also deletes the Parts' **setup data** (Tone, knob settings)—use `PHRASE` unless you want that.)* |
-| **Delete 1 Step or Clear Entire Song** | Stopped in `SONG` mode on `S-1..S-10`: **`[SHIFT] + [FUNC] + Pad [4]`** → `[VALUE]` (or `[FWD]`/`[BWD]`) to step `#` (or `END` to initialize the entire Song—this also deletes its saved setup data: tempo and effects) → `[ENTER]` (`SUrE`) → `[ENTER]`. *(Or press `[REC]` on a song that already has steps—the display shows `SnG > CLr`—then `[ENTER]` to clear & re-record from scratch.)* |
+- **Single Note or Single Drum Sound (Realtime):** during Realtime Recording (`[REC]` + `[PLAY]`) press **`[SHIFT] + [TRANSPOSE/ERASE]`** (`CURRENT` shows **`ErS`**). **Hold the specific Keyboard Pad** while the playhead passes over the unwanted note(s). Press `[SHIFT]+[TRANSPOSE/ERASE]` or `[EXIT]` to leave `ErS`.
+- **Range of Notes (Realtime):** in **`ErS`** mode (`[SHIFT] + [TRANSPOSE/ERASE]`), **hold the lowest and highest Keyboard Pads** of the range to erase everything between them.
+- **Knob Tweaks ONLY — Keep Notes! (Realtime):** in **`ErS`** mode (`[SHIFT] + [TRANSPOSE/ERASE]`), **hold `[TAP / LOOP REST]`** over the section where you want to wipe `Modify data` (`CUTOFF`, `LEVEL`, etc.) without erasing notes!
+- **All Data in Active Part (Realtime):** in **`ErS`** mode (`[SHIFT] + [TRANSPOSE/ERASE]`), **hold `[REC]`** for one full loop pass.
+- **Single Specific Note (Microscope Precision):** stopped in `PATTERN` mode, press **`[REC]`** (standby) → select the Part → press **`[REC]`** again (`STEP REC` lit, Microscope shown). Turn **`[VALUE]`** (or `[FWD]`/`[BWD]`) to locate the note (its Keyboard Pad lights up; check `OCTAVE [-]/[+]` if unlit). Hold **`[SHIFT] + [FUNC]` + press the lit Keyboard Pad** (pad goes dark = deleted). Press `[STOP]`.
+- **Single Drum Step (Step Rec 2):** in Step Rec 2 (`PART [R]`), select that drum (`[SHIFT] + Pad`), move to the bar (`[FWD]`/`[BWD]`), and **tap the lit step Pad `1–16`** so its LED goes dark.
+- **Erase Bars (Leaves Blank Bars in Place):** stopped in `PATTERN` mode, **`[SHIFT] + [FUNC] + Pad [3]`** (`ErS`) → light target `PART [R/1–7]` → `[VALUE]` start bar → `[ENTER]` → `[VALUE]` bar count (`1–32` or `ALL`) → `[ENTER]` (`SUrE`) → `[ENTER]`. *(Does not erase Setup data or shorten pattern.)*
+- **Delete Entire User Pattern (`U01` → `u01`):** stopped in `PATTERN` mode on `U01–U50`:
+  1. Hold **`[SHIFT] + [FUNC]` + press Pad `[4]`** (Delete Measure).
+  2. Press **`PART [R]` and `[1]–[7]`** so **all 8 Part LEDs are lit solid**, and turn **`[VALUE]`** to the data type **`ALL`** *(not `PHRASE`/`SETUP`—`ALL` is what removes the pattern itself)*.
+  3. Press **`[ENTER]`** (`CURRENT` = `1` blinking).
+  4. Press **`[ENTER]`** (`NEXT` blinks) → turn **`[VALUE]`** to **`ALL`** *(number of measures)*.
+  5. Press **`[ENTER]`** (`SUrE`) → press **`[ENTER]`** again. *(Per Roland: a deleted pattern shows a lowercase `u` and holds no note or setup data; an erased pattern shows an uppercase `U` and keeps its setup, e.g. its length.)*
+- **Shorten a Pattern (Delete Bars, Closes the Gap):** stopped in `PATTERN` mode, **`[SHIFT] + [FUNC] + Pad [4]`** (Delete Measure) → press the target `PART` button(s) (all of `R, 1–7` shortens the pattern itself) → turn **`[VALUE]`** to the data type **`PHRASE`** (notes + knob data only) → `[ENTER]` → `[VALUE]` first bar to delete → `[ENTER]` → `[VALUE]` number of bars (`1–32`, or `ALL` = to the end) → `[ENTER]` (`SUrE`) → `[ENTER]`. *(The manual says data type `ALL` also deletes the Parts' **setup data** (Tone, knob settings)—use `PHRASE` unless you want that.)*
+- **Delete 1 Step or Clear Entire Song:** stopped in `SONG` mode on `S-1..S-10`, **`[SHIFT] + [FUNC] + Pad [4]`** → `[VALUE]` (or `[FWD]`/`[BWD]`) to step `#` (or `END` to initialize the entire Song—this also deletes its saved setup data: tempo and effects) → `[ENTER]` (`SUrE`) → `[ENTER]`. *(Or press `[REC]` on a song that already has steps—the display shows `SnG > CLr`—then `[ENTER]` to clear & re-record from scratch.)*
 
 ### F. Essential Saving, Copying, RPS & Song Operations
 - **Save Tone, Tempo & Part Knobs (`Pattern Setup Write`):** In `PATTERN` mode, hold **`[SHIFT] + [FUNC]` + press Pad `[15]`** (`SUrE`) → press **`[ENTER]`**. Stores, for all Parts at once: Tones/Rhythm Set, Part parameters (level, pan, cutoff, resonance, envelope, LFO…), effect part levels, mutes, and the pattern's standard tempo.
@@ -345,46 +353,48 @@ The MC-303's Envelope shapes **both volume and filter contour** over time (`A` =
 
 ### 6.1 The Build (Everything Already Playing Keeps Playing)
 
-| Song bars | Pattern · bars | Clock (120 BPM) | New on Part R |
-| :--- | :--- | :--- | :--- |
-| 1–8 | `U01` · 1–8 | 0:00 | **Kick** (four-on-the-floor) |
-| 9–16 | `U01` · 9–16 | 0:16 | **Open hat** (off-beat) |
-| 17–24 | `U01` · 17–24 | 0:32 | **Clap** (beats 2 & 4) |
-| 25–32 | `U01` · 25–32 | 0:48 | **Closed hat** (the 16ths between the other hits) |
-| 33–40 | `U02` · 1–8 | 1:04 | **Shaker** (+ **crash** on bar 1, beat 1) |
-| 41–48 | `U02` · 9–16 | 1:20 | **Congas** |
-| 49–56 | `U02` · 17–24 | 1:36 | **Tambourine** (doubles the clap) |
-| 57–64 | `U02` · 25–32 | 1:52 | **Ride** (doubles the open hat)—all eight layers while the lead fades out |
+Song bars · pattern and bars · clock at 120 BPM: what is new on Part R.
+
+- **Bars 1–8** · `U01` 1–8 · 0:00: **kick** (four-on-the-floor)
+- **Bars 9–16** · `U01` 9–16 · 0:16: **open hat** (off-beat)
+- **Bars 17–24** · `U01` 17–24 · 0:32: **clap** (beats 2 & 4)
+- **Bars 25–32** · `U01` 25–32 · 0:48: **closed hat** (the 16ths between the other hits)
+- **Bars 33–40** · `U02` 1–8 · 1:04: **shaker** (+ **crash** on bar 1, beat 1)
+- **Bars 41–48** · `U02` 9–16 · 1:20: **congas**
+- **Bars 49–56** · `U02` 17–24 · 1:36: **tambourine** (doubles the clap)
+- **Bars 57–64** · `U02` 25–32 · 1:52: **ride** (doubles the open hat)—all eight layers while the lead fades out
 
 ### 6.2 Cheat Card: Pad Map & Tap Grid (Rhythm Set `07` House)
 
-| Drum (sound, note no.) | `OCTAVE` | Pad | Tap steps per bar | Velocity |
-| :--- | :---: | :---: | :--- | :--- |
-| **Kick** (909 BD 3, 36) | `-2` | `2` | `1 5 9 13` | Loud |
-| **Clap** (909 Clap, 39) | `-2` | `5` | `5 13` | Loud |
-| **Crash** (909 Crash 1, 49) | `-2` | `15` | `1`, once on `U02` bar 1 | Loud |
-| **Open hat** (909 OH, 46) | `-2` | `12` | `3 7 11 15` | Soft |
-| **Closed hat** (909 CH, 42) | `-2` | `8` | `2 4 6 8 10 12 14 16` | Soft |
-| **Shaker** (626 Shaker, 82) | `+1` | `12` | `1 3 5 7 9 11 13 15` | Soft |
-| **Lo conga** (Lo Conga Open, 64) | `0` | `6` | `4 11` | Soft |
-| **Hi conga** (Hi Conga Open, 63) | `0` | `5` | `8 14` | Soft |
-| **Tambourine** (Tambourine, 54) | `-1` | `8` | `5 13` | Soft |
-| **Ride** (909 Ride, 51) | `-1` | `5` | `3 7 11 15` | Soft |
+Each line: drum (sound, note no.) · `OCTAVE` · pad · tap steps per bar · velocity.
+
+- **Kick** (909 BD 3, 36) · `OCTAVE -2` · pad `2` · steps `1 5 9 13` · Loud
+- **Clap** (909 Clap, 39) · `OCTAVE -2` · pad `5` · steps `5 13` · Loud
+- **Crash** (909 Crash 1, 49) · `OCTAVE -2` · pad `15` · step `1`, once on `U02` bar 1 · Loud
+- **Open hat** (909 OH, 46) · `OCTAVE -2` · pad `12` · steps `3 7 11 15` · Soft
+- **Closed hat** (909 CH, 42) · `OCTAVE -2` · pad `8` · steps `2 4 6 8 10 12 14 16` · Soft
+- **Shaker** (626 Shaker, 82) · `OCTAVE +1` · pad `12` · steps `1 3 5 7 9 11 13 15` · Soft
+- **Lo conga** (Lo Conga Open, 64) · `OCTAVE 0` · pad `6` · steps `4 11` · Soft
+- **Hi conga** (Hi Conga Open, 63) · `OCTAVE 0` · pad `5` · steps `8 14` · Soft
+- **Tambourine** (Tambourine, 54) · `OCTAVE -1` · pad `8` · steps `5 13` · Soft
+- **Ride** (909 Ride, 51) · `OCTAVE -1` · pad `5` · steps `3 7 11 15` · Soft
 
 ```text
-Step       1 e & a 2 e & a 3 e & a 4 e & a
-Kick       X . . . X . . . X . . . X . . .
-Clap       . . . . X . . . . . . . X . . .
-Open hat   . . X . . . X . . . X . . . X .
-Closed hat . X . X . X . X . X . X . X . X
-Shaker     X . X . X . X . X . X . X . X .
-Lo conga   . . . X . . . . . . X . . . . .
-Hi conga   . . . . . . . X . . . . . X . .
-Tambourine . . . . X . . . . . . . X . . .
-Ride       . . X . . . X . . . X . . . X .
+Step  1e&a 2e&a 3e&a 4e&a
+Kick  X... X... X... X...
+Clap  .... X... .... X...
+O.hat ..X. ..X. ..X. ..X.
+C.hat .X.X .X.X .X.X .X.X
+Shake X.X. X.X. X.X. X.X.
+L.cng ...X .... ..X. ....
+H.cng .... ...X .... .X..
+Tamb  .... X... .... X...
+Ride  ..X. ..X. ..X. ..X.
 ```
 
-- **Steps:** one bar = 16 steps, numbered `1–16` left to right and counted `1 e & a 2 e & a 3 e & a 4 e & a`. Step `1` = beat 1, `5` = beat 2, `9` = beat 3, `13` = beat 4; `X` = tap.
+`O.hat` open hat, `C.hat` closed hat, `Shake` shaker, `L.cng` / `H.cng` lo / hi conga, `Tamb` tambourine.
+
+- **Steps:** one bar = 16 steps, numbered `1–16` left to right and counted `1 e & a 2 e & a 3 e & a 4 e & a` (in the grid above, each group of four is one beat). Step `1` = beat 1, `5` = beat 2, `9` = beat 3, `13` = beat 4; `X` = tap.
 - **Pad → note:** `note = 58 + 12 × shift + pad` (manual p.20: pad 2 = C4 = note 60 at shift 0). The sounds come from the Rhythm Set list (manual pp.92–93).
 - **Velocity:** Pad Velocity is one fixed value for every pad press (`1–127`, manual p.73), so the kit is recorded in two groups: **Loud ≈ `110`** and **Soft ≈ `80`**. Treat both as starting points and adjust by ear.
 
@@ -414,13 +424,13 @@ Ride       . . X . . . X . . . X . . . X .
 ---
 
 ### Phase 8: Record the Seven Passes (Realtime Loop Mix, One Pass per Pad Position)
-> **How it works:** each pass records into **one pattern** with **one octave shift and one Pad Velocity**, tapping one or two drums from their entry bar to the end of bar 32. Loop Mix **adds** each pass to what is already on Part R, so the groove builds up pass by pass, and `LoP = on` gives you the blank 33rd bar to press `[STOP]` in without clipping bar 32. *(Prefer one drum per pass? Split any row below—it works the same way.)*
+> **How it works:** each pass records into **one pattern** with **one octave shift and one Pad Velocity**, tapping one or two drums from their entry bar to the end of bar 32. Loop Mix **adds** each pass to what is already on Part R, so the groove builds up pass by pass, and `LoP = on` gives you the blank 33rd bar to press `[STOP]` in without clipping bar 32. *(Prefer one drum per pass? Split any pass below—it works the same way.)*
 
-47. **The pass routine**—repeat it for every row of the table in step 48:
-    - **a. Pattern:** *(stopped, `PATTERN` mode)* `SELECT` → `PTN/SONG` → `[VALUE]` to the row's pattern *(this also resets `TEMPO` to its stored `120.0`)*.
+47. **The pass routine**—repeat it for every pass listed in step 48:
+    - **a. Pattern:** *(stopped, `PATTERN` mode)* `SELECT` → `PTN/SONG` → `[VALUE]` to the pass's pattern *(this also resets `TEMPO` to its stored `120.0`)*.
     - **b. Part:** press **`[PART SELECT]`** (lit) → **`PART [R]`**.
-    - **c. Octave:** press **`OCTAVE [-]` / `[+]`** until you reach the row's shift (neither LED lit = `0`; `[-]` lit = negative; `[+]` lit = positive; the display shows `OCt` ▸ the shift while you press). Tap the row's pads to confirm the sounds.
-    - **d. Velocity:** only if the row's velocity differs from the previous pass: hold **`[SHIFT]`** + Pad `[16]` → `SELECT [>]` ×7 (`PuL`) → `[VALUE]` → `[EXIT]`.
+    - **c. Octave:** press **`OCTAVE [-]` / `[+]`** until you reach the pass's shift (neither LED lit = `0`; `[-]` lit = negative; `[+]` lit = positive; the display shows `OCt` ▸ the shift while you press). Tap the pass's pads to confirm the sounds.
+    - **d. Velocity:** only if the pass's velocity differs from the previous pass: hold **`[SHIFT]`** + Pad `[16]` → `SELECT [>]` ×7 (`PuL`) → `[VALUE]` → `[EXIT]`.
     - **e. Standby (recording setup):**
       1. Check that the **`PATTERN`** LED (by **`[PLAY MODE]`**) is lit and `CURRENT` shows your pattern (e.g. `U01`), not `S-1`. Press **`[REC]`** (in the block with `STOP` and `PLAY`, right of the display). `REC` **blinks** and the display shows one recording setting (`CURRENT` = `bEt`, `LGH`, `Cnt` or `LoP`; `NEXT` = its value).
          - **Seeing `SnG` ▸ `CLr` instead?** You are in `SONG` mode and the song already has steps. Press **`[EXIT]`**—**not `[ENTER]`, which deletes every pattern in the song** (manual p.68)—then press **`[PLAY MODE]`** until **`PATTERN`** lights, re-select the pattern (`SELECT` → `PTN/SONG` → `[VALUE]`) and press **`[REC]`** again.
@@ -428,7 +438,7 @@ Ride       . . X . . . X . . . X . . . X .
       3. **Choose the drum Part:** press **`PART [R]`**, the leftmost round button in the `R 1 2 3 4 5 6 7` row above the display (labelled `BD`). Its LED lights: Part R is now the *Recording Part* (manual p.46). *(Not lighting? Make sure `[PART SELECT]` is lit, not `[PART MUTE]` or `[RHYTHM MUTE]`.)*
       4. **Switch on Grid Quantize:** find the **`PLAY QUANTIZE`** block at the top left, beside the **`TIMING`** knob. It has three small LEDs, top to bottom **GRID**, **GROOVE**, **SHUFFLE**, with the **`[QUANTIZE]`** button just below them. Each press steps through the choices (GRID, GROOVE, SHUFFLE, or none lit = off): press until the top LED, **GRID**, is lit. The display doesn't change. While recording, quantize applies only to the Recording Part (R) (manual p.47), snapping each tap to the nearest 16th (the resolution from Phase 7) at the `TIMING` strength you set there. *(The manual doesn't say whether notes recorded this way are stored snapped or only played back snapped—step 53 covers both.)*
       5. Everything is armed: press **`[PLAY]`** (step f).
-    - **f. Record:** press **`[PLAY]`**. After the 4 count-in clicks, `NEXT` shows the bar being recorded (e.g. `6.3` = bar 6). Tap the row's hits from each drum's entry bar to the end of bar 32. **Hands off the knobs.**
+    - **f. Record:** press **`[PLAY]`**. After the 4 count-in clicks, `NEXT` shows the bar being recorded (e.g. `6.3` = bar 6). Tap the pass's hits from each drum's entry bar to the end of bar 32. **Hands off the knobs.**
     - **g. Stop:** after bar 32 comes the blank `Loop Rest` bar (nothing is recorded)—press **`[STOP]`** there.
       - **Need to redo a drum? Clear just that drum first.** Loop Mix *adds* new hits to what is already on Part R, so re-tapping a drum without clearing it doubles it and keeps the wrong hits. **Realtime Erase** (manual pp.49–50) removes one drum and leaves the others alone:
         1. *(Skip this if you are still looping in the pass—the pads are already right.)* Stopped, select the same pattern, **`[PART SELECT]`** → **`PART [R]`**, set **`OCTAVE`** to that drum's shift (cheat card, 6.2) and tap its pad to confirm it plays that drum. Then press **`[REC]`**, check `PART [R]` is lit and press **`[PLAY]`**.
@@ -440,15 +450,33 @@ Ride       . . X . . . X . . . X . . . X .
     - **h. Listen:** press **`[PLAY]`** to hear it *(while recording, hits sound exactly as you play them; the quantized result can be heard after you finish recording—manual p.47)*, then **`[STOP]`**.
 48. **The seven passes** (everything already on Part R keeps playing, so you tap along to the groove as it builds):
 
-| # | Pattern | `OCTAVE` | Velocity | Tap this (pad · steps · bars) |
-| :-: | :-: | :-: | :-: | :--- |
-| 1 | `U01` | `-2` | `110` | **Kick** pad `2` · `1 5 9 13` · bars `1–32`<br>**Clap** pad `5` · `5 13` · bars `17–32` |
-| 2 | `U02` | `-2` | `110` | **Crash** pad `15` · step `1` · bar `1` only (together with the first kick)<br>**Kick** pad `2` · `1 5 9 13` · bars `1–32`<br>**Clap** pad `5` · `5 13` · bars `1–32` |
-| 3 | `U01` | `-2` | `80` | **Open hat** pad `12` · `3 7 11 15` · bars `9–32`<br>**Closed hat** pad `8` · `2 4 6 8 10 12 14 16` · bars `25–32` |
-| 4 | `U02` | `-2` | `80` | **Open hat** pad `12` · `3 7 11 15` · bars `1–32`<br>**Closed hat** pad `8` · `2 4 6 8 10 12 14 16` · bars `1–32` |
-| 5 | `U02` | `+1` | `80` | **Shaker** pad `12` · `1 3 5 7 9 11 13 15` · bars `1–32` |
-| 6 | `U02` | `0` | `80` | **Lo conga** pad `6` · `4 11` · bars `9–32`<br>**Hi conga** pad `5` · `8 14` · bars `9–32` |
-| 7 | `U02` | `-1` | `80` | **Tambourine** pad `8` · `5 13` · bars `17–32`<br>**Ride** pad `5` · `3 7 11 15` · bars `25–32` |
+**Pass 1 · `U01` · `OCTAVE -2` · Velocity `110`**
+- **Kick** pad `2` · `1 5 9 13` · bars `1–32`
+- **Clap** pad `5` · `5 13` · bars `17–32`
+
+**Pass 2 · `U02` · `OCTAVE -2` · Velocity `110`**
+- **Crash** pad `15` · step `1` · bar `1` only (together with the first kick)
+- **Kick** pad `2` · `1 5 9 13` · bars `1–32`
+- **Clap** pad `5` · `5 13` · bars `1–32`
+
+**Pass 3 · `U01` · `OCTAVE -2` · Velocity `80`**
+- **Open hat** pad `12` · `3 7 11 15` · bars `9–32`
+- **Closed hat** pad `8` · `2 4 6 8 10 12 14 16` · bars `25–32`
+
+**Pass 4 · `U02` · `OCTAVE -2` · Velocity `80`**
+- **Open hat** pad `12` · `3 7 11 15` · bars `1–32`
+- **Closed hat** pad `8` · `2 4 6 8 10 12 14 16` · bars `1–32`
+
+**Pass 5 · `U02` · `OCTAVE +1` · Velocity `80`**
+- **Shaker** pad `12` · `1 3 5 7 9 11 13 15` · bars `1–32`
+
+**Pass 6 · `U02` · `OCTAVE 0` · Velocity `80`**
+- **Lo conga** pad `6` · `4 11` · bars `9–32`
+- **Hi conga** pad `5` · `8 14` · bars `9–32`
+
+**Pass 7 · `U02` · `OCTAVE -1` · Velocity `80`**
+- **Tambourine** pad `8` · `5 13` · bars `17–32`
+- **Ride** pad `5` · `3 7 11 15` · bars `25–32`
 
 **Pass tips**
 - **Entry bars:** watch `NEXT`—start the open hat when it reads bar `9`, the clap and tambourine at bar `17`, and the closed hat and ride at bar `25`.
@@ -462,13 +490,11 @@ Ride       . . X . . . X . . . X . . . X .
 49. **Listen to each pattern:** in `PATTERN` mode select `U01` and press **`[PLAY]`**: kick from bar 1, open hat from bar 9, clap from bar 17, closed hat from bar 25. Then `U02`: crash and shaker on bar 1, congas from bar 9, tambourine from bar 17, ride from bar 25. Press **`[STOP]`** after each.
 50. **Optional—mute drum groups to hear each layer on its own:** press **`[RHYTHM MUTE]`** (lit). The PART buttons now mute rhythm groups, and a button that goes **dark** is muted (manual p.16):
 
-| Button | Group | In this kit |
-| :-: | :-: | :--- |
-| `PART [R]` | BD | kick |
-| `PART [2]` | HH | open + closed hat |
-| `PART [3]` | CLP | clap |
-| `PART [4]` | CYM | crash, ride, tambourine |
-| `PART [5]` | TOM/PERC | congas, shaker |
+- `PART [R]` = **BD**: kick
+- `PART [2]` = **HH**: open + closed hat
+- `PART [3]` = **CLP**: clap
+- `PART [4]` = **CYM**: crash, ride, tambourine
+- `PART [5]` = **TOM/PERC**: congas, shaker
 
 Press **`[PART SELECT]`** to return. **Un-mute everything before any Setup Write**—mutes are stored with the setup.
 51. **Optional—balance the drums against the lead:** if Part R is too loud or too quiet, repeat the safe routine from Phase 6 (steps 35–36: select another pattern and then the one you want, hands off the knobs, `PART [R]`), press **`[FUNC]`** so its LED **blinks**, turn **`CUTOFF / LEVEL`** (`LEVEL`) by ear *(it may jump to the knob's position as soon as you touch it—see the shared-pots note in Section 2)*, press **`[FUNC]`** again (dark), then run **Pattern Setup Write** (`[SHIFT] + [FUNC]` + Pad `[15]` → `[ENTER]`). Do it for both patterns.
@@ -488,12 +514,10 @@ Press **`[PART SELECT]`** to return. **Un-mute everything before any Setup Write
 
 #### Quick Fixes
 
-| Symptom | Fix |
-| :--- | :--- |
-| Pads play the wrong sounds | The Rhythm Set isn't `d07` (step 37) or the `OCTAVE` shift is wrong—compare with the cheat card. |
-| Hits are loose or off the grid | Quantize wasn't on (GRID not lit) or `TIMING` was near 0%. Tighten all of Part R afterwards: steps 42–44, `[QUANTIZE]` to GRID, then Edit Quantize (step 52, sub-step 3). Do this *before* adding swing. |
-| One drum is too loud or too quiet | Velocity is stored per hit: clear that drum (step 47g, *Need to redo a drum?*) and re-record it in a pass at another Pad Velocity. For overall drum level see step 51. |
-| The lead's starting sound changed after Phase 6 | A Setup Write happened after playback or knob moves. Re-set Part 1's starting values as in Section 5, steps 19 and 22, and write the setup again (the recorded knob sweeps themselves are not affected). |
+- **Pads play the wrong sounds.** The Rhythm Set isn't `d07` (step 37) or the `OCTAVE` shift is wrong—compare with the cheat card.
+- **Hits are loose or off the grid.** Quantize wasn't on (GRID not lit) or `TIMING` was near 0%. Tighten all of Part R afterwards: steps 42–44, `[QUANTIZE]` to GRID, then Edit Quantize (step 52, sub-step 3). Do this *before* adding swing.
+- **One drum is too loud or too quiet.** Velocity is stored per hit: clear that drum (step 47g, *Need to redo a drum?*) and re-record it in a pass at another Pad Velocity. For overall drum level see step 51.
+- **The lead's starting sound changed after Phase 6.** A Setup Write happened after playback or knob moves. Re-set Part 1's starting values as in Section 5, steps 19 and 22, and write the setup again (the recorded knob sweeps themselves are not affected).
 
 > **Going past 64 bars:** for a 4-minute+ track, build `U03`/`U04` the same way (a new lead pattern per Section 5, drums per this section with the entry bars changed to suit—for example a breakdown that drops the kick), then append them to `S-1` (Section 5, Phase 5).
 
@@ -509,23 +533,23 @@ Press **`[PART SELECT]`** to return. **Un-mute everything before any Setup Write
 
 ### 7.1 Cheat Card: Which Tool Does What
 
-| Tool | Keys: hold **`[SHIFT] + [FUNC]`**, then press | Takes | Puts it |
-| :--- | :---: | :--- | :--- |
-| **Pattern Copy** | Pad `[1]` | A whole pattern | In another User Pattern, overwriting it. Data type **`ALL`** (notes, knob sweeps and set-up), **`PHRASE`** (notes and knob sweeps only) or **`SETUP`** (set-up only: Tones/Rhythm Set, Part knob settings, mutes, tempo) |
-| **Part Copy** ("paste") | Pad `[2]` *(inferred)* | One Part, any run of bars | In one Part of another User Pattern, from a bar you choose. Same three data types |
-| **Erase** ("wipe") | Pad `[3]` | The notes and knob sweeps of the Parts you light, for the bars you choose | Nowhere: the bars stay, blank, and the Parts' set-up (Tone, levels) is **kept** |
-| **Delete Measure** | Pad `[4]` | Bars | Closes the gap (Section 4E) |
+Hold **`[SHIFT] + [FUNC]`**, then press the pad:
 
-| I want… | Do this |
-| :--- | :--- |
-| An exact duplicate of a pattern | Pattern Copy, **`ALL`** (Phase 10) |
-| The same Tones, kit and tempo but **no notes** | Pattern Copy, **`SETUP`** |
-| The same notes with **different sounds** | Pattern Copy, **`PHRASE`**, then change the Tones and run Setup Write |
-| To keep the drums, replace the synth | Pattern Copy `ALL`, then Erase **`PART [1]`** only (Phase 11, step 62) |
-| To keep the synth, replace the drums | Pattern Copy `ALL`, then Erase **`PART [R]`** only (Phase 11, step 63) |
-| One Part (or some of its bars) in another pattern | Part Copy (Phase 12) |
-| To clear only some bars of a Part | Erase with a start bar and a bar count (step 64) |
-| To clear one drum, one note or just the knob sweeps | Section 4E (Realtime Erase, Microscope) |
+- **Pattern Copy** · Pad `[1]`: takes a whole pattern and puts it in another User Pattern, overwriting it. Data type **`ALL`** (notes, knob sweeps and set-up), **`PHRASE`** (notes and knob sweeps only) or **`SETUP`** (set-up only: Tones/Rhythm Set, Part knob settings, mutes, tempo).
+- **Part Copy** ("paste") · Pad `[2]` *(inferred)*: takes one Part, any run of bars, and puts it in one Part of another User Pattern, from a bar you choose. Same three data types.
+- **Erase** ("wipe") · Pad `[3]`: takes the notes and knob sweeps of the Parts you light, for the bars you choose. Nothing is moved: the bars stay, blank, and the Parts' set-up (Tone, levels) is **kept**.
+- **Delete Measure** · Pad `[4]`: removes bars and closes the gap (Section 4E).
+
+What do you want to do?
+
+- **An exact duplicate of a pattern:** Pattern Copy, **`ALL`** (Phase 10).
+- **The same Tones, kit and tempo but no notes:** Pattern Copy, **`SETUP`**.
+- **The same notes with different sounds:** Pattern Copy, **`PHRASE`**, then change the Tones and run Setup Write.
+- **Keep the drums, replace the synth:** Pattern Copy `ALL`, then Erase **`PART [1]`** only (Phase 11, step 62).
+- **Keep the synth, replace the drums:** Pattern Copy `ALL`, then Erase **`PART [R]`** only (Phase 11, step 63).
+- **One Part (or some of its bars) in another pattern:** Part Copy (Phase 12).
+- **Clear only some bars of a Part:** Erase with a start bar and a bar count (step 64).
+- **Clear one drum, one note or just the knob sweeps:** Section 4E (Realtime Erase, Microscope).
 
 ### 7.2 Rules That Bite
 
@@ -570,17 +594,15 @@ Press **`[PART SELECT]`** to return. **Un-mute everything before any Setup Write
 
 ### Phase 13: Re-Record What You Wiped
 71. **A wiped synth Part (1–7):** select the pattern, press **`[PART SELECT]`** → the Part, check its Tone (`SELECT` → `TONE`), then record it as in Section 4B or Section 5, steps 10–13 (`Cnt` `1`, `LGH` `32`, `LoP` `on`, press `[PLAY]`, play, `[STOP]` in the blank bar). Want knob sweeps again? Repeat Section 5, Phase 4. Erase removed the old sweeps but kept the saved *start* positions, so re-park the knobs and write them as in step 19 only if you want a different start.
-72. **Wiped drums (Part R):** use Section 6, Phase 8: the pass routine (step 47) and a row of the pass table, tapping **only the bars you cleared** so nothing doubles.
+72. **Wiped drums (Part R):** use Section 6, Phase 8: the pass routine (step 47) and one of the passes in step 48, tapping **only the bars you cleared** so nothing doubles.
 73. **Changed a Tone or a knob start position?** Run **Pattern Setup Write** the safe way: re-select the pattern, hands off the knobs, **`[SHIFT] + [FUNC]` + Pad `[15]`** → **`[ENTER]`** (see the warning at the top of Phase 6).
 74. **Hear it in context:** `S-1` still plays `U01 → U02` exactly as before, because you only touched copies. Chain new patterns into their own Song (for example `S-2`, Section 5, Phase 5) instead of editing `S-1`.
 
 #### Quick Fixes
 
-| Symptom | Fix |
-| :--- | :--- |
-| The copy plays nothing, or the Song stops on it | It has no musical data (a `SETUP`-only copy, or every Part wiped). Record into it, or take it out of the Song. |
-| I wiped the wrong pattern | No undo is documented. Re-record it, or restore it from a Bulk Dump (Section 4F). Always read `CURRENT` before step 62. |
-| A Part's button still lights in `[PART MUTE]` after a wipe | Some data is left. Erase again with start bar `1` and `ALL`, with only that Part's button lit. |
-| Part Copy won't run, or the paste ends early | The time signatures differ, or the paste would take the destination past 32 bars. Copy fewer bars or start the paste earlier. |
-| Pad `[2]` opens something else | Press `[EXIT]` and check the manual's Part Copy page (p.61). The pad number here is inferred *(unconfirmed)*. |
-| I pasted a Part and its Tone is wrong | `PHRASE` leaves the destination's Tone as it was. Change the Tone and run Setup Write (step 73), or paste with `ALL` to bring the source Part's set-up along. |
+- **The copy plays nothing, or the Song stops on it.** It has no musical data (a `SETUP`-only copy, or every Part wiped). Record into it, or take it out of the Song.
+- **I wiped the wrong pattern.** No undo is documented. Re-record it, or restore it from a Bulk Dump (Section 4F). Always read `CURRENT` before step 62.
+- **A Part's button still lights in `[PART MUTE]` after a wipe.** Some data is left. Erase again with start bar `1` and `ALL`, with only that Part's button lit.
+- **Part Copy won't run, or the paste ends early.** The time signatures differ, or the paste would take the destination past 32 bars. Copy fewer bars or start the paste earlier.
+- **Pad `[2]` opens something else.** Press `[EXIT]` and check the manual's Part Copy page (p.61). The pad number here is inferred *(unconfirmed)*.
+- **I pasted a Part and its Tone is wrong.** `PHRASE` leaves the destination's Tone as it was. Change the Tone and run Setup Write (step 73), or paste with `ALL` to bring the source Part's set-up along.
