@@ -4,7 +4,8 @@
 
 ## Listening attempts and uploaded file
 
-- **Uploaded file:** `0008_-_Deep_Inside.mp3`; MP3, ID3v2.3.0 tag, MPEG Layer III, 44.1 kHz stereo, 320 kbps; 15,776,748 bytes.
+- **Uploaded file:** `0008_-_Deep_Inside.mp3`; MP3, ID3v2.3.0 tag, MPEG Layer III, 44.1 kHz stereo, 320 kbps; 15,776,748 bytes. Parsing the MPEG frames gives an estimated duration of **6:32.7**. No readable text title/artist tag was found.
+- **Tentative version guess:** If the filename is accurate, its duration is much closer to the repository's 6:28 Original than the 5:14 Dub, so it is probably an Original-length version. This is only a filename/runtime-based guess; duration does not authenticate the audio or prove which recording it contains.
 - **YouTube:** Opening a search-result video for “Hardrive - Deep Inside” failed with `ERR_BLOCKED_BY_CLIENT`.
 - **SoundCloud:** Tried the Hardrive stream at https://soundcloud.com/hardrive-official/deep-inside-1; navigation failed with `ERR_BLOCKED_BY_CLIENT`.
 - **Bandcamp:** Tried https://lowerlevelfm.bandcamp.com/track/deep-inside-1993-hardrive; navigation failed with `ERR_BLOCKED_BY_CLIENT`.
