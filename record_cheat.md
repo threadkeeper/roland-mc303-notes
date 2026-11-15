@@ -2,7 +2,7 @@
 
 A button-by-button reference for recording **Parts**, **Phrases (RPS)**, **Patterns**, and **Songs** on the Roland MC-303, cross-checked against the text of the official 1996 *Roland MC-303 Owner's Manual* and Roland/Sweetwater knowledge-base articles. It covers dual-function knobs, metronome/lead-in setup, deletion operations, and an end-to-end **120 BPM** workflow for permanently recording a ~2-minute (2 × 32 bars = 2:08) single-instrument track (`t01-15` / `Tri Lead 1`) with baked-in live `CUTOFF`, `RESONANCE`, `LFO`, `ENVELOPE`, and `LEVEL` tweaks that scales up to a 4-minute+ song.
 
-> **Verification note:** The manual prints its display read-outs as figures that could not be machine-read, and nothing here has been run on a physical unit. Display strings confirmed by Roland support articles: `ErS`, `SUrE`, `bEt`, `LGH`, `Cnt`, `LoP`; `rhS` is read from the manual's display figure. Anything marked *(unconfirmed)* is a best guess—check it on your MC-303.
+> **Verification note:** The manual prints its display read-outs as figures that could not be machine-read, and nothing here has been run on a physical unit. Display strings confirmed by Roland support articles: `ErS`, `SUrE`, `bEt`, `LGH`, `Cnt`, `LoP`; `rhS` is read from the manual's display figure, as are `SnG`/`CLr`, `---` (empty song) and `S-1` from its song-page figures. Anything marked *(unconfirmed)* is a best guess—check it on your MC-303.
 
 ---
 
@@ -160,7 +160,7 @@ The MC-303 has a **6-character 7-segment LED display** with a **`CURRENT`** area
 | **Erase Bars (Leaves Blank Bars in Place)** | Stopped in `PATTERN` mode: **`[SHIFT] + [FUNC] + Pad [3]`** (`ErS`) → light target `PART [R/1–7]` → `[VALUE]` start bar → `[ENTER]` → `[VALUE]` bar count (`1–32` or `ALL`) → `[ENTER]` (`SUrE`) → `[ENTER]`. *(Does not erase Setup data or shorten pattern.)* |
 | **Delete Entire User Pattern (`U01` → `u01`)** | Stopped in `PATTERN` mode on `U01–U50`:<br>1. Hold **`[SHIFT] + [FUNC]` + press Pad `[4]`** (Delete Measure).<br>2. Press **`PART [R]` and `[1]–[7]`** so **all 8 Part LEDs are lit solid**, and turn **`[VALUE]`** to the data type **`ALL`** *(not `PHRASE`/`SETUP`—`ALL` is what removes the pattern itself)*.<br>3. Press **`[ENTER]`** (`CURRENT` = `1` blinking).<br>4. Press **`[ENTER]`** (`NEXT` blinks) → turn **`[VALUE]`** to **`ALL`** *(number of measures)*.<br>5. Press **`[ENTER]`** (`SUrE`) → press **`[ENTER]`** again. *(Per Roland: a deleted pattern shows a lowercase `u` and holds no note or setup data; an erased pattern shows an uppercase `U` and keeps its setup, e.g. its length.)* |
 | **Shorten a Pattern (Delete Bars, Closes the Gap)** | Stopped in `PATTERN` mode: **`[SHIFT] + [FUNC] + Pad [4]`** (Delete Measure) → press the target `PART` button(s) (all of `R, 1–7` shortens the pattern itself) → turn **`[VALUE]`** to the data type **`PHRASE`** (notes + knob data only) → `[ENTER]` → `[VALUE]` first bar to delete → `[ENTER]` → `[VALUE]` number of bars (`1–32`, or `ALL` = to the end) → `[ENTER]` (`SUrE`) → `[ENTER]`. *(The manual says data type `ALL` also deletes the Parts' **setup data** (Tone, knob settings)—use `PHRASE` unless you want that.)* |
-| **Delete 1 Step or Clear Entire Song** | Stopped in `SONG` mode on `S-1..S-10`: **`[SHIFT] + [FUNC] + Pad [4]`** → `[VALUE]` to step `#` (or `END` to initialize entire Song) → `[ENTER]` (`SUrE`) → `[ENTER]`. *(Or press `[REC]` on a song that already has steps—the display shows `SnG > CLr`—then `[ENTER]` to clear & re-record from scratch.)* |
+| **Delete 1 Step or Clear Entire Song** | Stopped in `SONG` mode on `S-1..S-10`: **`[SHIFT] + [FUNC] + Pad [4]`** → `[VALUE]` (or `[FWD]`/`[BWD]`) to step `#` (or `END` to initialize the entire Song—this also deletes its saved setup data: tempo and effects) → `[ENTER]` (`SUrE`) → `[ENTER]`. *(Or press `[REC]` on a song that already has steps—the display shows `SnG > CLr`—then `[ENTER]` to clear & re-record from scratch.)* |
 
 ### F. Essential Saving, Copying, RPS & Song Operations
 - **Save Tone, Tempo & Part Knobs (`Pattern Setup Write`):** In `PATTERN` mode, hold **`[SHIFT] + [FUNC]` + press Pad `[15]`** (`SUrE`) → press **`[ENTER]`**. Stores, for all Parts at once: Tones/Rhythm Set, Part parameters (level, pan, cutoff, resonance, envelope, LFO…), effect part levels, mutes, and the pattern's standard tempo.
@@ -173,7 +173,7 @@ The MC-303 has a **6-character 7-segment LED display** with a **`CURRENT`** area
   3. Press **`SELECT [<]/[>]`** to **`RPS SET`**, press **`[RPS SET]`** (lit), and turn **`[VALUE]`** to pick RPS Set `1–30`.
   4. **Hold `[RPS SET]` + press target Keyboard Pad `[1]–[16]`**. Done! *(With `[RPS SET]` lit, press that pad anytime to fire the phrase.)*
 - **Record a Song (`S-1` to `S-10`) & Save Song Tempo (`Song Setup Write`):**
-  1. Press **`[PLAY MODE]`** (`SONG` lit) → `SELECT [<]/[>]` to `PTN/SONG` → `[VALUE]` to **`S-1`–`S-10`** (`---` in `NEXT` if empty).
+  1. Press **`[PLAY MODE]`** (`SONG` lit) → `SELECT [<]/[>]` to `PTN/SONG` → `[VALUE]` to **`S-1`–`S-10`** (`---` in `NEXT` = empty; a pattern name there means the song already has steps).
   2. Press **`[REC]`** (`STEP REC` lights; if the song already has steps the display shows `SnG > CLr`—press **`[ENTER]`** to clear it, or `[EXIT]` to cancel).
   3. Press **`[PLAY]`** (`CURRENT` = `1`).
   4. Turn **`[VALUE]`** to choose Pattern → press **`[ENTER]`** (advances to step `2`). Repeat for each section *(undo mistake with **`[SHIFT] + [BWD]`**)*.
@@ -312,8 +312,13 @@ The MC-303's Envelope shapes **both volume and filter contour** over time (`A` =
 
 ### Phase 5: Chain `U01 → U02` into Song `S-1` & Lock In `120.0` BPM
 25. Press **`[PLAY MODE]`** until the **`SONG`** LED is lit.
-26. Press **`SELECT [<] / [>]`** until **`PTN/SONG`** is lit, then turn **`[VALUE]`** to **`S-1`** (`---` shows in `NEXT` if empty).
-27. Press **`[REC]`** (`STEP REC` lights). *(If `S-1` already has steps, the display shows **`SnG > CLr`**—press **`[ENTER]`** to clear `S-1` and start fresh.)*
+26. Press **`SELECT [<] / [>]`** until **`PTN/SONG`** is lit, then turn **`[VALUE]`** to **`S-1`** and **check `NEXT`**:
+    - **`---`** (display `S-1` ▸ `---`) = the song is empty → carry on to step 27.
+    - **A pattern name** (e.g. `S-1` ▸ `b03`, the first pattern in the song) = the song already has steps. Clear it in one of two ways:
+      - **Clear it as you start recording (simplest):** carry on to step 27. Pressing `[REC]` shows **`SnG` ▸ `CLr`**; press **`[ENTER]`** to erase every step in the song, or **`[EXIT]`** to cancel and pick a different song.
+      - **Clear it now, without recording (Song Initialize):** with playback stopped and `S-1` selected, hold **`[SHIFT] + [FUNC]`** and press **Pad `[4]`** (Delete Pattern) → turn **`[VALUE]`** (or press `[FWD]`/`[BWD]`) to **`END`** → press **`[ENTER]`** (display shows `SU` ▸ `rE`, i.e. `SUrE`) → press **`[ENTER]`** again. `[EXIT]` cancels. *(`END` also deletes the song's saved setup data—its tempo and effects settings.)*
+    - Clearing a song only removes its list of patterns; the patterns themselves (`U01`, `U02`…) are untouched.
+27. Press **`[REC]`**. *(If `S-1` still has steps, the display shows **`SnG` ▸ `CLr`**—press **`[ENTER]`** to clear them, as in step 26.)* `STEP REC` lights: you are in song-recording standby.
 28. Press **`[PLAY]`** (`CURRENT` shows step **`1`**).
 29. Turn **`[VALUE]`** to **`U01`** → press **`[ENTER]`** (`CURRENT` advances to step **`2`**).
 30. Turn **`[VALUE]`** to **`U02`** → press **`[ENTER]`** (`CURRENT` advances to step **`3`**). *(Wrong entry? Hold **`[SHIFT] + [BWD]`** to step back. For a longer song keep going—`U03`, `U04`… up to 999 steps.)*
