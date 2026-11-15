@@ -1,6 +1,6 @@
 # Roland MC-303 Groovebox — Recording & Sequencing Cheat Sheet
 
-A button-by-button reference for recording **Parts**, **Phrases (RPS)**, **Patterns**, and **Songs** on the Roland MC-303, cross-checked against the text of the official 1996 *Roland MC-303 Owner's Manual* and Roland/Sweetwater knowledge-base articles. It covers dual-function knobs, metronome/lead-in setup, deletion operations, and an end-to-end **120 BPM** workflow for permanently recording a ~2-minute (2 × 32 bars = 2:08) single-instrument track (`t01-15` / `Tri Lead 1`) with baked-in live `CUTOFF`, `RESONANCE`, `LFO`, `ENVELOPE`, and `LEVEL` tweaks that scales up to a 4-minute+ song. **Section 6** then layers a gradually building deep-house percussion part (Part R) over those same two patterns.
+A button-by-button reference for recording **Parts**, **Phrases (RPS)**, **Patterns**, and **Songs** on the Roland MC-303, cross-checked against the text of the official 1996 *Roland MC-303 Owner's Manual* and Roland/Sweetwater knowledge-base articles. It covers dual-function knobs, metronome/lead-in setup, deletion operations, and an end-to-end **120 BPM** workflow for permanently recording a ~2-minute (2 × 32 bars = 2:08) single-instrument track (`t01-15` / `Tri Lead 1`) with baked-in live `CUTOFF`, `RESONANCE`, `LFO`, `ENVELOPE`, and `LEVEL` tweaks that scales up to a 4-minute+ song. **Section 6** then layers a gradually building deep-house percussion part (Part R) over those same two patterns. **Section 7** covers copying a pattern, keeping one Part and wiping another, pasting single Parts between patterns and re-recording what you wiped.
 
 > **Verification note:** The manual prints its display read-outs as figures that could not be machine-read, and nothing here has been run on a physical unit. Display strings confirmed by Roland support articles: `ErS`, `SUrE`, `bEt`, `LGH`, `Cnt`, `LoP`. The rest are read from the manual's own display figures: `rHS` (rehearsal), `ntE` (Wait Note), `OCt`, `rES`, `d01` (Rhythm Set), `Mt 1`/`Mt 2`, `PuL`, `SnG`/`CLr`, `---` (empty song) and `S-1`. Anything marked *(unconfirmed)* is a best guess—check it on your MC-303.
 
@@ -496,3 +496,91 @@ Press **`[PART SELECT]`** to return. **Un-mute everything before any Setup Write
 | The lead's starting sound changed after Phase 6 | A Setup Write happened after playback or knob moves. Re-set Part 1's starting values as in Section 5, steps 19 and 22, and write the setup again (the recorded knob sweeps themselves are not affected). |
 
 > **Going past 64 bars:** for a 4-minute+ track, build `U03`/`U04` the same way (a new lead pattern per Section 5, drums per this section with the entry bars changed to suit—for example a breakdown that drops the kick), then append them to `S-1` (Section 5, Phase 5).
+
+> **Next:** Section 7 shows how to copy a pattern, keep one Part and wipe another, and paste single Parts between patterns. [jonty_first_track.md](./jonty_first_track.md) uses it to build a five-pattern, ~5-minute track.
+
+---
+
+## 7. Copy, Paste & Wipe: Re-Using a Pattern and Its Individual Parts Without Re-Recording Everything
+
+**Goal:** make a new pattern from one you already have, **keep the Part you like and wipe the one you don't** (keep the drums `R` and re-record the synth `1`, or the other way round), **paste a single Part** into another pattern, and re-record only what you wiped. It all works on **User Patterns**. The MC-303 has **50** of them, `U01`–`U50` (manual p.13), so there is no pattern 51 or higher. This section uses **`U41` and up** as spare slots, well clear of `U01`/`U02` and Song `S-1` from Sections 5–6. *(You can copy from Preset patterns but not from Variation patterns `L–Q`, and you can only paste into User Patterns.)*
+
+> **Verification note:** The prompts and their order are from the manual's Pattern Copy, Part Copy and Erase pages (pp.61–63). The scan doesn't show Part Copy's pad number: **Pad `2`** follows from the order of the manual's edit functions (Pattern Copy `1`, Part Copy, Erase `3`, Delete Measure `4`), so check the display on your unit *(unconfirmed)*. Like the rest of this file, none of it has been run on a physical MC-303.
+
+### 7.1 Cheat Card: Which Tool Does What
+
+| Tool | Keys: hold **`[SHIFT] + [FUNC]`**, then press | Takes | Puts it |
+| :--- | :---: | :--- | :--- |
+| **Pattern Copy** | Pad `[1]` | A whole pattern | In another User Pattern, overwriting it. Data type **`ALL`** (notes, knob sweeps and set-up), **`PHRASE`** (notes and knob sweeps only) or **`SETUP`** (set-up only: Tones/Rhythm Set, Part knob settings, mutes, tempo) |
+| **Part Copy** ("paste") | Pad `[2]` *(inferred)* | One Part, any run of bars | In one Part of another User Pattern, from a bar you choose. Same three data types |
+| **Erase** ("wipe") | Pad `[3]` | The notes and knob sweeps of the Parts you light, for the bars you choose | Nowhere: the bars stay, blank, and the Parts' set-up (Tone, levels) is **kept** |
+| **Delete Measure** | Pad `[4]` | Bars | Closes the gap (Section 4E) |
+
+| I want… | Do this |
+| :--- | :--- |
+| An exact duplicate of a pattern | Pattern Copy, **`ALL`** (Phase 10) |
+| The same Tones, kit and tempo but **no notes** | Pattern Copy, **`SETUP`** |
+| The same notes with **different sounds** | Pattern Copy, **`PHRASE`**, then change the Tones and run Setup Write |
+| To keep the drums, replace the synth | Pattern Copy `ALL`, then Erase **`PART [1]`** only (Phase 11, step 62) |
+| To keep the synth, replace the drums | Pattern Copy `ALL`, then Erase **`PART [R]`** only (Phase 11, step 63) |
+| One Part (or some of its bars) in another pattern | Part Copy (Phase 12) |
+| To clear only some bars of a Part | Erase with a start bar and a bar count (step 64) |
+| To clear one drum, one note or just the knob sweeps | Section 4E (Realtime Erase, Microscope) |
+
+### 7.2 Rules That Bite
+
+- **Copies overwrite without asking.** Pattern Copy and Part Copy replace what is in the destination, and the only warning is `SUrE`. Check the slot first: a lowercase `u` means empty, an uppercase `U` means it holds data or set-up.
+- **Erase acts on the pattern that is selected, not the one you just copied into.** After a copy you may well still be on the *source*. Re-select the copy and read `CURRENT` before you wipe anything: wiping `U02` instead of `U41` can't be undone *(no undo is documented)*.
+- **Erase keeps the set-up.** Tone, levels and the saved knob start positions stay with the Part, so you can re-record straight away. Only the notes and knob sweeps go.
+- **A pattern with no musical data can't be played, and playback stops when it is reached** (manual p.14 for patterns; a Song does the same). If you wipe every Part of a pattern, record something in it before it goes into a Song.
+- **Songs store pattern numbers, not notes**, so wiping or overwriting a pattern changes every Song that uses it. Only ever wipe **copies**.
+- **Memory:** a copy takes as much memory as its source, and knob sweeps add up. Check free memory first (step 46) and thin the sources if it is tight (Section 5, step 24).
+- **`[SHIFT]` flaky?** Every command here starts with `[SHIFT] + [FUNC]`. [repair.md](./repair.md) (§3.4) shows how to put SHIFT on a pedal.
+
+---
+
+### Phase 10: Copy a Whole Pattern into a Spare Slot (Pattern Copy)
+56. **Pick and check the destination.** In `PATTERN` mode (`[PTN SET]`, `[RPS SET]` and `[FUNC]` dark, `PTN/SONG` lit) turn **`[VALUE]`** to the spare slot, e.g. **`u41`**: a lowercase `u` means it is empty and safe to overwrite.
+57. **Select the source**, e.g. **`U02`**. *(Preset patterns are fine; Variation patterns `L–Q` are not.)*
+58. Hold **`[SHIFT] + [FUNC]`** and press **Pad `[1]`**, then turn **`[VALUE]`** to the data type: **`ALL`** for an exact duplicate, **`PHRASE`** for the notes only, **`SETUP`** for the sounds only. Press **`[ENTER]`**.
+59. Turn **`[VALUE]`** to the destination, **`U41`** (only User Patterns are offered) → **`[ENTER]`** (`SUrE`) → **`[ENTER]`** again to execute. *(`[EXIT]` cancels.)*
+60. **Select the copy and check it:** turn **`[VALUE]`** to `U41` and read `CURRENT` (the display may still be on the source). Press **`[PLAY]`** to hear it, then **`[STOP]`**. *(A `SETUP`-only copy has no notes, so it can't play yet.)*
+
+---
+
+### Phase 11: Keep One Part, Wipe Another (Erase)
+61. **Select the copy, never the original,** and confirm `CURRENT` shows it (e.g. `U41`). Playback stopped, `PATTERN` mode.
+62. **Keep the drums, wipe the synth (Part 1):** hold **`[SHIFT] + [FUNC]`** and press **Pad `[3]`** (Erase) → press **`PART [1]`** so **only its LED is lit** (press any other lit PART button to switch it off) → turn **`[VALUE]`** to the first bar, **`1`** → **`[ENTER]`** → turn **`[VALUE]`** to **`ALL`** (every bar from there to the end) → **`[ENTER]`** (`SUrE`) → **`[ENTER]`**.
+63. **Keep the synth, wipe the drums (Part R):** the same, but light **only `PART [R]`**.
+64. **Other wipes:** light **two or more Parts together** to wipe them in one go (for example `PART [1]` + `PART [R]`). Set a **start bar** and a **bar count** instead of `1` and `ALL` to blank just part of a Part (Erase leaves later bars where they are). For one drum, one note or only the knob sweeps, use Section 4E.
+65. **Check what is left:** press **`[PART MUTE]`**. The PART buttons of Parts that **contain musical data light, and an empty Part stays dark** (manual p.16). Press **`[PART SELECT]`** to return.
+
+---
+
+### Phase 12: Paste One Part into Another Pattern (Part Copy)
+> **Example used below:** paste bars `17–32` of Part 1 from `U42` into `U41`, starting at bar `17`. Both patterns must have the same time signature, and a paste can't make the destination longer than 32 bars (manual p.62).
+
+66. **Select the source pattern** (`U42`). *(Variation patterns can't be a source.)*
+67. Hold **`[SHIFT] + [FUNC]`** and press **Pad `[2]`** *(inferred, see the note above)*. Press the **source Part's** button (**`PART [1]`**, one Part only), then turn **`[VALUE]`** to the data type: **`PHRASE`** (notes and knob sweeps only, so the destination keeps its own Tone), `ALL` (also that Part's set-up) or `SETUP` (set-up only, which skips step 68). Press **`[ENTER]`**.
+68. **Which bars:** `CURRENT` blinks. Turn **`[VALUE]`** to the **first bar to copy** (`17`) → **`[ENTER]`** → `NEXT` blinks: turn **`[VALUE]`** to **how many bars** (`16`; `ALL` = to the end) → **`[ENTER]`**.
+69. **Where to:** turn **`[VALUE]`** to the **destination pattern** (`U41`) and press the **destination Part's** button (`PART [1]`; one Part, and it needn't be the same number as the source) → **`[ENTER]`** → turn **`[VALUE]`** to the bar where the paste **starts** (`17`; **`END`** = after the Part's existing data) → **`[ENTER]`** (execute display) → **`[ENTER]`** again. *(`[EXIT]` cancels at any point.)*
+70. **Check:** select `U41` and press **`[PLAY]`**; the pasted bars should play. Whatever was in those bars of the destination Part has been overwritten.
+
+---
+
+### Phase 13: Re-Record What You Wiped
+71. **A wiped synth Part (1–7):** select the pattern, press **`[PART SELECT]`** → the Part, check its Tone (`SELECT` → `TONE`), then record it as in Section 4B or Section 5, steps 10–13 (`Cnt` `1`, `LGH` `32`, `LoP` `on`, press `[PLAY]`, play, `[STOP]` in the blank bar). Want knob sweeps again? Repeat Section 5, Phase 4. Erase removed the old sweeps but kept the saved *start* positions, so re-park the knobs and write them as in step 19 only if you want a different start.
+72. **Wiped drums (Part R):** use Section 6, Phase 8: the pass routine (step 47) and a row of the pass table, tapping **only the bars you cleared** so nothing doubles.
+73. **Changed a Tone or a knob start position?** Run **Pattern Setup Write** the safe way: re-select the pattern, hands off the knobs, **`[SHIFT] + [FUNC]` + Pad `[15]`** → **`[ENTER]`** (see the warning at the top of Phase 6).
+74. **Hear it in context:** `S-1` still plays `U01 → U02` exactly as before, because you only touched copies. Chain new patterns into their own Song (for example `S-2`, Section 5, Phase 5) instead of editing `S-1`.
+
+#### Quick Fixes
+
+| Symptom | Fix |
+| :--- | :--- |
+| The copy plays nothing, or the Song stops on it | It has no musical data (a `SETUP`-only copy, or every Part wiped). Record into it, or take it out of the Song. |
+| I wiped the wrong pattern | No undo is documented. Re-record it, or restore it from a Bulk Dump (Section 4F). Always read `CURRENT` before step 62. |
+| A Part's button still lights in `[PART MUTE]` after a wipe | Some data is left. Erase again with start bar `1` and `ALL`, with only that Part's button lit. |
+| Part Copy won't run, or the paste ends early | The time signatures differ, or the paste would take the destination past 32 bars. Copy fewer bars or start the paste earlier. |
+| Pad `[2]` opens something else | Press `[EXIT]` and check the manual's Part Copy page (p.61). The pad number here is inferred *(unconfirmed)*. |
+| I pasted a Part and its Tone is wrong | `PHRASE` leaves the destination's Tone as it was. Change the Tone and run Setup Write (step 73), or paste with `ALL` to bring the source Part's set-up along. |
