@@ -1,0 +1,53 @@
+{
+  "source_sha256": "077d1a32e86370ea3668f90c4a96129141812641b9534dcd46f2119188cc94f3",
+  "source_title": "Deep Inside",
+  "artist": "Hardrive",
+  "album_tag": "Deep Inside (Remixes)",
+  "track_tag": "3/8",
+  "year_tag": "2015",
+  "release_identity": "Unnamed track in the 2015 eight-track release; likely an original reissue, not a confirmed remix/remaster.",
+  "separation_toolkit": "ZFTurbo/Music-Source-Separation-Training",
+  "separation_toolkit_commit": "1f700c386e0dd763fe0a57242bb9420dce987354",
+  "separation_settings": {
+    "device": "cpu",
+    "scnet_num_overlap": 1,
+    "drumsep_num_overlap": 2
+  },
+  "models_and_configs": [
+    {
+      "name": "scnet_checkpoint_musdb18.ckpt",
+      "bytes": 42434986,
+      "sha256": "1bc0d1abb20bfdf966dcd07637bafd03e4bc13653d09ef18bc9b3e342eafe2aa"
+    },
+    {
+      "name": "scnet.yaml",
+      "bytes": 1656,
+      "sha256": "d92d516b7e1312a6b1396b502ec2a4a4e1a7415fe619e78e22aeb4e3825987e3"
+    },
+    {
+      "name": "drumsep_mdx.ckpt",
+      "bytes": 437652699,
+      "sha256": "d2a4aa53eb584d21eead358a4e66d1882ad182911be018f052b5da73be9096d0"
+    },
+    {
+      "name": "drumsep_mdx.yaml",
+      "bytes": 2417,
+      "sha256": "55f833d4b0f206dce0536a6bfe4ab94dd7a94f066e493b12013df495c1cc2981"
+    }
+  ],
+  "analysis_versions": {
+    "numpy": "2.5.4",
+    "librosa": "1.0.1",
+    "soundfile": "0.14.0",
+    "basic-pitch": "0.4.0",
+    "onnxruntime": "1.32.0",
+    "resampy": "0.4.3",
+    "mir_eval": "0.8.2",
+    "scipy": "1.18.1",
+    "torch": "2.15.0"
+  },
+  "note_model": "basic-pitch bundled icassp_2022/nmp.onnx",
+  "note_amplitude_units": "Mean model activation, not recovered MIDI velocity or calibrated confidence.",
+  "analysis_downbeat_phase": 0,
+  "audio_committed": false
+}

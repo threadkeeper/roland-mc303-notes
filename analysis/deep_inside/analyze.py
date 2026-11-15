@@ -1,146 +1,236 @@
-import sys, os, json, glob, csv
-import numpy as np, librosa, soundfile as sf
+import argparse
+import csv
+import json
+import math
+import warnings
+from pathlib import Path
 
-STEMS = '/tmp/out/deep_inside'
-DRUMS = '/tmp/drout'
-OUT = '/tmp/data'
-os.makedirs(OUT, exist_ok=True)
+import librosa
+import numpy as np
+import soundfile as sf
+
+
 SR = 22050
 HOP = 256
-NAMES = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
+NAMES = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
+LANES = ["kick", "snare", "toms", "hh", "ride", "crash"]
 
 
-def nname(m):
-    m = int(round(m))
-    return NAMES[m % 12] + str(m // 12 - 1)
+def nname(midi):
+    midi = int(round(midi))
+    return NAMES[midi % 12] + str(midi // 12 - 1)
 
 
 def load(path, sr=SR):
-    y, s = sf.read(path, always_2d=True)
-    y = y.mean(axis=1)
-    return librosa.resample(y, orig_sr=s, target_sr=sr).astype(np.float32)
+    y, original_sr = sf.read(path, always_2d=True)
+    return librosa.resample(y.mean(axis=1), orig_sr=original_sr, target_sr=sr).astype(np.float32)
 
 
-def stem_path(d, name):
-    return glob.glob(os.path.join(d, name + '.*'))[0]
+def stem_path(folder, name):
+    paths = sorted(folder.glob(name + ".*"))
+    if len(paths) != 1:
+        raise FileNotFoundError(f"Expected exactly one {name} stem in {folder}; found {len(paths)}")
+    return paths[0]
 
 
-# ------------------------------------------------------------------ grid
-yd = load(stem_path(STEMS, 'drums'))
-dur = len(yd) / SR
-oenv = librosa.onset.onset_strength(y=yd, sr=SR, hop_length=HOP)
-ft = librosa.frames_to_time(np.arange(len(oenv)), sr=SR, hop_length=HOP)
-best = None
-for bpm in np.arange(118, 130, 0.02):
+def db(y):
+    if y.size == 0:
+        raise ValueError("Cannot measure an empty audio interval")
+    return float(20 * np.log10(np.sqrt(np.mean(y ** 2)) + 1e-9))
+
+
+def build_grid(bpm, beat_offset, duration, phase):
+    if not all(math.isfinite(v) for v in (bpm, beat_offset, duration)) or bpm <= 0 or duration <= 0:
+        raise ValueError("Tempo and duration must be finite and positive")
+    if phase not in range(4):
+        raise ValueError("Downbeat phase must be 0, 1, 2 or 3")
     period = 60 / bpm
-    for off in np.arange(0, period, 0.01):
-        t = np.arange(off, dur, period)
-        s = np.interp(t, ft, oenv).sum() / len(t)
-        if best is None or s > best[0]:
-            best = (s, bpm, off)
-_, bpm, off = best
-period = 60 / bpm
-offs = np.arange(off - 0.01, off + 0.01, 0.002)
-off = max(offs, key=lambda o: np.interp(np.arange(o, dur, period), ft, oenv).sum())
-beats = np.arange(off % period, dur, period)
-S = np.abs(librosa.stft(yd, n_fft=2048, hop_length=HOP))
-fr = librosa.fft_frequencies(sr=SR, n_fft=2048)
-low = S[fr < 120].sum(axis=0)
-lowb = np.interp(beats, ft, low[:len(ft)])
-phase = max(range(4), key=lambda p: lowb[p::4].sum())
-bars_t = beats[phase::4]
-bars_t = np.append(bars_t, bars_t[-1] + 4 * period)
-bars_t = bars_t + period  # backbeat/bass phrasing show the true downbeat is one beat later
-nb = len(bars_t) - 1
-step_s = period / 4
-grid = {'bpm': round(float(bpm), 3), 'beat_s': round(float(period), 4), 'bar_s': round(float(4 * period), 4),
-        'first_bar_start_s': round(float(bars_t[0]), 3), 'n_bars': nb, 'duration_s': round(float(dur), 2),
-        'downbeat_phase': int(phase)}
-json.dump(grid, open(f'{OUT}/grid.json', 'w'), indent=1)
-print(grid)
+    bar_s = 4 * period
+    origin = beat_offset % period + phase * period
+    if origin >= duration:
+        raise ValueError("The selected downbeat falls outside the audio")
+    length = (duration - origin) / bar_s
+    if math.isclose(length, round(length), abs_tol=1e-9, rel_tol=0):
+        length = float(round(length))
+    complete = math.floor(length)
+    count = math.ceil(length)
+    boundaries = origin + np.arange(count + 1) * bar_s
+    boundaries[-1] = duration
+    grid = {
+        "bpm": round(float(bpm), 3),
+        "beat_s": float(period),
+        "bar_s": float(bar_s),
+        "first_bar_start_s": float(origin),
+        "n_bars": count,
+        "complete_bars": complete,
+        "partial_final_bar_s": float((length - complete) * bar_s),
+        "duration_s": float(duration),
+        "downbeat_phase": phase,
+        "downbeat_basis": "Opening phrase boundaries and clap backbeat; phase is selected, not inferred from a four-on-the-floor kick.",
+    }
+    return grid, boundaries
 
 
-def to_pos(t):
-    """time (s) -> (bar 1-based, step 1-16 float-ish, deviation ms from nearest step)."""
-    x = (t - bars_t[0]) / step_s
-    k = int(np.floor(x + 0.5))
-    bar, step = divmod(k, 16)
-    dev = (x - k) * step_s * 1000
-    return bar + 1, step + 1, dev
+def fit_grid(drums, phase):
+    if db(drums) < -60:
+        raise ValueError("The drum stem is too quiet to fit a tempo")
+    duration = len(drums) / SR
+    envelope = librosa.onset.onset_strength(y=drums, sr=SR, hop_length=HOP)
+    times = librosa.frames_to_time(np.arange(len(envelope)), sr=SR, hop_length=HOP)
+    best = (-math.inf, 0.0, 0.0)
+    for bpm in np.arange(118, 130, 0.02):
+        period = 60 / bpm
+        for offset in np.arange(0, period, 0.01):
+            beats = np.arange(offset, duration, period)
+            score = float(np.interp(beats, times, envelope).mean())
+            if score > best[0]:
+                best = (score, float(bpm), float(offset))
+    _, bpm, offset = best
+    period = 60 / bpm
+    offsets = np.arange(offset - 0.01, offset + 0.01, 0.002)
+    offset = max(offsets, key=lambda o: np.interp(np.arange(o, duration, period), times, envelope).mean())
+    return build_grid(bpm, float(offset), duration, phase)
 
 
-# ------------------------------------------------------------------ levels
-def db(x):
-    return 20 * np.log10(np.sqrt(np.mean(x ** 2)) + 1e-9)
+def to_pos(time, grid):
+    step_s = grid["bar_s"] / 16
+    position = (time - grid["first_bar_start_s"]) / step_s
+    nearest = math.floor(position + 0.5)
+    bar, step = divmod(nearest, 16)
+    return bar + 1, step + 1, (position - nearest) * step_s * 1000
 
 
-mode = sys.argv[1] if len(sys.argv) > 1 else 'all'
+def write_csv(path, header, rows):
+    with path.open("w", newline="") as output:
+        writer = csv.writer(output, lineterminator="\n")
+        writer.writerow(header)
+        writer.writerows(rows)
 
-if mode in ('all', 'levels'):
-    with open(f'{OUT}/stem_levels_per_bar.csv', 'w', newline='') as f:
-        w = csv.writer(f)
-        names = ['drums', 'bass', 'other', 'vocals']
-        w.writerow(['bar', 'start_s'] + [n + '_db' for n in names])
-        ys = {n: load(stem_path(STEMS, n)) for n in names}
-        for i in range(nb):
-            a, b = int(bars_t[i] * SR), int(bars_t[i + 1] * SR)
-            w.writerow([i + 1, round(float(bars_t[i]), 2)] + [round(float(db(ys[n][a:b])), 1) for n in names])
 
-# ------------------------------------------------------------------ notes (basic-pitch, ONNX)
-if mode in ('all', 'notes'):
-    from basic_pitch.inference import predict, Model
+def measure_levels(stems, output, grid, boundaries):
+    names = ["drums", "bass", "other", "vocals"]
+    audio = {name: load(stem_path(stems, name)) for name in names}
+    if any(abs(len(y) / SR - grid["duration_s"]) > 0.01 for y in audio.values()):
+        raise ValueError("SCNet stem durations differ by more than 10 ms")
+    rows = []
+    for index, (start, end) in enumerate(zip(boundaries[:-1], boundaries[1:])):
+        a, b = int(start * SR), min(len(audio["drums"]), int(end * SR))
+        rows.append(
+            [index + 1, round(float(start), 4), round(float(end), 4), round(float(end - start), 4),
+             int(index < grid["complete_bars"])]
+            + [round(db(audio[name][a:b]), 2) for name in names]
+        )
+    write_csv(
+        output / "stem_levels_per_bar.csv",
+        ["bar", "start_s", "end_s", "duration_s", "complete", *[name + "_db" for name in names]],
+        rows,
+    )
+
+
+def extract_notes(stems, output, grid):
+    from basic_pitch.inference import Model, predict
     import basic_pitch
-    onnx = os.path.join(os.path.dirname(basic_pitch.__file__), 'saved_models', 'icassp_2022', 'nmp.onnx')
-    model = Model(onnx)
-    cfg = {'bass': dict(minimum_frequency=30, maximum_frequency=400, onset_threshold=0.4, frame_threshold=0.25, minimum_note_length=60),
-           'other': dict(minimum_frequency=100, maximum_frequency=2500, onset_threshold=0.5, frame_threshold=0.3, minimum_note_length=80),
-           'vocals': dict(minimum_frequency=100, maximum_frequency=1200, onset_threshold=0.5, frame_threshold=0.3, minimum_note_length=100)}
-    for stem, kw in cfg.items():
-        _, _, events = predict(stem_path(STEMS, stem), model, **kw)
-        rows = []
-        for st, en, pitch, amp, _bends in sorted(events):
-            bar, step, dev = to_pos(st)
-            dsteps = max(1, int(round((en - st) / step_s)))
-            rows.append([bar, step, dsteps, int(pitch), nname(pitch), round(float(amp), 2), round(float(st), 3), round(float(en - st), 3)])
-        with open(f'{OUT}/notes_{stem}.csv', 'w', newline='') as f:
-            w = csv.writer(f)
-            w.writerow(['bar', 'step', 'len_steps', 'midi', 'note', 'velocity_0_1', 'start_s', 'len_s'])
-            w.writerows(rows)
-        print(stem, len(rows), 'notes')
 
-# ------------------------------------------------------------------ drums per lane
-if mode in ('all', 'drums'):
-    lanes = ['kick', 'snare', 'toms', 'hh', 'ride', 'crash']
-    res = {}
-    for lane in lanes:
-        paths = glob.glob(os.path.join(DRUMS, '**', lane + '.*'), recursive=True)
-        if not paths:
-            continue
-        y = load(paths[0], 44100)
-        sr = 44100
-        env = librosa.onset.onset_strength(y=y, sr=sr, hop_length=256, aggregate=np.max)
-        t = librosa.frames_to_time(np.arange(len(env)), sr=sr, hop_length=256)
-        pk = librosa.onset.onset_detect(onset_envelope=env, sr=sr, hop_length=256, backtrack=False, delta=0.0,
-                                        wait=6, pre_avg=4, post_avg=4, pre_max=4, post_max=4)
-        strengths = env[pk]
-        if len(strengths) == 0:
-            continue
-        ref = np.percentile(strengths, 95)
-        keep = strengths > 0.2 * ref
+    model_path = Path(basic_pitch.__file__).parent / "saved_models/icassp_2022/nmp.onnx"
+    model = Model(model_path)
+    configs = {
+        "bass": dict(minimum_frequency=30, maximum_frequency=400, onset_threshold=0.4,
+                     frame_threshold=0.25, minimum_note_length=60),
+        "other": dict(minimum_frequency=100, maximum_frequency=2500, onset_threshold=0.5,
+                      frame_threshold=0.3, minimum_note_length=80),
+        "vocals": dict(minimum_frequency=100, maximum_frequency=1200, onset_threshold=0.5,
+                       frame_threshold=0.3, minimum_note_length=100),
+    }
+    for stem, settings in configs.items():
+        _, _, events = predict(stem_path(stems, stem), model, **settings)
+        rows = []
+        for start, end, pitch, amplitude, _bends in sorted(events):
+            bar, step, deviation = to_pos(start, grid)
+            rows.append([
+                bar, step, max(1, round((end - start) / (grid["bar_s"] / 16))),
+                int(pitch), nname(pitch), round(float(amplitude), 3),
+                round(float(start), 4), round(float(end - start), 4), round(float(deviation), 2),
+            ])
+        write_csv(
+            output / f"notes_{stem}.csv",
+            ["bar", "step", "len_steps", "midi", "note", "model_amplitude_0_1", "start_s", "len_s", "timing_dev_ms"],
+            rows,
+        )
+        print(stem, len(rows), "note candidates", flush=True)
+
+
+def extract_drums(folder, output, grid, drum_level):
+    grids = {}
+    quality = {}
+    for lane in LANES:
+        y = load(stem_path(folder, lane), 44100)
+        if abs(len(y) / 44100 - grid["duration_s"]) > 0.01:
+            raise ValueError(f"{lane} duration differs from the drum stem by more than 10 ms")
+        level = db(y)
+        difference = level - drum_level
+        quality[lane] = {
+            "mono_rms_dbfs": round(level, 2),
+            "rms_relative_to_drums_db": round(difference, 2),
+            "low_energy_lane": difference < -25,
+            "caution": "Relative onset strength is not detection confidence. Low-energy lanes may be bleed; hh combines open and closed hats.",
+        }
+        if difference < -25:
+            warnings.warn(f"{lane} is {difference:.1f} dB below drums; keep candidates, but do not infer a busy percussion part")
+        envelope = librosa.onset.onset_strength(y=y, sr=44100, hop_length=256, aggregate=np.max)
+        peaks = librosa.onset.onset_detect(
+            onset_envelope=envelope, sr=44100, hop_length=256, backtrack=False,
+            delta=0.0, wait=6, pre_avg=4, post_avg=4, pre_max=4, post_max=4,
+        )
+        reference = float(np.percentile(envelope[peaks], 95)) if peaks.size else 0.0
         hits = []
-        for k, s in zip(pk[keep], strengths[keep]):
-            bar, step, dev = to_pos(t[k])
-            if 1 <= bar <= nb:
-                hits.append([bar, step, round(float(min(s / ref, 1.5)), 2), round(float(dev), 1)])
-        res[lane] = hits
-        with open(f'{OUT}/drums_{lane}.csv', 'w', newline='') as f:
-            w = csv.writer(f)
-            w.writerow(['bar', 'step', 'strength_rel', 'timing_dev_ms'])
-            w.writerows(hits)
-        print(lane, len(hits), 'hits')
-    # 16-step presence grid per bar per lane
-    pat = {lane: np.zeros((nb, 16)) for lane in res}
-    for lane, hits in res.items():
-        for bar, step, s, dev in hits:
-            pat[lane][bar - 1, step - 1] = max(pat[lane][bar - 1, step - 1], s)
-    json.dump({l: p.round(2).tolist() for l, p in pat.items()}, open(f'{OUT}/drum_lane_grids.json', 'w'))
+        pattern = np.zeros((grid["n_bars"], 16))
+        if reference <= 0:
+            warnings.warn(f"No positive onsets detected in {lane}")
+        else:
+            for peak in peaks:
+                strength = float(envelope[peak])
+                if strength <= 0.2 * reference:
+                    continue
+                time = float(librosa.frames_to_time(peak, sr=44100, hop_length=256))
+                bar, step, deviation = to_pos(time, grid)
+                if 1 <= bar <= grid["n_bars"]:
+                    relative = min(strength / reference, 1.5)
+                    hits.append([bar, step, round(relative, 3), round(deviation, 2), round(time, 4)])
+                    pattern[bar - 1, step - 1] = max(pattern[bar - 1, step - 1], relative)
+        write_csv(
+            output / f"drums_{lane}.csv",
+            ["bar", "step", "strength_rel", "timing_dev_ms", "start_s"], hits,
+        )
+        quality[lane]["candidate_count"] = len(hits)
+        grids[lane] = pattern.round(3).tolist()
+        print(lane, len(hits), "onset candidates", flush=True)
+    (output / "drum_lane_grids.json").write_text(json.dumps(grids) + "\n")
+    (output / "drum_quality.json").write_text(json.dumps(quality, indent=2) + "\n")
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Analyse the supplied Deep Inside stems; no audio is exported.")
+    parser.add_argument("mode", nargs="?", default="all", choices=["all", "levels", "notes", "drums"])
+    parser.add_argument("--stems-dir", required=True, type=Path)
+    parser.add_argument("--drums-dir", type=Path)
+    parser.add_argument("--output-dir", required=True, type=Path)
+    parser.add_argument("--downbeat-phase", type=int, choices=range(4), default=0,
+                        help="Phase 0 preserves this upload's opening bar. Do not transfer it blindly to another mix.")
+    args = parser.parse_args()
+    if args.mode in ("all", "drums") and args.drums_dir is None:
+        parser.error("--drums-dir is required for all/drums mode")
+    drums = load(stem_path(args.stems_dir, "drums"))
+    grid, boundaries = fit_grid(drums, args.downbeat_phase)
+    args.output_dir.mkdir(parents=True, exist_ok=True)
+    (args.output_dir / "grid.json").write_text(json.dumps(grid, indent=2) + "\n")
+    print(grid, flush=True)
+    if args.mode in ("all", "levels"):
+        measure_levels(args.stems_dir, args.output_dir, grid, boundaries)
+    if args.mode in ("all", "notes"):
+        extract_notes(args.stems_dir, args.output_dir, grid)
+    if args.mode in ("all", "drums"):
+        extract_drums(args.drums_dir, args.output_dir, grid, db(drums))
+
+
+if __name__ == "__main__":
+    main()

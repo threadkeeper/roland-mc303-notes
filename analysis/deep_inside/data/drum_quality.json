@@ -1,0 +1,44 @@
+{
+  "kick": {
+    "mono_rms_dbfs": -15.98,
+    "rms_relative_to_drums_db": -1.18,
+    "low_energy_lane": false,
+    "caution": "Relative onset strength is not detection confidence. Low-energy lanes may be bleed; hh combines open and closed hats.",
+    "candidate_count": 1709
+  },
+  "snare": {
+    "mono_rms_dbfs": -22.87,
+    "rms_relative_to_drums_db": -8.07,
+    "low_energy_lane": false,
+    "caution": "Relative onset strength is not detection confidence. Low-energy lanes may be bleed; hh combines open and closed hats.",
+    "candidate_count": 2380
+  },
+  "toms": {
+    "mono_rms_dbfs": -50.95,
+    "rms_relative_to_drums_db": -36.15,
+    "low_energy_lane": true,
+    "caution": "Relative onset strength is not detection confidence. Low-energy lanes may be bleed; hh combines open and closed hats.",
+    "candidate_count": 4958
+  },
+  "hh": {
+    "mono_rms_dbfs": -28.59,
+    "rms_relative_to_drums_db": -13.79,
+    "low_energy_lane": false,
+    "caution": "Relative onset strength is not detection confidence. Low-energy lanes may be bleed; hh combines open and closed hats.",
+    "candidate_count": 5269
+  },
+  "ride": {
+    "mono_rms_dbfs": -49.95,
+    "rms_relative_to_drums_db": -35.15,
+    "low_energy_lane": true,
+    "caution": "Relative onset strength is not detection confidence. Low-energy lanes may be bleed; hh combines open and closed hats.",
+    "candidate_count": 5965
+  },
+  "crash": {
+    "mono_rms_dbfs": -55.34,
+    "rms_relative_to_drums_db": -40.54,
+    "low_energy_lane": true,
+    "caution": "Relative onset strength is not detection confidence. Low-energy lanes may be bleed; hh combines open and closed hats.",
+    "candidate_count": 5793
+  }
+}

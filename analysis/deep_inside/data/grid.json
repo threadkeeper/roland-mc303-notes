@@ -1,9 +1,12 @@
 {
- "bpm": 123.62,
- "beat_s": 0.4854,
- "bar_s": 1.9414,
- "first_bar_start_s": 1.973,
- "n_bars": 202,
- "duration_s": 392.67,
- "downbeat_phase": 3
+  "bpm": 123.62,
+  "beat_s": 0.48535835625303786,
+  "bar_s": 1.9414334250121514,
+  "first_bar_start_s": 0.03200000000000001,
+  "n_bars": 203,
+  "complete_bars": 202,
+  "partial_final_bar_s": 0.46692887316900916,
+  "duration_s": 392.66848072562357,
+  "downbeat_phase": 0,
+  "downbeat_basis": "Opening phrase boundaries and clap backbeat; phase is selected, not inferred from a four-on-the-floor kick."
 }

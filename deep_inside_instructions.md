@@ -1,182 +1,339 @@
-# Deep Inside (Hardrive, 2015 remix) · MC-303 Instructions
+# Deep Inside · MC-303 Instructions
 
-A pass-grid recipe to rebuild the **uploaded 2015 remix** (6:32, ~123.6 BPM) on the MC-303, in the format of [jonty_first_track.md](./jonty_first_track.md) and [record_cheat.md](./record_cheat.md). It points at their routines instead of repeating them: **pass routine = record_cheat.md step 47 (a–h)**, setup/quantize/song = Jonty §5.
+**Hardrive · uploaded track · 123.6 BPM · 202 bars · `U31`–`U37` · Song `S-3`**
 
-> **Honest status.** Nothing was heard and nothing was run on a hardware MC-303. Every bar, step and pad below was **measured from stem separation** (SCNet 4-stem + DrumSep, basic-pitch notes), then simplified. Raw data: [`analysis/deep_inside/`](./analysis/deep_inside/). Bars are ±1. Items marked *(approx)* are my best guess where the separator was noisy (tom/ride/crash lanes were noise and are **not used**; closed hats, crashes and the intro are assumed).
+A full-song, compact pass-grid recipe, using [record_cheat.md](./record_cheat.md) step 47 instead of repeating its button instructions. [raw.md](./raw.md) explains the reviewed evidence; [`analysis/deep_inside/data/`](./analysis/deep_inside/data/) holds the measurements.
 
----
+> **Read first:** this is a data-informed MC-303 interpretation, **not a verified transcription**. No audio was heard here and no physical MC-303 was tested. Tempo, section changes and the bass's G1/B1 alternation have stronger evidence than the piano voicings, vocal pitches or exact ghost hits. Sound settings and velocities below are audition starting points, not recovered settings from the record.
 
-## 1. Facts
+## 1. Source, Slots & Sound Choices
 
-- **123.6 BPM**, 4/4, **202 bars**, one bar = 1.94 s. Bar `b` starts at `0:02 + (b−1) × 1.94 s`.
-- **Key: unresolved.** The bass sits on B / E / F# / D (**E minor**, or B minor). The synth bed sits on A / A# / D / F# (*(approx)*). Pads below follow the measurements, so trust your ear.
-- Seven 32-bar patterns. `U31`–`U37` leave Jonty's `U41`–`U45` untouched (the MC-303 only has `U01`–`U50`; any 7 free slots work). Song = **`S-3`**: `U31 → … → U37`.
-- Pad → note: `note = 58 + 12 × shift + pad`. Synth Parts at `OCTAVE 0` (pad 11 = A4); bass at `OCTAVE -2` (pad 1 = B1). The bass's G1 isn't reachable at `-2`, so B1 stands in *(approx)*.
-- Drum kit `d07`: Kick `2` · Clap `5` · Crash `15` · Open hat `12` · Closed hat `8`, all at `OCTAVE -2` (record_cheat.md §6.2).
+The tags say *Deep Inside (Remixes)*, 2015, track `3/8`, but the title is just *Deep Inside*. The [eight-track release](https://music.apple.com/jp/album/deep-inside-remixes/986139771) lists an unnamed *Deep Inside* in that position. This is **consistent with a reissued original**, not proof of a newly made remix or a remaster. This recipe follows the uploaded audio, whichever mastering it is.
 
----
+Keep Jonty's `U41`–`U45` / `S-2` untouched. Check that **all seven `U31`–`U37` slots and `S-3` are empty or disposable** before copying. The MC-303 has `U01`–`U50`, ten Songs, eight Parts and 28-voice polyphony.
 
-## 2. The Arrangement
+| Part | Start with | Audition alternative |
+|---|---|---|
+| `R` drums | `d07` House | Keep this kit for the documented pad map |
+| `1` keys | `t10-02` bright piano | `t11-04` percsv organ; compare without adding another layer |
+| `2` vocal proxy | `t07-05` auh | `t07-08` auh auh; check its articulation before adding repeated hits |
+| `3` bass | `t02-11` house bass | `t02-08` 101 bass 1 or `t02-12` sine bass |
+
+These are actual bank choices from [sample_bank.md](./sample_bank.md), **not identified original instruments**. The MC-303 cannot import a vocal sample: an "auh" patch cannot reproduce Barbara Tucker's words or performance. Authorised external sample playback, synchronised by MIDI, is the route to a much closer vocal; it is not required for this MC-303-only build.
+
+**Do not force everything into B minor.** The measured G1, B1, D2, E2 and F#2 are worth keeping. The composite keys stem suggests more chromatic harmony, but its chord identity remains uncertain.
+
+## 2. Arrangement & Clock
+
+The reviewed first downbeat is about **0:00.032**, not 0:01.973. Clock = `0.032 + (bar − 1) × 240/123.62` seconds.
 
 ```text
-Pat   U31      U32      U33      U34      U35      U36      U37
-Bar   1        33       65       97       129      161      193
-Clock 0:02     1:04     2:06     3:08     4:10     5:12     6:15
+Pattern  Bars       Audio clock
+U31      1–32       0:00
+U32      33–64      1:02
+U33      65–96      2:04
+U34      97–128     3:06
+U35      129–160    4:09
+U36      161–192    5:11
+U37      193–202    6:13
 ```
 
-Each column = 8 bars. `#` on, `+` partly/weak, `.` off.
+Each symbol = eight bars: `#` on, `s` sparse, `w` weak kick, `m` medium kick, `+` part of the block, `.` off. This is the **core recipe**, not an assertion that every stem is clean.
 
 ```text
-Bar    1   |33  |65  |97  |129 |161 |193
-Pat    U31 |U32 |U33 |U34 |U35 |U36 |U37
-Kick   .###|###.|###+|####|.##+|+##.|.
-Clap   ####|####|####|####|####|####|.
-O.hat  ####|###.|####|####|.###|###.|.
-C.hat  ....|###.|####|####|.###|###.|.
-Crash  .#..|....|#...|#...|.#..|.#..|.
-Bed    +###|####|####|####|###.|..##|.
-Vox    ....|...#|....|....|###.|..##|#
-Bass   ...#|####|###.|####|.###|#+..|.
+Bar    1   |33  |65
+Pat    U31 |U32 |U33
+Kick   .###|###.|###w
+Clap   ####|####|####
+Hat    .sss|###.|###.
+Keys   +###|####|####
+Voice  ####|####|####
+Bass   ...#|####|###.
+A-end  ...G|DGDG|DGD.
 ```
 
-- **1–8** clap + hat only, bed enters at 6. **9** kick in. **25** bass in.
-- **57–64** drop: no kick or hats, bass continues, clap on 5 and 13, vocal stand-in loud.
-- **89–96** bass out, kick weak. **129–136** breakdown: no kick, no bass, vocal.
-- **153–168** kick weak, bed gone. **169–172** last bass. **177–192** bed stabs + vocal.
-- **185–192** kick out. **193–200** vocal only. Silence from ~6:29.
+```text
+Bar    97  |129 |161
+Pat    U34 |U35 |U36
+Kick   ####|.##w|m##.
+Clap   ####|####|####
+Hat    ####|.##.|s##.
+Keys   ####|###+|..+#
+Voice  #.##|###.|..+#
+Bass   ####|.###|#+..
+A-end  DGDG|.GDG|DG..
+```
 
----
+`A-end` selects the A bar's **G** or **D** ending (§3). `U37`: voice on local bars `1–8`; local `9–10` are empty. No new drums, keys or bass.
+
+**Landmarks:** kick in `9`; bass in `25`; kick/hat drop `57–64` with bass continuing; bass out and kick weaker `89–96`; voice absent `105–112`; kick/bass out `129–136`; bass-forward `153–168`; last bass through about `172`; voice returns about `179`, keys stabs about `181`; kick/hats out `185`; voice-led outro `193–200`.
+
+The stem levels suggest some transition tails beyond those ranges. Do not turn every tail into a new note. At `123.6`, 202 bars take **6:32.2**; the MP3 also has a short leading offset and about **0.47 s of partial final-bar tail**. The data includes that tail as analysis bar `203`, but the Song does not need an extra whole bar.
 
 ## 3. Cheat Card
 
-Steps 1–16 in a bar. `X` = hit.
+`Step 1/5/9/13` = beats `1/2/3/4`. A hit is a note onset, **not a command to re-tap a held note on every occupied step**.
 
 ```text
-Step    1   5   9   13
-        |   |   |   |
-Kick    X...X...X...X...
-Clap    ....X.......X...
-O.hat   ..X...X...X...X.
-C.hat   .X.X.X.X.X.X.X.X   (approx)
-Crash   X...............   (approx)
+Step   1e&a 2e&a 3e&a 4e&a
+Kick   X... X... X... X...
+Clap   .... X... .... X...
+Hat    ..X. ..X. ..X. ..X.
+Thin   .... ..X. .... ..X.
 ```
 
-**Bass bar** (`OCTAVE -2`, one bar repeated): keys `1 · 1 · 6 · 8 · 8 · 4 · 6 · 1` · steps `1 7 8 10 11 13 14 16`
-= B1 B1 E2 F#2 F#2 D2 E2 B1.
+**Drums · `d07` · `OCTAVE -2`**
 
-**Bed bar** (Part 1, `OCTAVE 0`): keys `11 · 11 · 12 · 11 · 9 · 12 · 11` · steps `1 4 7 8 9 11 13`
-= A4 A4 A#4 A4 G4 A#4 A4. Early bars `6–24` and the late stabs: pad `11` · steps `1 5 13` only.
+Kick pad `2` · clap `5` · open hat `12` · closed hat `8` · crash `15`. The separated `hh` lane does **not** distinguish open from closed hats. Open-hat assignment is an approximation; closed hats and crashes are optional, not mandatory layers.
 
-**Vocal stand-in** (Part 2, `OCTAVE 0`): keys `11 · 11 · 12 · 11 · 13` · steps `1 5 9 13 14` = A4 A4 A#4 A4 B4.
+### Bass: two bars, not one
 
----
+Record **five semitones above the target at `OCTAVE -2`**, then Transpose **Part 3 by `-5` once** in each used pattern. All required pitches now fit the pads, including the real low G1, without an octave climb.
 
-## 4. Setup
+```text
+Target    G1  B1  D2  E2  F#2 G2
+Rec pad    2   6   9  11   13 14
+```
 
-1. **Do Jonty §5 steps 1–10** (copy a template, set Tones, write setup), with these changes:
-   - Patterns `U31`–`U37`, `LGH` `32` (`U37`: `10`, *unconfirmed*; fallback: keep `32` and press `[STOP]` after bar 10 of `U37`).
-   - Tempo **`123.6`** (not 124.0).
-   - Tones: Part 1 `t10-02` (bed), Part 2 `t07-08` (vocal stand-in), Part 3 `t02-11` (bass).
-2. If `[SHIFT]`, `OCTAVE [+]` or `SELECT [<]` are faulty, use Jonty §1.4 and [repair.md](./repair.md). The passes below go **synths, then drums**, with `OCTAVE` only ever going down (`0` → `-2`).
+This uses `note = 58 + 12 × octave + pad`. The pads initially sound C2 / E2 / G2 / A2 / B2 / C3; the edit restores the measured pitches.
 
----
+```text
+Cell  Step → record pad (gate in 16ths)
+A-G    1→2(6)  8→14(3) 11→14(2)
+      13→9(1) 14→11(3)
+A-D    1→2(6)  8→14(2) 11→9(3)
+      14→11(3)
+B      1→6(6)  8→11(2) 11→13(3)
+      14→11(3)
+```
+
+Play `A, B, A, B…`. Use the `A-end` row in §2 to choose A-G or A-D for each eight-bar block. B stays the same. Local odd bars are A, even bars B. Exact transitions can be a sixteenth early or late; these are simplified from onset candidates plus independent YIN pitch checks.
+
+**Hold the root for roughly six sixteenths**, rather than tapping everything short. Step Recording 1 / ties is easier for this than realtime tapping: [record_cheat.md §4C](./record_cheat.md). It overwrites from its start point: use an empty cell or set the start to the pass's first bar, not blindly bar 1 over existing bass. Gates above are starting lengths, not exact recovered durations.
+
+### Keys: candidate voicings, not a proven chord chart
+
+Record Part 1 **two semitones above target at `OCTAVE 0`**, then Transpose **Part 1 by `-2` once** in each used pattern.
+
+```text
+Early/late: pad 13 · steps 1 5 13
+Final pitch: A4
+
+Keys A: pads 2+9 · steps 1 7
+Final pitches: A#3 + F4
+Optional pad 6 on step 1 adds D4
+
+Keys B: pads 1+6+10 · step 1
+        pad 10 · steps 4 9 13
+Final pitches: A3 + D4 + F#4
+```
+
+The paired/stacked notes are stronger candidates than the old invented A4/A#4/G4 melody, but **not confirmed piano chords**. Alternate Keys A/B by local odd/even bar. Hold the first chord about `3–5` sixteenths; later stabs about `1`. Do not use a factory "organ chord" patch as though it had these known intervals.
+
+### Voice: syllable/rhythm proxy only
+
+Part 2 · `OCTAVE 0` · **no transpose**.
+
+```text
+Intro/break/outro:
+pad 11 (A4) · steps 1 5 13
+pad 12 (A#4) · step 9
+
+Body:
+pad 13 (B4) · steps 1 13
+pad 12 (A#4) · step 9
+```
+
+Short `1–2`-sixteenth syllables; vary or omit a hit rather than making an uninterrupted choir. These approximate registers and rhythms, **not the sampled vocal's exact melody**. On the very first bar omit step `1`; the detected vocal starts around beat 2.
+
+## 4. Setup & Pass Routine Overrides
+
+Use [Jonty §5 Phase A](./jonty_first_track.md) steps `1–10`, with `U31`–`U37`, tempo `123.6` and the Tones in §1. When borrowing a template, erase **notes and Modify data on all eight Parts in the copy**, not just Parts 1/R; leave the source alone. Reset inherited synth LFO/envelope/filter offsets before the SETUP copies so the old lead's modulation is not mistaken for this track.
+
+**Lengths:** `U31`–`U36` = `32`; **`U37` = `10`**. `LGH` supports `1–32` measures ([record_cheat.md §4A](./record_cheat.md)). If a template or pass has already made `U37` 32 bars, shorten it with **Delete Measure, all eight Parts, `PHRASE`, first bar `11`, count `22`** (§4E). This preserves the first ten bars and setup. No manual-stop workaround is needed.
+
+Do Jonty steps `11–12`: sixteenth Grid resolution, full timing strength, note the old Pad Velocity and free memory. Then repeat **record_cheat.md step 47 (a–h)** for the numbered passes below, with these overrides:
+
+1. Select the pass's **Part**, not always R.
+2. Use `LGH 10` for **every U37 pass**; other patterns use `32`. Keep `4-4`, `Cnt 1`, `LoP on`.
+3. **Part 2: skip step 47e.4 and turn Play Quantize completely off while recording.** Excluding Part 2 from the normal quantize aim is not enough: during recording quantize applies to the Recording Part. Restore Grid for Parts 1/3/R.
+4. Play **only** the listed ranges; stay silent for the rest. Stop in the blank Loop Rest bar after the actual pattern length.
+
+Passes descend `OCTAVE 0 → -2`. Faulty SHIFT/SELECT/octave controls: use [repair.md](./repair.md) / Jonty §1.4. Transpose's Pad `6` shortcut in [next_steps.md §3](./next_steps.md) is inferred: check that the menu really is Transpose before executing, and cancel if not.
 
 ## 5. Synth Passes
 
-Pass routine: record_cheat.md step 47, with `PART [1]`/`[2]`/`[3]` instead of `PART [R]` (Jonty step 13). Pad Velocity **`100`**.
+### Part 1 · Keys
 
-### Bed · Part `1` · `OCTAVE 0`
-Keys `11 · 11 · 12 · 11 · 9 · 12 · 11` · steps `1 4 7 8 9 11 13`
-- **1 · `U31`** · bars `25–32`
-- **2 · `U32`** · bars `1–32`
-- **3 · `U33`** · bars `1–32`
-- **4 · `U34`** · bars `1–32`
-- **5 · `U35`** · bars `1–24`
+**Pass 1 · `U31` · `OCTAVE 0` · Velocity `90`**
+- Early cell · bars `6–32`; bar `6` has step `13` only.
 
-Early bars: pad `11` · steps `1 5 13`
-- **6 · `U31`** · bars `6–24`
+**Pass 2 · `U32` · `OCTAVE 0` · Velocity `90`**
+- Keys A/B · bars `1–32`.
 
-Late stabs: pad `11` · steps `1 5 13`
-- **7 · `U36`** · bars `17–32`
+**Pass 3 · `U33` · `OCTAVE 0` · Velocity `90`**
+- Keys A/B · bars `1–32`.
 
-### Vocal stand-in · Part `2` · `OCTAVE 0`
-Keys `11 · 11 · 12 · 11 · 13` · steps `1 5 9 13 14` *(leave Part 2 unquantized)*
-- **8 · `U32`** · bars `25–32`
-- **9 · `U35`** · bars `1–24`
-- **10 · `U36`** · bars `17–32`
-- **11 · `U37`** · bars `1–8`
+**Pass 4 · `U34` · `OCTAVE 0` · Velocity `90`**
+- Keys A/B · bars `1–32`.
 
-### Bass · Part `3` · `OCTAVE -2`
-Keys `1 · 1 · 6 · 8 · 8 · 4 · 6 · 1` · steps `1 7 8 10 11 13 14 16`
-- **12 · `U31`** · bars `25–32`
-- **13 · `U32`** · bars `1–32`
-- **14 · `U33`** · bars `1–24`
-- **15 · `U34`** · bars `1–32`
-- **16 · `U35`** · bars `9–32`
-- **17 · `U36`** · bars `1–12`
+**Pass 5 · `U35` · `OCTAVE 0` · Velocity `90`**
+- Keys A/B · bars `1–28`; let bars `25–28` thin out.
 
-Tips: one key per hit, change pad **inside** the bar; tap short; every pass starts on bar 1 of its range, so start the cell on its first key.
+**Pass 6 · `U36` · `OCTAVE 0` · Velocity `90`**
+- Late cell · bars `21–32`.
 
----
+Now Transpose **Part 1, `-2`, once in each U31–U36**. Do not transpose Parts R/2/3.
+
+### Part 2 · Voice · Quantize OFF
+
+**Pass 7 · `U31` · `OCTAVE 0` · Velocity `90`**
+- Intro cell · bars `1–24`; body cell · bars `25–32`.
+
+**Pass 8 · `U32` · `OCTAVE 0` · Velocity `90`**
+- Body cell · bars `1–24`.
+
+**Pass 9 · `U33` · `OCTAVE 0` · Velocity `90`**
+- Body cell · bars `1–32`; keep bars `25–32` sparser.
+
+**Pass 10 · `U34` · `OCTAVE 0` · Velocity `90`**
+- Body cell · bars `1–8` and `17–32`; nothing in `9–16`.
+
+**Pass 11 · `U35` · `OCTAVE 0` · Velocity `90`**
+- Body cell · bars `9–24`.
+
+**Pass 12 · `U36` · `OCTAVE 0` · Velocity `90`**
+- Outro cell · bars `19–24`.
+
+**Pass 13 · `U37` · `OCTAVE 0` · Velocity `90`**
+- Outro cell · bars `1–8`; silent `9–10`; **LGH `10`**.
+
+**Pass 14 · `U32` · `OCTAVE 0` · Velocity `105`**
+- Break cell · bars `25–32`.
+
+**Pass 15 · `U35` · `OCTAVE 0` · Velocity `105`**
+- Break cell · bars `1–8`.
+
+**Pass 16 · `U36` · `OCTAVE 0` · Velocity `105`**
+- Outro cell · bars `25–32`.
+
+### Part 3 · Bass · Grid ON
+
+Use the **record pads**, not the target note names; alternate A/B and follow `A-end` in §2.
+
+**Pass 17 · `U31` · `OCTAVE -2` · Velocity `100`**
+- Bass · bars `25–32`.
+
+**Pass 18 · `U32` · `OCTAVE -2` · Velocity `100`**
+- Bass · bars `1–32`, including the drum drop.
+
+**Pass 19 · `U33` · `OCTAVE -2` · Velocity `100`**
+- Bass · bars `1–24`.
+
+**Pass 20 · `U34` · `OCTAVE -2` · Velocity `100`**
+- Bass · bars `1–32`.
+
+**Pass 21 · `U35` · `OCTAVE -2` · Velocity `100`**
+- Bass · bars `9–24`.
+
+**Pass 22 · `U36` · `OCTAVE -2` · Velocity `100`**
+- Bass · bars `9–12`.
+
+**Pass 23 · `U35` · `OCTAVE -2` · Velocity `110`**
+- Bass · bars `25–32`, the bass-forward stretch.
+
+**Pass 24 · `U36` · `OCTAVE -2` · Velocity `110`**
+- Bass · bars `1–8`.
+
+Now Transpose **Part 3, `-5`, once in each U31–U36**. Never repeat the edit after a playback check. No transpose on drums.
 
 ## 6. Drum Passes
 
-`OCTAVE -2` for all drums. Pass routine: record_cheat.md step 47. Set Pad Velocity **`80`** for the soft group, **`110`** for the loud group (Jonty step 17 / before pass 33).
+All on **Part R**, `d07`, `OCTAVE -2`. The core has no obligatory closed-hat, ride, tom or crash layer.
 
-### Hats · Velocity `80`
-**Open hat** pad `12` · steps `3 7 11 15`
-- **18 · `U31`** · bars `1–32`
-- **19 · `U32`** · bars `1–24`
-- **20 · `U33`** · bars `1–32`
-- **21 · `U34`** · bars `1–32`
-- **22 · `U35`** · bars `9–32`
-- **23 · `U36`** · bars `1–24`
+### Hats · Soft
 
-**Closed hat** pad `8` · steps `2 4 6 8 10 12 14 16` *(approx)*
-- **24 · `U32`** · bars `1–24`
-- **25 · `U33`** · bars `1–32`
-- **26 · `U34`** · bars `1–32`
-- **27 · `U35`** · bars `9–32`
-- **28 · `U36`** · bars `1–24`
+**Pass 25 · `U31` · `OCTAVE -2` · Velocity `80`**
+- Hat pad `12` · steps `7 15` · bars `9–32`.
 
-### Weak kick · Velocity `80`
-**Kick** pad `2` · steps `1 9`
-- **29 · `U33`** · bars `25–32`
-- **30 · `U35`** · bars `25–32`
-- **31 · `U36`** · bars `1–8`
+**Pass 26 · `U32` · `OCTAVE -2` · Velocity `80`**
+- Hat pad `12` · steps `3 7 11 15` · bars `1–24`.
 
-### Kick, clap & crash · Velocity `110`
-**Kick** pad `2` · steps `1 5 9 13`
-- **32 · `U31`** · bars `9–32`
-- **33 · `U32`** · bars `1–24`
-- **34 · `U33`** · bars `1–24`
-- **35 · `U34`** · bars `1–32`
-- **36 · `U35`** · bars `9–24`
-- **37 · `U36`** · bars `9–24`
+**Pass 27 · `U33` · `OCTAVE -2` · Velocity `80`**
+- Hat pad `12` · steps `3 7 11 15` · bars `1–24`.
 
-**Clap** pad `5` · steps `5 13`
-- **38–43 · `U31`–`U36`** · bars `1–32` each *(one pass per pattern)*
+**Pass 28 · `U34` · `OCTAVE -2` · Velocity `80`**
+- Hat pad `12` · steps `3 7 11 15` · bars `1–32`.
 
-**Crash** pad `15` · step `1` *(approx)*
-- **44 · `U31`** · bar `9`
-- **45 · `U33`** · bar `1`
-- **46 · `U34`** · bar `1`
-- **47 · `U35`** · bar `9`
-- **48 · `U36`** · bar `9`
+**Pass 29 · `U35` · `OCTAVE -2` · Velocity `80`**
+- Hat pad `12` · steps `3 7 11 15` · bars `9–24`.
 
-Tips: watch `NEXT`; the drop bars (`U32` 25–32, `U35` 1–8, `U36` 25–32) simply have **no kick or hats** (the clap stays). Fast hats too hard? Slow the tempo for the pass (record_cheat.md pass tips).
+**Pass 30 · `U36` · `OCTAVE -2` · Velocity `80`**
+- Hat pad `12` · steps `3 7 11 15` · bars `9–24`.
 
----
+**Pass 31 · `U36` · `OCTAVE -2` · Velocity `60`**
+- Hat pad `12` · steps `7 15` · bars `1–8`.
 
-## 7. Finish
+### Main Kick & Clap · Loud
 
-1. **Quantize (Jonty step 22)** per pattern `U31`–`U37`: Parts `R`, `1`, `3` only. Part 2 stays loose.
-2. **Chain `S-3` = `U31 … U37`** (Jonty steps 23–26) and write setup at `123.6` (step 27).
-3. **Hear it:** `[SHIFT] + [BWD]` then `[PLAY]`. Expect about **6:32**. Backup and clean-up: Jonty steps 28–29, record_cheat.md step 53.
+Kick pad `2` · steps `1 5 9 13`; clap pad `5` · steps `5 13`. On beats 2/4, both pads sound together.
 
-## 8. Quick Fixes
+**Pass 32 · `U31` · `OCTAVE -2` · Velocity `110`**
+- Kick · bars `9–32`; clap · bars `1–32`.
 
-- **Bass sounds off the key.** The bass key is unresolved. Try shifting the whole bass pass with Transpose (next_steps.md steps 17–18) or swap pad `1` for `13` (B2) / `6` for `8`.
-- **Bed clashes with the bass.** The separator put the bed on A/D, the bass on B/E. Drop the bed's `9` and `12` pads and keep only pad `11`.
-- **Too busy.** Skip the closed hats (passes 24–28) and the vocal stand-in.
-- **Intro or crash placement wrong.** Change one bar range in the pass, which is all that depends on it.
+**Pass 33 · `U32` · `OCTAVE -2` · Velocity `110`**
+- Kick · bars `1–24`; clap · bars `1–32`.
+
+**Pass 34 · `U33` · `OCTAVE -2` · Velocity `110`**
+- Kick · bars `1–24`; clap · bars `1–32`.
+
+**Pass 35 · `U34` · `OCTAVE -2` · Velocity `110`**
+- Kick and clap · bars `1–32`.
+
+**Pass 36 · `U35` · `OCTAVE -2` · Velocity `110`**
+- Kick · bars `9–24`; clap · bars `1–32`.
+
+**Pass 37 · `U36` · `OCTAVE -2` · Velocity `110`**
+- Kick · bars `9–24`; clap · bars `1–32`.
+
+### Weak/Medium Kick · Keep All Four Beats
+
+These velocities approximate the change in weight; the stem data does not reveal the original drum machine's velocity or filter setting.
+
+**Pass 38 · `U33` · `OCTAVE -2` · Velocity `80`**
+- Kick pad `2` · step `1` · bars `25–32`.
+
+**Pass 39 · `U35` · `OCTAVE -2` · Velocity `80`**
+- Kick pad `2` · step `1` · bars `25–32`.
+
+**Pass 40 · `U33` · `OCTAVE -2` · Velocity `45`**
+- Kick pad `2` · steps `5 9 13` · bars `25–32`.
+
+**Pass 41 · `U35` · `OCTAVE -2` · Velocity `45`**
+- Kick pad `2` · steps `5 9 13` · bars `25–32`.
+
+**Pass 42 · `U36` · `OCTAVE -2` · Velocity `90`**
+- Kick pad `2` · steps `1 5 9 13` · bars `1–8`.
+
+**Optional accents — audition, don't assume:** clap pad `5` on `8 10`, velocity `40`, in full grooves only; sparse closed hat pad `8` on `4 12`, velocity `40`; a quiet crash pad `15` on the first kick/return only. Split these into ordinary extra passes if wanted. Busy even-step closed hats can repeatedly choke open hats; don't add eight per bar just because a house template did.
+
+The weak hat activity in `89–96` is omitted from the core. Add soft offbeats there only if your comparison supports them. Low-energy tom/ride/crash candidates are preserved in the data, not silently deleted, but **do not prove those instruments are absent or present**.
+
+## 7. Shape, Copy & Finish
+
+**Sound baseline:** start synth filter/resonance/envelope offsets at `0`, LFO MOD at `0`, centred pan and no portamento sweeps. Keep bass and drums dry. Compare the bass's held gates first; only then try a modest cutoff/decay reduction. These are rompler offsets, not measured filter frequencies.
+
+**Space:** [next_steps.md §2](./next_steps.md) has the menus. Try Plate, overall level about `25`, Part 1 send `15`, Part 2 send `35`, Parts 3/R send `0`; Chorus off initially. These are **unverified starting values**. Delay/Reverb is one processor: choose delay **instead of** Plate if a rhythmic voice repeat is more useful. At this tempo an eighth is ~`243 ms`, a dotted eighth ~`364 ms`; the `0–127` TIME value is not a millisecond read-out.
+
+**Automation:** if the keys should fall away more naturally, record a Part 1 LEVEL fade over `U35` bars `25–28`, then stay down through `32` (record_cheat.md Phase 4). Write the intended starting setup **before** the automation, not the faded end value afterwards. Keep drum changes in note velocities: a Part R filter/level sweep affects the kit, not just the kick.
+
+**Less tapping:** get one A/B cell right, then use Part Copy `PHRASE` ([record_cheat.md Phase 12](./record_cheat.md)) to reuse it in empty destination ranges. Copy the correct A-G/A-D ending **before the transpose checkpoint**, then lower each Part once. If instead you copy completed, lowered notes, skip that destination's transpose and do not add raised record pads over them. Copying replaces destination data, not merges it.
+
+**Finish:** use Jonty steps `21–29`, with these changes:
+
+1. Edit Quantize **R/1/3 only**, Grid `16`, in `U31`–`U36`; leave Part 2 alone. Start straight rather than assuming an unmeasured 58% swing.
+2. Confirm all six transposed bass Parts and keys Parts sound in their **target** registers, and `U37` really is ten bars.
+3. Chain **`S-3 = U31 U32 U33 U34 U35 U36 U37`**, Song Loop off, Song Setup Write at **`123.6`**. Store deliberate Part levels/effect sends with safe Pattern Setup Write.
+4. Restore Pad Velocity/quantize/mutes, check free memory, then Bulk Dump. Do not wipe the source patterns or Jonty's Song.
+
+**If it sounds wrong:** fix a specific gate, voicing or misplaced hit in a copy. Do not randomly transpose the whole bass or replace E with F# to "find the key". A voice Tone will still sound unlike the actual sample; more choir notes cannot solve that limitation.
