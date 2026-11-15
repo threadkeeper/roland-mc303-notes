@@ -59,7 +59,7 @@ The MC-303 has a **6-character 7-segment LED display** with a **`CURRENT`** area
 | **Data Dial** | `[VALUE]` | Edits the active parameter. Hold **`[SHIFT] + [VALUE]`** to jump by 10s (or `1.0` BPM in `TEMPO`). |
 | **Transport** | `[BWD/TIE]`, `[FWD/REST]`, `[REC]`, `[STOP]`, `[PLAY]` | Rewind/Fast-Forward (`[SHIFT]+[BWD]` jumps to start; `[SHIFT]+[FWD]` jumps to end). In Step Rec 1: `[BWD/TIE]` = Tie, `[FWD/REST]` = Rest. `[REC]` blinks in standby, lights solid when recording. |
 | **Confirm / Cancel** | `[ENTER]`, `[EXIT]` | `[ENTER]` confirms edits/prompts (`SUrE`); `[EXIT]` cancels or backs out of menus. |
-| **Modifiers** | `[SHIFT]`, `[FUNC]` | **`[SHIFT]`** + Pad `[1]–[16]` opens black-framed parameter menus.<br>**`[FUNC]`** (press so LED **blinks**) switches all dual-label knobs to their secondary function.<br>**`[SHIFT] + [FUNC]` + Pad `[1]–[16]`** opens white-framed Edit/Write commands.<br>**`[SHIFT] + [FUNC]` + turn any knob** previews its exact numerical value on the display! |
+| **Modifiers** | `[SHIFT]`, `[FUNC]` | **`[SHIFT]`** + Pad `[1]–[16]` opens black-framed parameter menus.<br>**`[FUNC]`** (press so LED **blinks**) switches all dual-label knobs to their secondary function.<br>**`[SHIFT] + [FUNC]` + Pad `[1]–[16]`** opens white-framed Edit/Write commands.<br>**`[SHIFT] + [FUNC]` + turn a knob** shows that knob's value: `CURRENT` shows the parameter name (the manual's cutoff example reads `CUt`) and `NEXT` shows the number. |
 | **Cutoff / Level Knob** | `CUTOFF / LEVEL` | **Same physical knob!**<br>• **`[FUNC]` LED dark:** Adjusts **`CUTOFF`** (`-50` to `+50`).<br>• **`[FUNC]` LED blinking:** Adjusts Part **`LEVEL` / Volume** (`0` to `127`). |
 | **Resonance / Pan Knob** | `RESONANCE / PANPOT` | • **`[FUNC]` LED dark:** **`RESONANCE`** (`-50` to `+50`).<br>• **`[FUNC]` LED blinking:** **`PANPOT`** (`L63`–`0`–`R63`). |
 | **Envelope Knob** | `ENVELOPE / RELEASE` + `[ENVELOPE]` | • **`[FUNC]` dark + `[ENVELOPE]` dark:** **`ATTACK`** (`-50` to `+50`).<br>• **`[FUNC]` dark + `[ENVELOPE]` lit:** **`DECAY`** (`-50` to `+50`).<br>• **`[FUNC]` blinking:** **`RELEASE`** (`-50` to `+50`). |
@@ -269,13 +269,14 @@ The MC-303's Envelope shapes **both volume and filter contour** over time (`A` =
 #### Part A — First Half (`U01`: Bars 1–32 | `0:00 – 1:04` Intro & Build)
 17. Make sure **`PATTERN`** LED is lit (`[PLAY MODE]`). *(If pressing `[REC]` ever shows `SnG > CLr`, you are still in `SONG` mode—press `[EXIT]` and press `[PLAY MODE]` back to `PATTERN`!)*
 18. Select **`U01`** (`SELECT` → `PTN/SONG` → `[VALUE]` to `U01`), press **`[PART SELECT]`** → **`PART [1]`**.
-19. **Set & Save `U01`'s Starting Sound (`[SHIFT] + [FUNC]` + turn knob previews exact numbers):**
-    - With **`[FUNC]` dark**:
-      - Turn **`CUTOFF / LEVEL`** counter-clockwise (dark/muffled intro).
-      - Press **`[ENVELOPE]`** so its LED is **dark** (`ATTACK`) and turn **`ENVELOPE / RELEASE`** slightly right (soft, gentle intro attack).
-      - Press **`[LFO]`** so its LED is **lit** (`MOD`) and set **`LFO / PORTA TIME`** to **`0`** (no wobble yet).
+19. **Set & Save `U01`'s Starting Sound.** You do **not** need to change the `SELECT` indicator for this—leave it on `PTN/SONG` (showing `U01`). The knobs always act on the Part you selected in step 18 (`[PART SELECT]` lit, `PART [1]` lit), and the manual's knob procedures never use the `SELECT` buttons. Don't touch the `VALUE` dial here (with `PTN/SONG` lit it would change the pattern). `TONE` only had to be lit when you picked the Tone in Phase 1. The pattern is stopped, so nothing is being recorded—you are only setting where the sound starts.
+    - **Reading the numbers (optional):** by default the display shows nothing when you turn a knob. To see the value, hold **`[SHIFT]` + `[FUNC]`** and turn the knob: `CURRENT` shows the parameter's name and `NEXT` shows its value (the manual's cutoff example reads `CUt` and a number). The number is that parameter's setting, in these ranges: `CUTOFF`, `RESONANCE`, `ATTACK`, `DECAY`, `RELEASE`, `LFO RATE`: `-50` to `+50`; `LFO MOD`, `LEVEL`, `PORTA TIME`: `0` to `127`; `PANPOT`: `L63` – `0` – `R63`. *(The manual only shows this for `CUTOFF`; how to read the `[FUNC]`-blinking functions such as `LEVEL` this way isn't shown—try it on your unit, or set them by ear.)*
+    - With **`[FUNC]` dark** *(suggested start values—adjust by ear, they depend on the Tone)*:
+      - **`CUTOFF / LEVEL`** knob = `CUTOFF`: about `-30` (dark/muffled intro).
+      - **`[ENVELOPE]`** LED **dark** (`ATTACK`), **`ENVELOPE / RELEASE`** knob: about `+15` (soft, gentle attack).
+      - **`[LFO]`** LED **lit** (`MOD`), **`LFO / PORTA TIME`** knob: `0` (no wobble yet).
     - Press **`[FUNC]`** (LED **blinks**):
-      - Turn **`CUTOFF / LEVEL`** (`LEVEL`) down to ~`35` (quiet fade-in start) and set **`ENVELOPE / RELEASE`** (`RELEASE`) near center (`0`).
+      - **`CUTOFF / LEVEL`** knob = `LEVEL`: about `35` (quiet start for the fade-in); **`ENVELOPE / RELEASE`** knob = `RELEASE`: about `0`.
       - Press **`[FUNC]`** again so **`[FUNC]` is dark**.
     - Lock in these starting values with **Pattern Setup Write**: hold **`[SHIFT] + [FUNC]` + Pad `[15]`** (`SUrE`) → press **`[ENTER]`**.
 20. **Record All `U01` Tweaks in One Continuous 3-Pass Loop:**
@@ -292,7 +293,7 @@ The MC-303's Envelope shapes **both volume and filter contour** over time (`A` =
 
 #### Part B — Second Half (`U02`: Bars 1–32 | `1:04 – 2:08` Peak & Ambient Fade-Out)
 21. Select **`U02`** (`SELECT` → `PTN/SONG` → `[VALUE]` to `U02`), press **`[PART SELECT]`** → **`PART [1]`**.
-22. **Set & Save `U02`'s Starting Sound (Matching End of `U01`):**
+22. **Set & Save `U02`'s Starting Sound (Matching End of `U01`):** *(Same method as step 19—knobs only, no `SELECT` change; hold `[SHIFT]` + `[FUNC]` and turn a knob to read its number.)*
     - With **`[FUNC]` dark**: set **`CUTOFF / LEVEL`** bright, **`ENVELOPE`** snappy (`ATTACK` left, `DECAY` open), and **`LFO MOD`** (`[LFO]` lit) moderately active.
     - Press **`[FUNC]`** (blinks): set **`CUTOFF / LEVEL`** (`LEVEL`) high (~`120`), press **`[FUNC]`** again (**dark**), and save setup: **`[SHIFT] + [FUNC] + Pad [15]`** → **`[ENTER]`**.
 23. **Record All `U02` Peak & Outro Tweaks in One Continuous 3-Pass Loop:**
