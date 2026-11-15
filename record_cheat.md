@@ -606,3 +606,5 @@ What do you want to do?
 - **Part Copy won't run, or the paste ends early.** The time signatures differ, or the paste would take the destination past 32 bars. Copy fewer bars or start the paste earlier.
 - **Pad `[2]` opens something else.** Press `[EXIT]` and check the manual's Part Copy page (p.61). The pad number here is inferred *(unconfirmed)*.
 - **I pasted a Part and its Tone is wrong.** `PHRASE` leaves the destination's Tone as it was. Change the Tone and run Setup Write (step 73), or paste with `ALL` to bring the source Part's set-up along.
+
+> **More:** the arpeggiator, effects, fixing a take without re-recording, editing a Song and performing live are in [next_steps.md](./next_steps.md).

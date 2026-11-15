@@ -47,7 +47,7 @@ Tone names are from [sample_bank.md](./sample_bank.md); any Tone will do.
 If `[SHIFT]`, `OCTAVE [+]` and `SELECT [<]` are still faulty ([repair.md](./repair.md)):
 
 - **Every copy, wipe and Edit Quantize starts with `[SHIFT] + [FUNC]`.** Put SHIFT on a pedal first (repair.md §3.4).
-- **`OCTAVE` can only go down.** Both grids are ordered so it never rises *within* a phase. It has to climb from `-2` back to `0` **once**, between Phase B and Phase C (step 16). If `[+]` is still dead then, power-cycle first (whether that resets the octave is *unconfirmed*, repair.md §3.5) and re-check the quantize aim and Pad Velocity afterwards.
+- **`OCTAVE` can only go down.** Both grids are ordered so it never rises *within* a phase. It has to climb from `-2` back to `0` **once**, between Phase B and Phase C (step 16). If `[+]` is still dead then, power-cycle first (whether that resets the octave is *unconfirmed*, repair.md §3.5) and re-check the quantize aim and Pad Velocity afterwards. Or skip the climb: record the bass at `OCTAVE 0` and move it down two octaves in each pattern afterwards with Transpose ([next_steps.md](./next_steps.md), steps 17–18).
 - **`TEMPO` is left of `PTN/SONG`, so `SELECT [>]` can't reach it.** Use tap tempo (repair.md §3.1). A beat or two either side of 124 breaks nothing (each BPM moves the end of the track by about 2.5 s).
 
 ---
@@ -337,7 +337,7 @@ Tap both in every pass: **Lo conga** pad `6` · steps `4 11`, and **Hi conga** p
 
 ## 7. Making It Longer
 
-The Original is 6:28, about 200 bars at 124 BPM. The cheapest way to get closer is to **repeat `U44`** in the Song: `S-2` = `U41 U42 U43 U44 U44 U45` = 192 bars = **6:12**, with no extra recording. Clear `S-2` and chain it again as in step 26. Matching it to the second would need 8 more bars, for example an 8-bar pattern (`LGH` `8`) before the outro.
+The Original is 6:28, about 200 bars at 124 BPM. The cheapest way to get closer is to **repeat `U44`** in the Song: `S-2` = `U41 U42 U43 U44 U44 U45` = 192 bars = **6:12**, with no extra recording. Don't clear `S-2`: insert one more `U44` at position `5` with Insert Pattern ([next_steps.md](./next_steps.md), step 19). Matching it to the second would need 8 more bars, for example an 8-bar pattern (`LGH` `8`) before the outro.
 
 ---
 
