@@ -1,8 +1,8 @@
 # Roland MC-303 Groovebox — Recording & Sequencing Cheat Sheet
 
-A button-by-button reference for recording **Parts**, **Phrases (RPS)**, **Patterns**, and **Songs** on the Roland MC-303, cross-checked against the text of the official 1996 *Roland MC-303 Owner's Manual* and Roland/Sweetwater knowledge-base articles. It covers dual-function knobs, metronome/lead-in setup, deletion operations, and an end-to-end **120 BPM** workflow for permanently recording a ~2-minute (2 × 32 bars = 2:08) single-instrument track (`t01-15` / `Tri Lead 1`) with baked-in live `CUTOFF`, `RESONANCE`, `LFO`, `ENVELOPE`, and `LEVEL` tweaks that scales up to a 4-minute+ song.
+A button-by-button reference for recording **Parts**, **Phrases (RPS)**, **Patterns**, and **Songs** on the Roland MC-303, cross-checked against the text of the official 1996 *Roland MC-303 Owner's Manual* and Roland/Sweetwater knowledge-base articles. It covers dual-function knobs, metronome/lead-in setup, deletion operations, and an end-to-end **120 BPM** workflow for permanently recording a ~2-minute (2 × 32 bars = 2:08) single-instrument track (`t01-15` / `Tri Lead 1`) with baked-in live `CUTOFF`, `RESONANCE`, `LFO`, `ENVELOPE`, and `LEVEL` tweaks that scales up to a 4-minute+ song. **Section 6** then layers a gradually building deep-house percussion part (Part R) over those same two patterns.
 
-> **Verification note:** The manual prints its display read-outs as figures that could not be machine-read, and nothing here has been run on a physical unit. Display strings confirmed by Roland support articles: `ErS`, `SUrE`, `bEt`, `LGH`, `Cnt`, `LoP`; `rhS` is read from the manual's display figure, as are `SnG`/`CLr`, `---` (empty song) and `S-1` from its song-page figures. Anything marked *(unconfirmed)* is a best guess—check it on your MC-303.
+> **Verification note:** The manual prints its display read-outs as figures that could not be machine-read, and nothing here has been run on a physical unit. Display strings confirmed by Roland support articles: `ErS`, `SUrE`, `bEt`, `LGH`, `Cnt`, `LoP`. The rest are read from the manual's own display figures: `rHS` (rehearsal), `ntE` (Wait Note), `OCt`, `rES`, `d01` (Rhythm Set), `Mt 1`/`Mt 2`, `PuL`, `SnG`/`CLr`, `---` (empty song) and `S-1`. Anything marked *(unconfirmed)* is a best guess—check it on your MC-303.
 
 ---
 
@@ -86,7 +86,7 @@ The MC-303 has a **6-character 7-segment LED display** with a **`CURRENT`** area
 | **Realtime Recording** | Live melodies, chords, arpeggios, & **recording knob sweeps (`CUTOFF`, `LEVEL`, etc.)** | `PATTERN` mode (`U01–U50`) → `[REC]` (blinks) → set `bEt/LGH/Cnt/LoP` → `PART [R/1–7]` → `[PLAY]` | **Notes:** Loop Mix (overdubs on each pass).<br>**Knobs:** Loop Replace per parameter (re-turning `CUTOFF` overwrites `CUTOFF`; turning `LEVEL` on pass 2 layers `LEVEL` alongside `CUTOFF`). |
 | **Step Recording 1 (Melodic `1–7`)** | Tight 16th-note acid basslines, arpeggios, chords, ties/slides | `PATTERN` mode (`U01–U50`) → `[REC]` → `PART [1–7]` → **`[REC]` again** (`STEP REC` lights) → `[PLAY]` | Step-by-step entry via `[PADS 1–16]`, `[FWD/REST]` (Rest), `[BWD/TIE]` (Tie), `[SCALE/MEASURE]` (grid), `PART [R–3]` (Vel), `PART [4–7]` (Gate). *Overwrites from start point forward.* |
 | **Step Recording 2 (Drum Grid `R`)** | Classic TR-808/909 16-step drum machine programming | `PATTERN` mode (`U01–U50`) → `[REC]` → `PART [R]` → **`[REC]` again** (`STEP REC` lights) → `[PLAY]` | Pattern loops live! Hold `[SHIFT] + Pad [1–16]` to pick drum sound, release `[SHIFT]`, tap `Pads [1–16]` to toggle steps on/off; `[FWD]`/`[BWD]` switches bars. |
-| **Microscope Edit** | Surgical single-note velocity/gate edits, note delete, or TB-303 slides | `PATTERN` mode → `[REC]` (standby) → `PART [R/1–7]` → **`[REC]` again** (`STEP REC` lit, `bar-beat` / `clock` shown). *(Inside Step Recording, `[REC]` toggles between the step-input display and the Microscope. During **Realtime** Recording, `[REC]` enters Rehearsal mode `rhS` instead.)* | Turn `[VALUE]` (or `[FWD]`/`[BWD]`) to inspect notes at 96 PPQN resolution; edit Vel/Gate, insert Portamento slides or Hold messages, or delete individual notes. |
+| **Microscope Edit** | Surgical single-note velocity/gate edits, note delete, or TB-303 slides | `PATTERN` mode → `[REC]` (standby) → `PART [R/1–7]` → **`[REC]` again** (`STEP REC` lit, `bar-beat` / `clock` shown). *(Inside Step Recording, `[REC]` toggles between the step-input display and the Microscope. During **Realtime** Recording, `[REC]` enters Rehearsal mode `rHS` instead.)* | Turn `[VALUE]` (or `[FWD]`/`[BWD]`) to inspect notes at 96 PPQN resolution; edit Vel/Gate, insert Portamento slides or Hold messages, or delete individual notes. |
 | **RPS Phrase Reg.** | Triggering isolated single-Part loops live from Pads `1–16` | `[PART MUTE]` all parts except 1 → `[RPS SET]` lit → hold **`[RPS SET] + Pad [1–16]`** | Registers pointer to that Pattern + Part on the Pad; can be triggered live or recorded into another User Pattern. |
 | **Song Recording** | Chaining up to 999 Patterns into a linear song (`S-1` to `S-10`) | `[PLAY MODE]` (`SONG` lit) → `S-1..S-10` → `[REC]` → `[PLAY]` | Select Pattern with `[VALUE]` → press `[ENTER]` to append step → `[STOP]` when done. |
 
@@ -100,8 +100,8 @@ The MC-303 has a **6-character 7-segment LED display** with a **`CURRENT`** area
    - **Instant Toggle (Anytime):** Hold **`[FUNC]` + press `[SCALE / MEASURE]`** to toggle the metronome click on or off during recording.
    - **System Metronome Mode & Volume (While Stopped):**
      1. Hold **`[SHIFT]` + press Keyboard Pad `[16]`** (System Settings).
-     2. Press **`SELECT [>]` 5 times** to reach Metronome Mode → turn **`[VALUE]`** to **`REC ONLY`** (click during recording only), **`ALWAYS`**, **`PLAY & REC`**, or **`OFF`** *(these are the manual's names; the exact 7-segment abbreviations are unconfirmed)*.
-     3. Press **`SELECT [>]` once more** (6th page) to adjust **Metronome Volume (`0–127`)** with **`[VALUE]`** → press **`[EXIT]`**.
+     2. Press **`SELECT [>]` 5 times** to reach Metronome Mode (`Mt 1`) → turn **`[VALUE]`** to **`rEC`** (REC ONLY: click during recording only), **`ALY`** (ALWAYS), **`P-r`** (PLAY & REC), or **`oFF`**.
+     3. Press **`SELECT [>]` once more** (6th page, `Mt 2`) to adjust **Metronome Volume (`0–127`)** with **`[VALUE]`** → press **`[EXIT]`**.
 2. **Recording Standby Parameters (`bEt`, `LGH`, `Cnt`, `LoP`):**
    - In `PATTERN` mode (`[PLAY MODE]` → `PATTERN` lit), select a User Pattern **`U01–U50`** and press **`[REC]`** (`REC` LED blinks).
    - Use **`SELECT [<] [>]`** to step between the **4 recording parameters** and turn **`[VALUE]`** to set each:
@@ -111,15 +111,16 @@ The MC-303 has a **6-character 7-segment LED display** with a **`CURRENT`** area
         - **`0`**: Recording starts immediately when you press `[PLAY]`.
         - **`1`**: **1-measure lead-in** before Bar 1 Beat 1 (4 clicks in 4/4).
         - **`2`**: **2-measure lead-in** (default; 8 clicks in 4/4).
-        - **`Wait Note`** *(display abbreviation unconfirmed)*: Waits silently and starts recording the instant you strike a Keyboard Pad (or press a hold pedal). `[PTN SET]` and `[RPS SET]` must be dark.
-     4. **`LoP` (Loop Rest):** `oFF` (default) or **`On`** *(can also toggle with **`[SHIFT] + [TAP/LOOP REST]`** while in `[REC]` standby)*. When **`On`**, inserts **1 temporary unrecorded blank measure** at the end of the pattern so you can sweep knobs right up to the final beat and hit `[STOP]` (or switch `[FUNC]`) cleanly without overwriting Bar 1!
+        - **`Wait Note`** (`ntE`): Waits silently and starts recording the instant you strike a Keyboard Pad (or press a hold pedal). `[PTN SET]` and `[RPS SET]` must be dark.
+     4. **`LoP` (Loop Rest):** `oFF` (default) or **`on`** *(can also toggle with **`[SHIFT] + [TAP/LOOP REST]`** while in `[REC]` standby)*. When **`on`**, inserts **1 temporary unrecorded blank measure** at the end of the pattern so you can sweep knobs right up to the final beat and hit `[STOP]` (or switch `[FUNC]`) cleanly without overwriting Bar 1!
+   - *(These defaults apply to a brand-new pattern. When you record again onto an already-recorded pattern, the settings from its previous recording are reused—manual p.47—but it costs nothing to re-check them.)*
 
-### B. Realtime (Live) Recording & Rehearsal Mode (`rhS`)
+### B. Realtime (Live) Recording & Rehearsal Mode (`rHS`)
 1. Select `U01–U50` (`PATTERN` mode), ensure `[PTN SET]` and `[RPS SET]` are **dark**, select your Part (`[PART SELECT]` → `PART [R/1–7]`), and choose your Tone (`SELECT` → `TONE` → `[VALUE]`). *(Tone choices live in the edit buffer until you run Pattern Setup Write after recording—Section 4F.)*
 2. Press **`[REC]`** (blinks) → set `bEt`, `LGH`, `Cnt`, `LoP` via `SELECT [<]/[>]` + `[VALUE]` → press target **`PART [R]` or `[1]–[7]`**. *(Optional: press `[QUANTIZE]` now if you want input quantization.)*
 3. Press **`[PLAY]`** (or strike a pad if `Cnt = Wait Note`). After the lead-in, `REC` lights solid, `CURRENT` shows total bars, and `NEXT` shows the current bar.
 4. Play **`[KEYBOARD PADS 1–16]`** and/or turn **`REALTIME MODIFY` knobs** (`CUTOFF/LEVEL`, `RESONANCE/PANPOT`, `ENVELOPE`, `LFO`).
-5. **Switch Parts Non-Stop (`Rehearsal Mode`):** Press **`[REC]`** while recording—`REC` blinks and `CURRENT` displays **`rhS`**. Practice notes or press another **`PART [R/1–7]`** without recording; press **`[REC]`** again to resume recording!
+5. **Switch Parts Non-Stop (`Rehearsal Mode`):** Press **`[REC]`** while recording—`REC` blinks and `CURRENT` displays **`rHS`**. Practice notes or press another **`PART [R/1–7]`** without recording; press **`[REC]`** again to resume recording!
 6. Press **`[STOP]`** when finished.
 
 ### C. Step Recording 1 (Melodic Parts `1–7`)
@@ -242,7 +243,7 @@ The MC-303's Envelope shapes **both volume and filter contour** over time (`A` =
 ---
 
 ### Phase 2: Set Metronome, `4/4`, `32` Bars, `1`-Bar Lead-In, Record Notes in `U01` & Save Setup
-9. **Check Metronome:** Hold **`[SHIFT] + Pad [16]`**, press **`SELECT [>]` 5 times**, turn **`[VALUE]`** to **`REC ONLY`**, and press **`[EXIT]`**. *(During recording, `[FUNC] + [SCALE/MEASURE]` also toggles the click on/off.)*
+9. **Check Metronome:** Hold **`[SHIFT] + Pad [16]`**, press **`SELECT [>]` 5 times** (`Mt 1`), turn **`[VALUE]`** to **`rEC`** (REC ONLY), and press **`[EXIT]`**. *(During recording, `[FUNC] + [SCALE/MEASURE]` also toggles the click on/off.)*
 10. Press **`[REC]`** (`REC` LED blinks). Use **`SELECT [<] / [>]`** and **`[VALUE]`** to set all 4 recording parameters:
     - **`bEt`** (Beat): **`4/4`**
     - **`LGH`** (Pattern Length): **`32`** (`32` bars = `1:04` at `120.0` BPM)
@@ -329,3 +330,156 @@ The MC-303's Envelope shapes **both volume and filter contour** over time (`A` =
     - **Hands off the knobs!** *(If you move a knob past one of its switch points while a Part with recorded knob data plays, `REALTIME MODIFY` lights, the `PART` button blinks, and your knob overrides that Part's recorded data until you press the blinking `PART` button, return to the start of the pattern, or switch pattern.)*
     - Your entire **~2-minute (`2:08`) `t01-15` (`Tri Lead 1`) song** will play back with every note, `CUTOFF`/`RESONANCE` sweep, `LFO` wobble (`MOD` & `RATE`), `ENVELOPE` morph (`ATTACK`, `DECAY`, `RELEASE`), and `LEVEL` fade-in/fade-out permanently saved—even after powering the MC-303 off and back on (the memory is battery-backed).
     - **Songs store only pattern numbers:** if you later re-record or delete `U01`/`U02`, `S-1` changes with them (and a pattern with no data halts song playback). Back up finished work with Bulk Dump (Section 4F).
+
+> **Next:** Section 6 adds a deep-house percussion part on Part R of these same two patterns—the Song you just chained will play it automatically.
+
+---
+
+## 6. Recording Part 2 (120 BPM): Deep-House Percussion on Part R, Building Across `U01` + `U02`
+
+**Goal:** Add a deep-house drum-and-percussion bed on **Part R** (the Rhythm Part) of the same two 32-bar patterns from Section 5, with a **new element entering every 8 bars**: kick → open hat → clap → closed hat → shaker → congas → tambourine → ride. The `t01-15` lead on Part 1 keeps its notes and recorded knob sweeps untouched, and Song `S-1` (`U01 → U02`) plays the drums automatically because songs only store pattern numbers.
+
+> **Style note:** the reference is *Hardrive – "Deep Inside"* (Louie Vega, Strictly Rhythm, 1993; databases list it at about 124 BPM). I couldn't verify how its drums are actually programmed, so the patterns below are generic deep-house building blocks in that spirit—**not a transcription**. This guide stays at **120 BPM**. As elsewhere in this file, nothing here has been run on a physical MC-303; check anything marked *(unconfirmed)*.
+
+**Prerequisite:** Section 5 is finished: `U01` and `U02` hold the lead with its knob sweeps, and Song `S-1` plays `U01 → U02` at `120.0`.
+
+### 6.1 The Build (Everything Already Playing Keeps Playing)
+
+| Song bars | Pattern · bars | Clock (120 BPM) | New on Part R |
+| :--- | :--- | :--- | :--- |
+| 1–8 | `U01` · 1–8 | 0:00 | **Kick** (four-on-the-floor) |
+| 9–16 | `U01` · 9–16 | 0:16 | **Open hat** (off-beat) |
+| 17–24 | `U01` · 17–24 | 0:32 | **Clap** (beats 2 & 4) |
+| 25–32 | `U01` · 25–32 | 0:48 | **Closed hat** (the 16ths between the other hits) |
+| 33–40 | `U02` · 1–8 | 1:04 | **Shaker** (+ **crash** on bar 1, beat 1) |
+| 41–48 | `U02` · 9–16 | 1:20 | **Congas** |
+| 49–56 | `U02` · 17–24 | 1:36 | **Tambourine** (doubles the clap) |
+| 57–64 | `U02` · 25–32 | 1:52 | **Ride** (doubles the open hat)—all eight layers while the lead fades out |
+
+### 6.2 Cheat Card: Pad Map & Tap Grid (Rhythm Set `07` House)
+
+| Drum (sound, note no.) | `OCTAVE` | Pad | Tap steps per bar | Velocity |
+| :--- | :---: | :---: | :--- | :--- |
+| **Kick** (909 BD 3, 36) | `-2` | `2` | `1 5 9 13` | Loud |
+| **Clap** (909 Clap, 39) | `-2` | `5` | `5 13` | Loud |
+| **Crash** (909 Crash 1, 49) | `-2` | `15` | `1`, once on `U02` bar 1 | Loud |
+| **Open hat** (909 OH, 46) | `-2` | `12` | `3 7 11 15` | Soft |
+| **Closed hat** (909 CH, 42) | `-2` | `8` | `2 4 6 8 10 12 14 16` | Soft |
+| **Shaker** (626 Shaker, 82) | `+1` | `12` | `1 3 5 7 9 11 13 15` | Soft |
+| **Lo conga** (Lo Conga Open, 64) | `0` | `6` | `4 11` | Soft |
+| **Hi conga** (Hi Conga Open, 63) | `0` | `5` | `8 14` | Soft |
+| **Tambourine** (Tambourine, 54) | `-1` | `8` | `5 13` | Soft |
+| **Ride** (909 Ride, 51) | `-1` | `5` | `3 7 11 15` | Soft |
+
+```text
+Step       1 e & a 2 e & a 3 e & a 4 e & a
+Kick       X . . . X . . . X . . . X . . .
+Clap       . . . . X . . . . . . . X . . .
+Open hat   . . X . . . X . . . X . . . X .
+Closed hat . X . X . X . X . X . X . X . X
+Shaker     X . X . X . X . X . X . X . X .
+Lo conga   . . . X . . . . . . X . . . . .
+Hi conga   . . . . . . . X . . . . . X . .
+Tambourine . . . . X . . . . . . . X . . .
+Ride       . . X . . . X . . . X . . . X .
+```
+
+- **Steps:** one bar = 16 steps, numbered `1–16` left to right and counted `1 e & a 2 e & a 3 e & a 4 e & a`. Step `1` = beat 1, `5` = beat 2, `9` = beat 3, `13` = beat 4; `X` = tap.
+- **Pad → note:** `note = 58 + 12 × shift + pad` (manual p.20: pad 2 = C4 = note 60 at shift 0). The sounds come from the Rhythm Set list (manual pp.92–93).
+- **Velocity:** Pad Velocity is one fixed value for every pad press (`1–127`, manual p.73), so the kit is recorded in two groups: **Loud ≈ `110`** and **Soft ≈ `80`**. Treat both as starting points and adjust by ear.
+
+---
+
+### Phase 6: Load Rhythm Set `07` (House) into Part R of `U01` & `U02` (Safe Pattern Setup Write)
+> **Be careful here:** Pattern Setup Write stores **every Part's current settings at once**, including Part 1's knob positions. After Section 5 those are wherever your last knob pass or playback left them, and writing them now would make that the pattern's new *starting* sound. Selecting a pattern reloads its saved setup (manual p.21: unsaved part-parameter edits are lost when you select a different pattern), so **re-select the pattern first, then touch no knob and press no `[PLAY]` until the write is done.**
+
+34. Press **`[STOP]`** if anything is playing, then press **`[PLAY MODE]`** until **`PATTERN`** is lit, and make sure **`[PTN SET]`**, **`[RPS SET]`** and **`[FUNC]`** are all dark.
+35. Press **`SELECT [<] / [>]`** until **`PTN/SONG`** is lit. Turn **`[VALUE]`** to **`U02`**, then back to **`U01`** *(the hop forces `U01`'s saved setup to reload)*.
+36. **Hands off the knobs; don't press `[PLAY]`.** Press **`[PART SELECT]`** (lit), then **`PART [R]`**.
+37. Press **`SELECT [<] / [>]`** until **`TONE`** is lit. With Part R selected the display shows the **Rhythm Set**: `CURRENT` = `d` plus the set number, `NEXT` = a three-character set name (the manual's example is `d01` ▸ `909`). Turn **`[VALUE]`** to **`d07`** (Rhythm Set 07, **House**).
+38. **Audition at `OCTAVE -2`:** press **`OCTAVE [-]`** until the display reads `OCt` ▸ `-2` (the `[-]` LED stays lit), then tap Pads **`2`** (kick), **`5`** (clap), **`8`** (closed hat), **`12`** (open hat) and **`15`** (crash). *(Hearing something else? Re-check `d07` and the octave against the cheat card.)*
+39. Press **`SELECT [<] / [>]`** until **`TEMPO`** is lit and confirm it reads **`120.0`** *(re-selecting a pattern restores its stored tempo; if it's off, fix it as in Phase 1, step 8)*.
+40. **Pattern Setup Write:** hold **`[SHIFT] + [FUNC]` + Pad `[15]`** (`SUrE`) → press **`[ENTER]`**.
+41. **Repeat for `U02`:** `SELECT` → `PTN/SONG` → `[VALUE]` to **`U02`** *(changing pattern reloads `U02`'s saved setup, so no hop is needed)* → hands off the knobs → repeat steps 36–40 *(the octave is already `-2`)*.
+
+---
+
+### Phase 7: One-Time Prep — Quantize, `TIMING` Strength & Pad Velocity
+42. **Aim Play Quantize at Part R only** *(so the lead and its knob data are never quantized)*: hold **`[SHIFT]`** and press **`[PART SELECT / QUANTIZE SELECT]`** (its LED **blinks**). The PART buttons now show which Parts Play Quantize applies to: make **only `PART [R]`** lit (press any other lit PART button to switch it off), then press **`[PART SELECT]`** so its LED lights steadily again. *(Unconfirmed: the manual doesn't say how to leave this mode; if the LED still blinks, press `[EXIT]`.)*
+43. **Grid resolution:** with playback stopped, hold **`[SHIFT]`** and press Pad **`[2]`** (`rES` ▸ the current resolution). Turn **`[VALUE]`** to **`16`** (sixteenth notes; the options are `4`, `3-4`, `8`, `3-8`, `16`, `3.16`, `32`) → press **`[EXIT]`**. *(The manual's advice: set it to the shortest note value in the pattern.)*
+44. **Strength:** with **`[FUNC]`** dark, turn the **`TIMING`** knob fully **clockwise** (100%: every hit snaps to the grid; at 0% quantize does nothing). *(With `[FUNC]` blinking this knob becomes `VELOCITY`—leave `[FUNC]` dark.)*
+45. **Note your Pad Velocity** so you can restore it in step 53: hold **`[SHIFT]`** and press Pad **`[16]`** → press **`SELECT [>]` 7 times** (`PuL` ▸ the value; the manual's example shows `120`) → write the number down → press **`[EXIT]`**.
+46. **Note your free memory:** hold **`[SHIFT]`** and press Pad **`[16]`** → press **`SELECT [>]` 8 times** (the Available Memory page shows the % remaining) → write it down → press **`[EXIT]`**. *(Check it again after Phase 9.)*
+
+---
+
+### Phase 8: Record the Seven Passes (Realtime Loop Mix, One Pass per Pad Position)
+> **How it works:** each pass records into **one pattern** with **one octave shift and one Pad Velocity**, tapping one or two drums from their entry bar to the end of bar 32. Loop Mix **adds** each pass to what is already on Part R, so the groove builds up pass by pass, and `LoP = on` gives you the blank 33rd bar to press `[STOP]` in without clipping bar 32. *(Prefer one drum per pass? Split any row below—it works the same way.)*
+
+47. **The pass routine**—repeat it for every row of the table in step 48:
+    - **a. Pattern:** *(stopped, `PATTERN` mode)* `SELECT` → `PTN/SONG` → `[VALUE]` to the row's pattern *(this also resets `TEMPO` to its stored `120.0`)*.
+    - **b. Part:** press **`[PART SELECT]`** (lit) → **`PART [R]`**.
+    - **c. Octave:** press **`OCTAVE [-]` / `[+]`** until you reach the row's shift (neither LED lit = `0`; `[-]` lit = negative; `[+]` lit = positive; the display shows `OCt` ▸ the shift while you press). Tap the row's pads to confirm the sounds.
+    - **d. Velocity:** only if the row's velocity differs from the previous pass: hold **`[SHIFT]`** + Pad `[16]` → `SELECT [>]` ×7 (`PuL`) → `[VALUE]` → `[EXIT]`.
+    - **e. Standby:** press **`[REC]`** (blinks). With **`SELECT [<] / [>]`** check **`bEt`** `4-4`, **`LGH`** `32`, **`Cnt`** `1`, **`LoP`** `on`. Press **`PART [R]`** (the Recording Part), then **`[QUANTIZE]`** until the **GRID** indicator is lit. *(`SnG` ▸ `CLr` when you press `[REC]` means you are still in `SONG` mode—press `[EXIT]`, then `[PLAY MODE]` back to `PATTERN`.)*
+    - **f. Record:** press **`[PLAY]`**. After the 4 count-in clicks, `NEXT` shows the bar being recorded (e.g. `6.3` = bar 6). Tap the row's hits from each drum's entry bar to the end of bar 32. **Hands off the knobs.**
+    - **g. Stop:** after bar 32 comes the blank `Loop Rest` bar (nothing is recorded)—press **`[STOP]`** there.
+    - **h. Listen:** press **`[PLAY]`** to hear it *(while recording, hits sound exactly as you play them; the quantized result is what you hear on the next loop)*, then **`[STOP]`**.
+48. **The seven passes** (everything already on Part R keeps playing, so you tap along to the groove as it builds):
+
+| # | Pattern | `OCTAVE` | Velocity | Tap this (pad · steps · bars) |
+| :-: | :-: | :-: | :-: | :--- |
+| 1 | `U01` | `-2` | `110` | **Kick** pad `2` · `1 5 9 13` · bars `1–32`<br>**Clap** pad `5` · `5 13` · bars `17–32` |
+| 2 | `U02` | `-2` | `110` | **Crash** pad `15` · step `1` · bar `1` only (together with the first kick)<br>**Kick** pad `2` · `1 5 9 13` · bars `1–32`<br>**Clap** pad `5` · `5 13` · bars `1–32` |
+| 3 | `U01` | `-2` | `80` | **Open hat** pad `12` · `3 7 11 15` · bars `9–32`<br>**Closed hat** pad `8` · `2 4 6 8 10 12 14 16` · bars `25–32` |
+| 4 | `U02` | `-2` | `80` | **Open hat** pad `12` · `3 7 11 15` · bars `1–32`<br>**Closed hat** pad `8` · `2 4 6 8 10 12 14 16` · bars `1–32` |
+| 5 | `U02` | `+1` | `80` | **Shaker** pad `12` · `1 3 5 7 9 11 13 15` · bars `1–32` |
+| 6 | `U02` | `0` | `80` | **Lo conga** pad `6` · `4 11` · bars `9–32`<br>**Hi conga** pad `5` · `8 14` · bars `9–32` |
+| 7 | `U02` | `-1` | `80` | **Tambourine** pad `8` · `5 13` · bars `17–32`<br>**Ride** pad `5` · `3 7 11 15` · bars `25–32` |
+
+**Pass tips**
+- **Entry bars:** watch `NEXT`—start the open hat when it reads bar `9`, the clap and tambourine at bar `17`, and the closed hat and ride at bar `25`.
+- **Rehearse first:** press **`[REC]`** during a pass to enter rehearsal (`CURRENT` shows `rHS`): play along without recording, then press `[REC]` again to record (manual p.48).
+- **Flubbed a hit?** Don't stop the pass. Fix it afterwards with **Realtime Erase** (Section 4E, *Single Note or Single Drum Sound*): `[REC]` → `PART [R]` → `[PLAY]` → `[SHIFT] + [TRANSPOSE/ERASE]` → hold *that drum's pad* over the bad bars only, `[STOP]`, then re-tap the missing hits in a new pass.
+- **Struggling with the fast hats or shaker?** Before step (e), slow the tempo (`SELECT` → `TEMPO` → `[VALUE]` to about `100.0`). The manual (p.47) says tempo changes during recording aren't recorded, so the hits still play at 120 later. Re-select the pattern (or set `TEMPO` back to `120.0`) afterwards, and never run a Setup Write while the tempo is slowed.
+
+---
+
+### Phase 9: Check, Polish & Lock It In
+49. **Listen to each pattern:** in `PATTERN` mode select `U01` and press **`[PLAY]`**: kick from bar 1, open hat from bar 9, clap from bar 17, closed hat from bar 25. Then `U02`: crash and shaker on bar 1, congas from bar 9, tambourine from bar 17, ride from bar 25. Press **`[STOP]`** after each.
+50. **Optional—mute drum groups to hear each layer on its own:** press **`[RHYTHM MUTE]`** (lit). The PART buttons now mute rhythm groups, and a button that goes **dark** is muted (manual p.16):
+
+| Button | Group | In this kit |
+| :-: | :-: | :--- |
+| `PART [R]` | BD | kick |
+| `PART [2]` | HH | open + closed hat |
+| `PART [3]` | CLP | clap |
+| `PART [4]` | CYM | crash, ride, tambourine |
+| `PART [5]` | TOM/PERC | congas, shaker |
+
+Press **`[PART SELECT]`** to return. **Un-mute everything before any Setup Write**—mutes are stored with the setup.
+51. **Optional—balance the drums against the lead:** if Part R is too loud or too quiet, repeat the safe routine from Phase 6 (steps 35–36: select another pattern and then the one you want, hands off the knobs, `PART [R]`), press **`[FUNC]`** so its LED **blinks**, turn **`CUTOFF / LEVEL`** (`LEVEL`) by ear *(it may jump to the knob's position as soon as you touch it—see the shared-pots note in Section 2)*, press **`[FUNC]`** again (dark), then run **Pattern Setup Write** (`[SHIFT] + [FUNC]` + Pad `[15]` → `[ENTER]`). Do it for both patterns.
+52. **Optional—add swing (the deep-house bounce).** *Do this last: hits recorded afterwards would be straight.* For each pattern, on Part R only:
+    1. Stopped, select the pattern. Hold **`[SHIFT]`** and press Pad **`[4]`** (`rES` ▸ `3-8` or `3.16`), turn **`[VALUE]`** to **`3.16`** (sixteenth-note triplets—the manual says to pick the shortest note value in the pattern), then press **`[EXIT]`**.
+    2. Press **`[QUANTIZE]`** until the **SHUFFLE** indicator lights, then press **`[PLAY]`**. With **`[FUNC]`** dark, turn **`TIMING`** (Shuffle Rate): `50%` is straight and higher pushes the upbeats later. Start near **58%** for a light swing (about 66% is a full triplet shuffle; 100% drops the upbeat onto the next downbeat). Only the `e` and `a` 16ths (the even steps) move—beats and `&` hits stay put.
+    3. Happy with the feel? Press **`[STOP]`**, leave **SHUFFLE** lit and **don't touch `TIMING` again**. Hold **`[SHIFT] + [FUNC]` + Pad `[11]`** (Edit Quantize) → make **`PART [R]`** the only lit PART button → **`[ENTER]`** (`SUrE`) → **`[ENTER]`**. The swing is now part of the notes, and Play Quantize switches itself off.
+    4. Repeat for the other pattern with `TIMING` at the same position. *(Edit Quantize rewrites all of Part R in that pattern and no undo is documented—if you want a way back, first copy the pattern to a spare one with Pattern Copy `ALL`, Section 4F.)*
+53. **Clean up:**
+    - **Quantize off:** press **`[QUANTIZE]`** until none of GRID / GROOVE / SHUFFLE is lit.
+    - **Octave back to `0`:** press `OCTAVE [-]` / `[+]` until neither LED is lit (otherwise Part 1's pads play in the wrong octave next time).
+    - **Pad Velocity:** restore the value you noted in step 45 (hold **`[SHIFT]`** + Pad `[16]` → `SELECT [>]` ×7 → `[VALUE]` → `[EXIT]`).
+    - **Mutes:** no PART button dark in the `[RHYTHM MUTE]` view; then press **`[PART SELECT]`**.
+    - **Tempo:** re-select the pattern (or check `TEMPO` reads `120.0`).
+54. **Hear it as a song:** press **`[PLAY MODE]`** until **`SONG`** is lit → `SELECT` → `PTN/SONG` → **`S-1`** → **`[SHIFT] + [BWD]`** → **`[PLAY]`**, hands off the knobs. You should hear the 64-bar (`2:08`) build: the lead's recorded sweeps plus a new drum element every 8 bars, with the crash and shaker landing as `U02` starts at bar 33.
+55. **Check free memory again** (step 46) and **back up** with Bulk Dump (Section 4F) now that the arrangement is complete.
+
+#### Quick Fixes
+
+| Symptom | Fix |
+| :--- | :--- |
+| Pads play the wrong sounds | The Rhythm Set isn't `d07` (step 37) or the `OCTAVE` shift is wrong—compare with the cheat card. |
+| Hits are loose or off the grid | Quantize wasn't on (GRID not lit) or `TIMING` was near 0%. Tighten all of Part R afterwards: steps 42–44, `[QUANTIZE]` to GRID, then Edit Quantize (step 52, sub-step 3). Do this *before* adding swing. |
+| One drum is too loud or too quiet | Velocity is stored per hit: erase that drum (Realtime Erase, Section 4E) and re-record it in a pass at another Pad Velocity. For overall drum level see step 51. |
+| The lead's starting sound changed after Phase 6 | A Setup Write happened after playback or knob moves. Re-set Part 1's starting values as in Section 5, steps 19 and 22, and write the setup again (the recorded knob sweeps themselves are not affected). |
+
+> **Going past 64 bars:** for a 4-minute+ track, build `U03`/`U04` the same way (a new lead pattern per Section 5, drums per this section with the entry bars changed to suit—for example a breakdown that drops the kick), then append them to `S-1` (Section 5, Phase 5).

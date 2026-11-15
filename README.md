@@ -4,12 +4,12 @@ Unofficial personal reference notes for the Roland MC-303 Groovebox (1996), writ
 
 | File | What it is |
 | :--- | :--- |
-| [record_cheat.md](./record_cheat.md) | Button-by-button recording cheat sheet: the Part → Pattern → Song hierarchy, metronome and lead-in, realtime vs step recording, deleting, live LFO/envelope tweaking, and a 120 BPM walkthrough for recording one instrument with permanently saved knob automation. |
+| [record_cheat.md](./record_cheat.md) | Button-by-button recording cheat sheet: the Part → Pattern → Song hierarchy, metronome and lead-in, realtime vs step recording, deleting, live LFO/envelope tweaking, a 120 BPM walkthrough for recording one instrument with permanently saved knob automation (Section 5), and a deep-house percussion build on the drum Part that adds a new element every 8 bars (Section 6). |
 | [sample_bank.md](./sample_bank.md) | Matrix of the MC-303's tone categories and rhythm sets, with a per-bank breakdown of every tone (names and MIDI bank/program numbers). |
 
 ## Accuracy
 
-- **record_cheat.md** is cross-checked against the text of the official 1996 Owner's Manual and Roland/Sweetwater knowledge-base articles. It has **not** been tested on a physical unit, and display strings marked *(unconfirmed)* are best guesses. Anything described as inferred (for example how shared knobs behave) should be confirmed on your MC-303.
+- **record_cheat.md** is cross-checked against the text of the official 1996 Owner's Manual and Roland/Sweetwater knowledge-base articles. It has **not** been tested on a physical unit, and display strings marked *(unconfirmed)* are best guesses. Anything described as inferred (for example how shared knobs behave) should be confirmed on your MC-303. The drum patterns in Section 6 are generic deep-house building blocks inspired by Hardrive's "Deep Inside", not a transcription of that record.
 - **sample_bank.md**: tone names and MIDI numbers come from the manual's tone list as republished by Planet-Groove and from a community MIDI bank file. The single-hit percussion and drum sections were reconstructed from that community file, so they may contain errors, and a few entries named only by a number are placeholders in the source file.
 - The "famous usage" notes in **sample_bank.md** are illustrative. Only Vladislav Delay, :wumpscut: and Redman are documented MC-303 users (via Equipboard), and no famous track is documented against any individual bank.
 
