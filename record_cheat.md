@@ -421,10 +421,16 @@ Ride       . . X . . . X . . . X . . . X .
     - **b. Part:** press **`[PART SELECT]`** (lit) → **`PART [R]`**.
     - **c. Octave:** press **`OCTAVE [-]` / `[+]`** until you reach the row's shift (neither LED lit = `0`; `[-]` lit = negative; `[+]` lit = positive; the display shows `OCt` ▸ the shift while you press). Tap the row's pads to confirm the sounds.
     - **d. Velocity:** only if the row's velocity differs from the previous pass: hold **`[SHIFT]`** + Pad `[16]` → `SELECT [>]` ×7 (`PuL`) → `[VALUE]` → `[EXIT]`.
-    - **e. Standby:** press **`[REC]`** (blinks). With **`SELECT [<] / [>]`** check **`bEt`** `4-4`, **`LGH`** `32`, **`Cnt`** `1`, **`LoP`** `on`. Press **`PART [R]`** (the Recording Part), then **`[QUANTIZE]`** until the **GRID** indicator is lit. *(`SnG` ▸ `CLr` when you press `[REC]` means you are still in `SONG` mode—press `[EXIT]`, then `[PLAY MODE]` back to `PATTERN`.)*
+    - **e. Standby (recording setup):**
+      1. Check that the **`PATTERN`** LED (by **`[PLAY MODE]`**) is lit and `CURRENT` shows your pattern (e.g. `U01`), not `S-1`. Press **`[REC]`** (in the block with `STOP` and `PLAY`, right of the display). `REC` **blinks** and the display shows one recording setting (`CURRENT` = `bEt`, `LGH`, `Cnt` or `LoP`; `NEXT` = its value).
+         - **Seeing `SnG` ▸ `CLr` instead?** You are in `SONG` mode and the song already has steps. Press **`[EXIT]`**—**not `[ENTER]`, which deletes every pattern in the song** (manual p.68)—then press **`[PLAY MODE]`** until **`PATTERN`** lights, re-select the pattern (`SELECT` → `PTN/SONG` → `[VALUE]`) and press **`[REC]`** again.
+      2. Press **`SELECT [<] / [>]`** to step through the four settings and compare: **`bEt`** `4-4`, **`LGH`** `32`, **`Cnt`** `1`, **`LoP`** `on` (change one with **`[VALUE]`**).
+      3. **Choose the drum Part:** press **`PART [R]`**, the leftmost round button in the `R 1 2 3 4 5 6 7` row above the display (labelled `BD`). Its LED lights: Part R is now the *Recording Part* (manual p.46). *(Not lighting? Make sure `[PART SELECT]` is lit, not `[PART MUTE]` or `[RHYTHM MUTE]`.)*
+      4. **Switch on Grid Quantize:** find the **`PLAY QUANTIZE`** block at the top left, beside the **`TIMING`** knob. It has three small LEDs, top to bottom **GRID**, **GROOVE**, **SHUFFLE**, with the **`[QUANTIZE]`** button just below them. Each press steps through the choices (GRID, GROOVE, SHUFFLE, or none lit = off): press until the top LED, **GRID**, is lit. The display doesn't change. While recording, quantize applies only to the Recording Part (R) (manual p.47), snapping each tap to the nearest 16th (the resolution from Phase 7) at the `TIMING` strength you set there. *(The manual doesn't say whether notes recorded this way are stored snapped or only played back snapped—step 53 covers both.)*
+      5. Everything is armed: press **`[PLAY]`** (step f).
     - **f. Record:** press **`[PLAY]`**. After the 4 count-in clicks, `NEXT` shows the bar being recorded (e.g. `6.3` = bar 6). Tap the row's hits from each drum's entry bar to the end of bar 32. **Hands off the knobs.**
     - **g. Stop:** after bar 32 comes the blank `Loop Rest` bar (nothing is recorded)—press **`[STOP]`** there.
-    - **h. Listen:** press **`[PLAY]`** to hear it *(while recording, hits sound exactly as you play them; the quantized result is what you hear on the next loop)*, then **`[STOP]`**.
+    - **h. Listen:** press **`[PLAY]`** to hear it *(while recording, hits sound exactly as you play them; the quantized result can be heard after you finish recording—manual p.47)*, then **`[STOP]`**.
 48. **The seven passes** (everything already on Part R keeps playing, so you tap along to the groove as it builds):
 
 | # | Pattern | `OCTAVE` | Velocity | Tap this (pad · steps · bars) |
@@ -465,7 +471,7 @@ Press **`[PART SELECT]`** to return. **Un-mute everything before any Setup Write
     3. Happy with the feel? Press **`[STOP]`**, leave **SHUFFLE** lit and **don't touch `TIMING` again**. Hold **`[SHIFT] + [FUNC]` + Pad `[11]`** (Edit Quantize) → make **`PART [R]`** the only lit PART button → **`[ENTER]`** (`SUrE`) → **`[ENTER]`**. The swing is now part of the notes, and Play Quantize switches itself off.
     4. Repeat for the other pattern with `TIMING` at the same position. *(Edit Quantize rewrites all of Part R in that pattern and no undo is documented—if you want a way back, first copy the pattern to a spare one with Pattern Copy `ALL`, Section 4F.)*
 53. **Clean up:**
-    - **Quantize off:** press **`[QUANTIZE]`** until none of GRID / GROOVE / SHUFFLE is lit.
+    - **Lock the grid in, then quantize off:** unless you did the swing in step 52, first store the snapped timing in the notes. For `U01`, then `U02`: select the pattern (stopped) and press **`[QUANTIZE]`** until **GRID** is lit; hold **`[SHIFT] + [FUNC]` + Pad `[11]`** (Edit Quantize) → check that only **`PART [R]`** is lit → **`[ENTER]`** (`SUrE`) → **`[ENTER]`**. It should change nothing on notes that are already on the grid. Edit Quantize switches Play Quantize off by itself (so light GRID again for the second pattern); finish by checking that none of GRID / GROOVE / SHUFFLE is lit.
     - **Octave back to `0`:** press `OCTAVE [-]` / `[+]` until neither LED is lit (otherwise Part 1's pads play in the wrong octave next time).
     - **Pad Velocity:** restore the value you noted in step 45 (hold **`[SHIFT]`** + Pad `[16]` → `SELECT [>]` ×7 → `[VALUE]` → `[EXIT]`).
     - **Mutes:** no PART button dark in the `[RHYTHM MUTE]` view; then press **`[PART SELECT]`**.
