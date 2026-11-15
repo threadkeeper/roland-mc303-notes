@@ -1,16 +1,17 @@
 # Hardrive — Deep Inside: raw listening/source notes
 
-**Status (2026-11-15): audio not ingested.** I could not listen to the track in this session. The notes below separate information already documented or returned by search from anything that would require hearing the recording; no audio-derived observations or lyrics are included.
+**Status (2026-11-15): audio not ingested.** The uploaded MP3 is accessible as a file, but this session has no audio playback or listening tool. The notes below separate file metadata and source/repository information from anything that would require hearing the recording; no audio-derived observations or lyrics are included.
 
-## Listening attempts
+## Listening attempts and uploaded file
 
+- **Uploaded file:** `0008_-_Deep_Inside.mp3`; MP3, ID3v2.3.0 tag, MPEG Layer III, 44.1 kHz stereo, 320 kbps; 15,776,748 bytes.
 - **YouTube:** Opening a search-result video for “Hardrive - Deep Inside” failed with `ERR_BLOCKED_BY_CLIENT`.
 - **SoundCloud:** Tried the Hardrive stream at https://soundcloud.com/hardrive-official/deep-inside-1; navigation failed with `ERR_BLOCKED_BY_CLIENT`.
 - **Bandcamp:** Tried https://lowerlevelfm.bandcamp.com/track/deep-inside-1993-hardrive; navigation failed with `ERR_BLOCKED_BY_CLIENT`.
 - **Spotify:** Tried searching https://open.spotify.com/search/Hardrive%20Deep%20Inside; navigation failed with `ERR_BLOCKED_BY_CLIENT`.
 - Web-page retrieval for SoundCloud, Bandcamp, and the Insomniac feature failed because the hostnames could not be resolved. Search results supplied descriptions and links, not playable audio.
 
-**Result:** I was not able to verify the recording by ear. A usable audio input or a session with an accessible player is needed to note the actual groove, instrumentation, structure, and timestamps.
+**Result:** Although the MP3 upload is present, I cannot listen to it in this session, so I cannot verify the recording by ear or give genuine listening observations. No transcription has been made.
 
 ## Information available without listening
 
