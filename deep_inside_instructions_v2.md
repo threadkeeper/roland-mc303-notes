@@ -585,7 +585,7 @@ Pad  1e&a 2e&a 3e&a 4e&a
 
 **Use Step Recording here, not the realtime routine.** You enter one bar at a time without racing the metronome. Ties hold the long bass notes.
 
-Enter **one complete 32-bar run per pattern**. Step Recording overwrites Part 3 from its start point forward; do not enter later ranges as a second run from bar 1. Other Parts are untouched.
+For manual entry, enter **one complete 32-bar run per pattern**. Alternatively, use **Copy Instead of Re-Tapping** below: record four two-bar cells, then copy them to fill all six cards. Step Recording overwrites Part 3 from its start point forward; never restart from bar 1 over bass you want to keep. Other Parts are untouched.
 
 **Bass grids:** `X` = enter the pad; `~` = extend it with **TIE**, not another pad press. A column containing only dots is a **REST**. Follow the button recipes below to enter the grid; do not enter each pad row as a separate pass. The grids show the **record pads before the `-5` transpose**.
 
@@ -651,6 +651,73 @@ That gives pad `6` on step `1`, pad `11` on `8`, pad `13` on `11`, pad `11` on `
 After each bar, check you reached the **next bar, beat 1, clock 00**. After entering bar 32, press **`[STOP]`**. Do not enter bar 33.
 
 ### The Six Bass Cards
+
+#### Copy Instead of Re-Tapping
+
+**Use this instead of manually entering the six complete cards.** Record **A-D + B** and **A-G + B** at velocity `100`, plus each pair at `110`: just **eight entered bars**. Copying preserves pitches, velocities and held-note durations; the two-bar pairs keep odd/even bars aligned.
+
+**Start before step 33's `-5` transpose**, with Part 3 empty in `U31`–`U36`. The other Parts and the 32-bar lengths should already be in place. If replacing an existing bass take, use **Redo the bass** at the end of this sheet to erase only Part 3 first. Do not mix already-lowered source notes with these raised record pads.
+
+> **Verification note:** Part Copy's prompts follow the Owner's Manual pp.61–62 and [record_cheat.md, Phase 12](./record_cheat.md#phase-12-paste-one-part-into-another-pattern-part-copy). Pad `2` is inferred *(unconfirmed)*. Copying into the same pattern is also *(unconfirmed)* on hardware: confirm that the current pattern is offered as the destination before executing. If either check fails, cancel with `[EXIT]` and use the manual-entry cards instead.
+
+**The Part Copy routine · use for every copy below**
+
+- Stopped in PATTERN mode, select the **source pattern**.
+- Hold **`[SHIFT] + [FUNC]`**, press Pad **`[2]`**. Check it opens **Part Copy**; otherwise `[EXIT]`.
+- Select **only `PART [3]`** as source. Turn `[VALUE]` to **`PHRASE`**, then `[ENTER]`. This keeps the destination's sound setup; do not use Pattern Copy.
+- `CURRENT` blinks: set the **first source bar**, then `[ENTER]`.
+- `NEXT` blinks: set the **number of bars**, not the last bar number, then `[ENTER]`.
+- Set the **destination pattern**, select **only `PART [3]`** as destination, then `[ENTER]`.
+- Set the **destination start bar**, then `[ENTER]`. Use the stated bar, not `END`.
+- Check the destination and range before the final **`[ENTER]`** executes. `[EXIT]` cancels.
+- Re-select the destination, listen, then `[STOP]`. Re-select the stated source before the next copy.
+
+**Copies replace that range of Part 3; they do not merge it.** No undo is documented. All copies below stay within 32 bars and use `4-4`; Parts R, 1 and 2 are not copied.
+
+**A. Build the velocity-100 master in `U32`**
+
+- Use steps **25–31** with `U32`, `OCTAVE -2`, velocity `100` and gate `100%`.
+- At **`1-1 / 00`**, enter one **A-D** bar and one **B** bar using the recipes above. At **`3-1 / 00`**, press `[STOP]`.
+- Re-enter Step Recording with steps **25–31**, but in step 28 set the position to **`9-1 / 00` before `[PLAY]`**, not bar 1. Enter **A-G**, then **B**. At **`11-1 / 00`**, press `[STOP]`. Do not enter blank bars to reach bar 9.
+- Now leave Step Recording. Use Part Copy for these **same-pattern copies in order**:
+- `U32` source **1**, count **2** → `U32` start **3**.
+- `U32` source **1**, count **4** → `U32` start **5**.
+- `U32` source **9**, count **2** → `U32` start **11**.
+- `U32` source **9**, count **4** → `U32` start **13**.
+- `U32` source **1**, count **16** → `U32` start **17**.
+
+`U32` now has A-D/B in `1–8` and `17–24`, and A-G/B in `9–16` and `25–32`, all at velocity `100`. **Do not transpose it yet:** it supplies the next copies.
+
+**B. Fill `U31`, `U33` and `U34`**
+
+- `U32` source **9**, count **8** → `U31` start **25**. Leave `U31` bars `1–24` empty.
+- `U32` source **1**, count **24** → `U33` start **1**. Leave `U33` bars `25–32` empty.
+- `U32` source **1**, count **32** → `U34` start **1**.
+
+**C. Build `U35`, including its louder ending**
+
+- In empty Part 3 of `U35`, use steps **25–31**, but set step 28's position to **`25-1 / 00` before `[PLAY]`** and step 30's velocity to **`110`**.
+- Enter **A-G**, then **B**. At **`27-1 / 00`**, press `[STOP]`. Leave Step Recording before copying.
+- `U35` source **25**, count **2** → `U35` start **27**.
+- `U35` source **25**, count **4** → `U35` start **29**.
+- `U32` source **9**, count **8** → `U35` start **9**.
+- `U32` source **1**, count **8** → `U35` start **17**.
+
+Leave `U35` bars `1–8` empty. Bars `9–24` are velocity `100`; `25–32` are `110`.
+
+**D. Build `U36`, including its louder opening**
+
+- In empty Part 3 of `U36`, use steps **25–31** at **`1-1 / 00`**, with step-entry velocity **`110`**.
+- Enter **A-D**, then **B**. At **`3-1 / 00`**, press `[STOP]`. Leave Step Recording before copying.
+- `U36` source **1**, count **2** → `U36` start **3**.
+- `U36` source **1**, count **4** → `U36` start **5**.
+- `U32` source **9**, count **4** → `U36` start **9**.
+
+`U36` bars `1–8` are velocity `110`; `9–12` are `100`. Leave `13–32` empty. `U37` has no bass and needs no copy.
+
+**Finish:** compare each pattern against its card below, including silent ranges. Then go straight to **step 33** and apply `-5` **once per pattern**. Do not also enter the six cards manually. Changing step-entry velocity after a copy does not alter pasted notes.
+
+#### Manual Entry / Copy Check Cards
 
 For each range: **odd bars use the named A recipe; even bars use B**. For example, bars `25–32`, A-G means `25 A-G`, `26 B`, `27 A-G`, `28 B`, continuing to `32 B`.
 
@@ -924,5 +991,5 @@ End  6:32
 **Redo the bass:**
 
 - Use Erase above with **only Part 3**, first bar `1`, count `ALL`.
-- Repeat that pattern's **entire 32-bar bass card**, then apply **`-5` once**. The old lowered bass notes were erased.
+- Repeat that pattern's **entire 32-bar bass card**, or rebuild it with **Copy Instead of Re-Tapping**, then apply **`-5` once**. The old lowered bass notes were erased. The copy route requires untransposed sources: if your only sources are already lowered, use manual entry rather than applying `-5` to copied lowered notes.
 - A keys/bass playback check is not a reason to transpose again.
