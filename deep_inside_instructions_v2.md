@@ -1,6 +1,6 @@
 # Deep Inside · MC-303 · V2
 
-**Empty patterns → keys → voice → bass → drums → finished Song**
+**Empty patterns → drums → keys → voice → bass → finished Song**
 
 `U31`–`U36`: 32 bars each. `U37`: 10 bars.
 Song `S-3`: 202 bars at `123.6` BPM, about **6:32**.
@@ -87,9 +87,11 @@ Beat  1    2    3    4
 
 Step **1** = beat 1, **5** = beat 2, **9** = beat 3, **13** = beat 4.
 
+**Reading the pass grids:** each row is a **pad number**; each group of four columns is one beat. `X` = press that pad, `.` = do not press it. Aligned `X`s on different rows mean **press those pads together**. Repeat the displayed bar across the stated bar range only. All unlisted bars are silent for that pass.
+
 ## Phase 4: The Realtime Pass Routine
 
-Repeat **A–H for every realtime pass card** in Phases 5, 6 and 8. The bass has its own step-entry routine in Phase 7.
+Repeat **A–H for every realtime pass card** in Phases 5, 6 and 7. The bass has its own step-entry routine in Phase 8.
 
 **A. Select the pattern**
 
@@ -142,42 +144,311 @@ Repeat **A–H for every realtime pass card** in Phases 5, 6 and 8. The bass has
 - Press **`[STOP]`** before the next card.
 - **Do not run Setup Write after each pass.** Your starting sounds are already saved.
 
-## Phase 5: Record the Keys · Part 1
+## Phase 5: Record the Drums First · Part R
 
-Use routine **A–H**. At a `+`, press the pads **together**. Release the first chord after about **three sixteenth steps**; tap later stabs short. These voicings are a playable approximation.
+Use realtime routine **A–H**. Finish **all Part R passes before recording the keys or voice**, so the drums play along as your rhythm guide. The intentional drum gaps stay empty; use the metronome there.
 
-**Pass 1 · `U31` · Part `1` · `OCTAVE 0` · Velocity `90`**
+All cards use **`d07`**, **`OCTAVE -2`**, **GRID on**, **`LGH 32`**. Pad **`2`** = kick, **`5`** = clap, **`12`** = open hat.
 
-- Pad **`13`** · step **`13`** · bar **`6`** only.
-- Pad **`13`** · steps **`1 5 13`** · bars **`7–32`**.
-- Silence in bars **`1–5`**.
+### Main Kick and Clap
 
-**Pass 2 · `U32` · Part `1` · `OCTAVE 0` · Velocity `90`**
+**Pass 1 · `U31` · Part `R` · `OCTAVE -2` · Velocity `110`**
 
-- **Odd bars `1 3 … 31`:** pads **`2+9`** together · steps **`1 7`**.
-- **Even bars `2 4 … 32`:** pads **`1+6+10`** together · step **`1`**; pad **`10`** alone · steps **`4 9 13`**.
+```text
+U31 · R · OCT -2
+Bars 1-8
+Pad  1e&a 2e&a 3e&a 4e&a
+05   .... X... .... X...
 
-**Pass 3 · `U33` · Part `1` · `OCTAVE 0` · Velocity `90`**
+Bars 9-32
+Pad  1e&a 2e&a 3e&a 4e&a
+02   X... X... X... X...
+05   .... X... .... X...
+```
 
-- **Odd bars `1 3 … 31`:** pads **`2+9`** · steps **`1 7`**.
-- **Even bars `2 4 … 32`:** pads **`1+6+10`** · step **`1`**; pad **`10`** · steps **`4 9 13`**.
+**Pass 2 · `U32` · Part `R` · `OCTAVE -2` · Velocity `110`**
 
-**Pass 4 · `U34` · Part `1` · `OCTAVE 0` · Velocity `90`**
+```text
+U32 · R · OCT -2
+Bars 1-24
+Pad  1e&a 2e&a 3e&a 4e&a
+02   X... X... X... X...
+05   .... X... .... X...
 
-- **Odd bars `1 3 … 31`:** pads **`2+9`** · steps **`1 7`**.
-- **Even bars `2 4 … 32`:** pads **`1+6+10`** · step **`1`**; pad **`10`** · steps **`4 9 13`**.
+Bars 25-32
+Pad  1e&a 2e&a 3e&a 4e&a
+05   .... X... .... X...
+```
 
-**Pass 5 · `U35` · Part `1` · `OCTAVE 0` · Velocity `90`**
+**Pass 3 · `U33` · Part `R` · `OCTAVE -2` · Velocity `110`**
 
-- **Odd bars `1 3 … 27`:** pads **`2+9`** · steps **`1 7`**.
-- **Even bars `2 4 … 28`:** pads **`1+6+10`** · step **`1`**; pad **`10`** · steps **`4 9 13`**.
-- Silence in bars **`29–32`**.
+```text
+U33 · R · OCT -2
+Bars 1-24
+Pad  1e&a 2e&a 3e&a 4e&a
+02   X... X... X... X...
+05   .... X... .... X...
 
-**Pass 6 · `U36` · Part `1` · `OCTAVE 0` · Velocity `90`**
+Bars 25-32
+Pad  1e&a 2e&a 3e&a 4e&a
+05   .... X... .... X...
+```
 
-- Pad **`13`** · steps **`1 5 13`** · bars **`21–32`**.
-- Silence in bars **`1–20`**.
-- **No keys pass in `U37`.**
+**Pass 4 · `U34` · Part `R` · `OCTAVE -2` · Velocity `110`**
+
+```text
+U34 · R · OCT -2
+Bars 1-32
+Pad  1e&a 2e&a 3e&a 4e&a
+02   X... X... X... X...
+05   .... X... .... X...
+```
+
+**Pass 5 · `U35` · Part `R` · `OCTAVE -2` · Velocity `110`**
+
+```text
+U35 · R · OCT -2
+Bars 1-8
+Pad  1e&a 2e&a 3e&a 4e&a
+05   .... X... .... X...
+
+Bars 9-24
+Pad  1e&a 2e&a 3e&a 4e&a
+02   X... X... X... X...
+05   .... X... .... X...
+
+Bars 25-32
+Pad  1e&a 2e&a 3e&a 4e&a
+05   .... X... .... X...
+```
+
+**Pass 6 · `U36` · Part `R` · `OCTAVE -2` · Velocity `110`**
+
+```text
+U36 · R · OCT -2
+Bars 1-8 and 25-32
+Pad  1e&a 2e&a 3e&a 4e&a
+05   .... X... .... X...
+
+Bars 9-24
+Pad  1e&a 2e&a 3e&a 4e&a
+02   X... X... X... X...
+05   .... X... .... X...
+```
+
+### Hats
+
+**Pass 7 · `U31` · Part `R` · `OCTAVE -2` · Velocity `80`**
+
+```text
+U31 · R · OCT -2
+Bars 9-32
+Pad  1e&a 2e&a 3e&a 4e&a
+12   .... ..X. .... ..X.
+```
+
+**Pass 8 · `U32` · Part `R` · `OCTAVE -2` · Velocity `80`**
+
+```text
+U32 · R · OCT -2
+Bars 1-24
+Pad  1e&a 2e&a 3e&a 4e&a
+12   ..X. ..X. ..X. ..X.
+```
+
+**Pass 9 · `U33` · Part `R` · `OCTAVE -2` · Velocity `80`**
+
+```text
+U33 · R · OCT -2
+Bars 1-24
+Pad  1e&a 2e&a 3e&a 4e&a
+12   ..X. ..X. ..X. ..X.
+```
+
+**Pass 10 · `U34` · Part `R` · `OCTAVE -2` · Velocity `80`**
+
+```text
+U34 · R · OCT -2
+Bars 1-32
+Pad  1e&a 2e&a 3e&a 4e&a
+12   ..X. ..X. ..X. ..X.
+```
+
+**Pass 11 · `U35` · Part `R` · `OCTAVE -2` · Velocity `80`**
+
+```text
+U35 · R · OCT -2
+Bars 9-24
+Pad  1e&a 2e&a 3e&a 4e&a
+12   ..X. ..X. ..X. ..X.
+```
+
+**Pass 12 · `U36` · Part `R` · `OCTAVE -2` · Velocity `80`**
+
+```text
+U36 · R · OCT -2
+Bars 9-24
+Pad  1e&a 2e&a 3e&a 4e&a
+12   ..X. ..X. ..X. ..X.
+```
+
+**Pass 13 · `U36` · Part `R` · `OCTAVE -2` · Velocity `60`**
+
+```text
+U36 · R · OCT -2
+Bars 1-8
+Pad  1e&a 2e&a 3e&a 4e&a
+12   .... ..X. .... ..X.
+```
+
+### Quieter Kick Sections
+
+These add hits only in bars left empty by the main kick passes.
+
+**Pass 14 · `U33` · Part `R` · `OCTAVE -2` · Velocity `80`**
+
+```text
+U33 · R · OCT -2
+Bars 25-32
+Pad  1e&a 2e&a 3e&a 4e&a
+02   X... .... .... ....
+```
+
+**Pass 15 · `U35` · Part `R` · `OCTAVE -2` · Velocity `80`**
+
+```text
+U35 · R · OCT -2
+Bars 25-32
+Pad  1e&a 2e&a 3e&a 4e&a
+02   X... .... .... ....
+```
+
+**Pass 16 · `U33` · Part `R` · `OCTAVE -2` · Velocity `45`**
+
+```text
+U33 · R · OCT -2
+Bars 25-32
+Pad  1e&a 2e&a 3e&a 4e&a
+02   .... X... X... X...
+```
+
+**Pass 17 · `U35` · Part `R` · `OCTAVE -2` · Velocity `45`**
+
+```text
+U35 · R · OCT -2
+Bars 25-32
+Pad  1e&a 2e&a 3e&a 4e&a
+02   .... X... X... X...
+```
+
+**Pass 18 · `U36` · Part `R` · `OCTAVE -2` · Velocity `90`**
+
+```text
+U36 · R · OCT -2
+Bars 1-8
+Pad  1e&a 2e&a 3e&a 4e&a
+02   X... X... X... X...
+```
+
+**`U37` · Part R:** no drums in bars `1–10`; no pass to record.
+
+## Phase 6: Record the Keys · Part 1
+
+Use routine **A–H**. Press pads with aligned `X`s **together** as a chord. Release the first chord after about **three sixteenth steps**; tap later stabs short. These voicings are a playable approximation.
+
+**Pass 19 · `U31` · Part `1` · `OCTAVE 0` · Velocity `90`**
+
+```text
+U31 · Part 1 · OCT 0
+Bars 1-5: silent
+
+Bar 6 only
+Pad  1e&a 2e&a 3e&a 4e&a
+13   .... .... .... X...
+
+Bars 7-32
+Pad  1e&a 2e&a 3e&a 4e&a
+13   X... X... .... X...
+```
+
+**Pass 20 · `U32` · Part `1` · `OCTAVE 0` · Velocity `90`**
+
+```text
+U32 · Part 1 · OCT 0
+Odd bars 1,3,...,31
+Pad  1e&a 2e&a 3e&a 4e&a
+02   X... ..X. .... ....
+09   X... ..X. .... ....
+
+Even bars 2,4,...,32
+Pad  1e&a 2e&a 3e&a 4e&a
+01   X... .... .... ....
+06   X... .... .... ....
+10   X..X .... X... X...
+```
+
+**Pass 21 · `U33` · Part `1` · `OCTAVE 0` · Velocity `90`**
+
+```text
+U33 · Part 1 · OCT 0
+Odd bars 1,3,...,31
+Pad  1e&a 2e&a 3e&a 4e&a
+02   X... ..X. .... ....
+09   X... ..X. .... ....
+
+Even bars 2,4,...,32
+Pad  1e&a 2e&a 3e&a 4e&a
+01   X... .... .... ....
+06   X... .... .... ....
+10   X..X .... X... X...
+```
+
+**Pass 22 · `U34` · Part `1` · `OCTAVE 0` · Velocity `90`**
+
+```text
+U34 · Part 1 · OCT 0
+Odd bars 1,3,...,31
+Pad  1e&a 2e&a 3e&a 4e&a
+02   X... ..X. .... ....
+09   X... ..X. .... ....
+
+Even bars 2,4,...,32
+Pad  1e&a 2e&a 3e&a 4e&a
+01   X... .... .... ....
+06   X... .... .... ....
+10   X..X .... X... X...
+```
+
+**Pass 23 · `U35` · Part `1` · `OCTAVE 0` · Velocity `90`**
+
+```text
+U35 · Part 1 · OCT 0
+Odd bars 1,3,...,27
+Pad  1e&a 2e&a 3e&a 4e&a
+02   X... ..X. .... ....
+09   X... ..X. .... ....
+
+Even bars 2,4,...,28
+Pad  1e&a 2e&a 3e&a 4e&a
+01   X... .... .... ....
+06   X... .... .... ....
+10   X..X .... X... X...
+
+Bars 29-32: silent
+```
+
+**Pass 24 · `U36` · Part `1` · `OCTAVE 0` · Velocity `90`**
+
+```text
+U36 · Part 1 · OCT 0
+Bars 1-20: silent
+
+Bars 21-32
+Pad  1e&a 2e&a 3e&a 4e&a
+13   X... X... .... X...
+```
+
+**`U37` · Part 1:** no keys in bars `1–10`; no pass to record.
 
 24. **Lower the recorded keys by two semitones, once per pattern:**
     - Stopped in PATTERN mode, select **`U31`**.
@@ -189,79 +460,134 @@ Use routine **A–H**. At a `+`, press the pads **together**. Release the first 
 
 The single pad-13 line now sounds **A4**. The odd-bar chord is **A#3 + F4**; the even-bar chord is **A3 + D4 + F#4**.
 
-## Phase 6: Record the Voice · Part 2
+## Phase 7: Record the Voice · Part 2
 
 Use routine **A–H**, with **Quantize completely OFF**. Tap short syllables, releasing after roughly one or two sixteenth steps. **No transpose on Part 2.**
 
-**Pass 7 · `U31` · Part `2` · `OCTAVE 0` · Velocity `90`**
+**Pass 25 · `U31` · Part `2` · `OCTAVE 0` · Velocity `90`**
 
-- Pad **`11`** · steps **`5 13`** · bar **`1`**.
-- Pad **`12`** · step **`9`** · bar **`1`**.
-- Pad **`11`** · steps **`1 5 13`** · bars **`2–24`**.
-- Pad **`12`** · step **`9`** · bars **`2–24`**.
-- Pad **`13`** · steps **`1 13`** · bars **`25–32`**.
-- Pad **`12`** · step **`9`** · bars **`25–32`**.
+```text
+U31 · Part 2 · OCT 0
+Bar 1 only
+Pad  1e&a 2e&a 3e&a 4e&a
+11   .... X... .... X...
+12   .... .... X... ....
 
-**Pass 8 · `U32` · Part `2` · `OCTAVE 0` · Velocity `90`**
+Bars 2-24
+Pad  1e&a 2e&a 3e&a 4e&a
+11   X... X... .... X...
+12   .... .... X... ....
 
-- Pad **`13`** · steps **`1 13`** · bars **`1–24`**.
-- Pad **`12`** · step **`9`** · bars **`1–24`**.
-- Silence in bars **`25–32`** for this pass.
+Bars 25-32
+Pad  1e&a 2e&a 3e&a 4e&a
+13   X... .... .... X...
+12   .... .... X... ....
+```
 
-**Pass 9 · `U33` · Part `2` · `OCTAVE 0` · Velocity `90`**
+**Pass 26 · `U32` · Part `2` · `OCTAVE 0` · Velocity `90`**
 
-- Pad **`13`** · steps **`1 13`** · bars **`1–32`**.
-- Pad **`12`** · step **`9`** · bars **`1–32`**.
+```text
+U32 · Part 2 · OCT 0
+Bars 1-24
+Pad  1e&a 2e&a 3e&a 4e&a
+13   X... .... .... X...
+12   .... .... X... ....
+```
 
-**Pass 10 · `U34` · Part `2` · `OCTAVE 0` · Velocity `90`**
+**Pass 27 · `U33` · Part `2` · `OCTAVE 0` · Velocity `90`**
 
-- Pad **`13`** · steps **`1 13`** · bars **`1–8` and `17–32`**.
-- Pad **`12`** · step **`9`** · bars **`1–8` and `17–32`**.
-- Silence in bars **`9–16`**.
+```text
+U33 · Part 2 · OCT 0
+Bars 1-32
+Pad  1e&a 2e&a 3e&a 4e&a
+13   X... .... .... X...
+12   .... .... X... ....
+```
 
-**Pass 11 · `U35` · Part `2` · `OCTAVE 0` · Velocity `90`**
+**Pass 28 · `U34` · Part `2` · `OCTAVE 0` · Velocity `90`**
 
-- Pad **`13`** · steps **`1 13`** · bars **`9–24`**.
-- Pad **`12`** · step **`9`** · bars **`9–24`**.
-- Silence in all other bars for this pass.
+```text
+U34 · Part 2 · OCT 0
+Bars 1-8 and 17-32
+Pad  1e&a 2e&a 3e&a 4e&a
+13   X... .... .... X...
+12   .... .... X... ....
 
-**Pass 12 · `U36` · Part `2` · `OCTAVE 0` · Velocity `90`**
+Bars 9-16: silent
+```
 
-- Pad **`11`** · steps **`1 5 13`** · bars **`19–24`**.
-- Pad **`12`** · step **`9`** · bars **`19–24`**.
-- Silence in all other bars for this pass.
+**Pass 29 · `U35` · Part `2` · `OCTAVE 0` · Velocity `90`**
 
-**Pass 13 · `U37` · Part `2` · `OCTAVE 0` · Velocity `90`**
+```text
+U35 · Part 2 · OCT 0
+Bars 9-24
+Pad  1e&a 2e&a 3e&a 4e&a
+13   X... .... .... X...
+12   .... .... X... ....
+```
 
-- **`LGH 10`**.
-- Pad **`11`** · steps **`1 5 13`** · bars **`1–8`**.
-- Pad **`12`** · step **`9`** · bars **`1–8`**.
-- Silence in bars **`9–10`**.
-- Stop in the blank Loop Rest bar after **bar 10**.
+**Pass 30 · `U36` · Part `2` · `OCTAVE 0` · Velocity `90`**
 
-**Pass 14 · `U32` · Part `2` · `OCTAVE 0` · Velocity `105`**
+```text
+U36 · Part 2 · OCT 0
+Bars 19-24
+Pad  1e&a 2e&a 3e&a 4e&a
+11   X... X... .... X...
+12   .... .... X... ....
+```
 
-- Pad **`11`** · steps **`1 5 13`** · bars **`25–32`**.
-- Pad **`12`** · step **`9`** · bars **`25–32`**.
-- Silence in bars **`1–24`**.
+**Pass 31 · `U37` · Part `2` · `OCTAVE 0` · Velocity `90`**
 
-**Pass 15 · `U35` · Part `2` · `OCTAVE 0` · Velocity `105`**
+```text
+U37 · Part 2 · OCT 0
+LGH 10
+Bars 1-8
+Pad  1e&a 2e&a 3e&a 4e&a
+11   X... X... .... X...
+12   .... .... X... ....
 
-- Pad **`11`** · steps **`1 5 13`** · bars **`1–8`**.
-- Pad **`12`** · step **`9`** · bars **`1–8`**.
-- Silence in bars **`9–32`**.
+Bars 9-10: silent
+```
 
-**Pass 16 · `U36` · Part `2` · `OCTAVE 0` · Velocity `105`**
+Stop in the blank Loop Rest bar after **bar 10**.
 
-- Pad **`11`** · steps **`1 5 13`** · bars **`25–32`**.
-- Pad **`12`** · step **`9`** · bars **`25–32`**.
-- Silence in bars **`1–24`**.
+**Pass 32 · `U32` · Part `2` · `OCTAVE 0` · Velocity `105`**
 
-## Phase 7: Enter the Bass · Part 3
+```text
+U32 · Part 2 · OCT 0
+Bars 25-32
+Pad  1e&a 2e&a 3e&a 4e&a
+11   X... X... .... X...
+12   .... .... X... ....
+```
+
+**Pass 33 · `U35` · Part `2` · `OCTAVE 0` · Velocity `105`**
+
+```text
+U35 · Part 2 · OCT 0
+Bars 1-8
+Pad  1e&a 2e&a 3e&a 4e&a
+11   X... X... .... X...
+12   .... .... X... ....
+```
+
+**Pass 34 · `U36` · Part `2` · `OCTAVE 0` · Velocity `105`**
+
+```text
+U36 · Part 2 · OCT 0
+Bars 25-32
+Pad  1e&a 2e&a 3e&a 4e&a
+11   X... X... .... X...
+12   .... .... X... ....
+```
+
+## Phase 8: Enter the Bass · Part 3
 
 **Use Step Recording here, not the realtime routine.** You enter one bar at a time without racing the metronome. Ties hold the long bass notes.
 
 Enter **one complete 32-bar run per pattern**. Step Recording overwrites Part 3 from its start point forward; do not enter later ranges as a second run from bar 1. Other Parts are untouched.
+
+**Bass grids:** `X` = enter the pad; `~` = extend it with **TIE**, not another pad press. A column containing only dots is a **REST**. Follow the button recipes below to enter the grid; do not enter each pad row as a separate pass. The grids show the **record pads before the `-5` transpose**.
 
 25. Stopped in PATTERN mode, select the bass card's pattern. Press **`[PART SELECT]`**, then **`PART [3]`**. Turn Quantize off.
 26. Set **`OCTAVE -2`**. Leave the arpeggiator, pad sets and live transpose off.
@@ -328,33 +654,104 @@ After each bar, check you reached the **next bar, beat 1, clock 00**. After ente
 
 For each range: **odd bars use the named A recipe; even bars use B**. For example, bars `25–32`, A-G means `25 A-G`, `26 B`, `27 A-G`, `28 B`, continuing to `32 B`.
 
-**Pass 17 · `U31` · Part `3` · `OCTAVE -2` · Step velocity `100`**
+**Pass 35 · `U31` · Part `3` · `OCTAVE -2` · Step velocity `100`**
 
-- Bars **`1–24`**: blank bars.
-- Bars **`25–32`**: **A-G / B**.
+```text
+U31 · Part 3 · OCT -2
+Bars 1-24: REST
 
-**Pass 18 · `U32` · Part `3` · `OCTAVE -2` · Step velocity `100`**
+Odd 25,27,29,31: A-G
+Pad  1e&a 2e&a 3e&a 4e&a
+02   X~~~ ~~.. .... ....
+14   .... ...X ~~X~ ....
+09   .... .... .... X...
+11   .... .... .... .X~~
 
-- Bars **`1–8`**: **A-D / B**.
-- Bars **`9–16`**: **A-G / B**.
-- Bars **`17–24`**: **A-D / B**.
-- Bars **`25–32`**: **A-G / B**.
+Even 26,28,30,32: B
+Pad  1e&a 2e&a 3e&a 4e&a
+06   X~~~ ~~.. .... ....
+11   .... ...X ~... .X~~
+13   .... .... ..X~ ~...
+```
 
-**Pass 19 · `U33` · Part `3` · `OCTAVE -2` · Step velocity `100`**
+**Pass 36 · `U32` · Part `3` · `OCTAVE -2` · Step velocity `100`**
 
-- Bars **`1–8`**: **A-D / B**.
-- Bars **`9–16`**: **A-G / B**.
-- Bars **`17–24`**: **A-D / B**.
-- Bars **`25–32`**: blank bars.
+```text
+U32 · Part 3 · OCT -2
+Odd 1-8,17-24: A-D
+Pad  1e&a 2e&a 3e&a 4e&a
+02   X~~~ ~~.. .... ....
+14   .... ...X ~... ....
+09   .... .... ..X~ ~...
+11   .... .... .... .X~~
 
-**Pass 20 · `U34` · Part `3` · `OCTAVE -2` · Step velocity `100`**
+Odd 9-16,25-32: A-G
+Pad  1e&a 2e&a 3e&a 4e&a
+02   X~~~ ~~.. .... ....
+14   .... ...X ~~X~ ....
+09   .... .... .... X...
+11   .... .... .... .X~~
 
-- Bars **`1–8`**: **A-D / B**.
-- Bars **`9–16`**: **A-G / B**.
-- Bars **`17–24`**: **A-D / B**.
-- Bars **`25–32`**: **A-G / B**.
+Even 2,4,...,32: B
+Pad  1e&a 2e&a 3e&a 4e&a
+06   X~~~ ~~.. .... ....
+11   .... ...X ~... .X~~
+13   .... .... ..X~ ~...
+```
 
-**Pass 21 · `U35` · Part `3` · `OCTAVE -2` · Step velocity `100`, then `110`**
+**Pass 37 · `U33` · Part `3` · `OCTAVE -2` · Step velocity `100`**
+
+```text
+U33 · Part 3 · OCT -2
+Odd 1-8,17-24: A-D
+Pad  1e&a 2e&a 3e&a 4e&a
+02   X~~~ ~~.. .... ....
+14   .... ...X ~... ....
+09   .... .... ..X~ ~...
+11   .... .... .... .X~~
+
+Odd 9,11,13,15: A-G
+Pad  1e&a 2e&a 3e&a 4e&a
+02   X~~~ ~~.. .... ....
+14   .... ...X ~~X~ ....
+09   .... .... .... X...
+11   .... .... .... .X~~
+
+Even 2,4,...,24: B
+Pad  1e&a 2e&a 3e&a 4e&a
+06   X~~~ ~~.. .... ....
+11   .... ...X ~... .X~~
+13   .... .... ..X~ ~...
+
+Bars 25-32: REST
+```
+
+**Pass 38 · `U34` · Part `3` · `OCTAVE -2` · Step velocity `100`**
+
+```text
+U34 · Part 3 · OCT -2
+Odd 1-8,17-24: A-D
+Pad  1e&a 2e&a 3e&a 4e&a
+02   X~~~ ~~.. .... ....
+14   .... ...X ~... ....
+09   .... .... ..X~ ~...
+11   .... .... .... .X~~
+
+Odd 9-16,25-32: A-G
+Pad  1e&a 2e&a 3e&a 4e&a
+02   X~~~ ~~.. .... ....
+14   .... ...X ~~X~ ....
+09   .... .... .... X...
+11   .... .... .... .X~~
+
+Even 2,4,...,32: B
+Pad  1e&a 2e&a 3e&a 4e&a
+06   X~~~ ~~.. .... ....
+11   .... ...X ~... .X~~
+13   .... .... ..X~ ~...
+```
+
+**Pass 39 · `U35` · Part `3` · `OCTAVE -2` · Step velocity `100`, then `110`**
 
 - Bars **`1–8`**: blank bars.
 - Bars **`9–16`**: **A-G / B**, velocity **`100`**.
@@ -362,14 +759,65 @@ For each range: **odd bars use the named A recipe; even bars use B**. For exampl
 - Before bar **25**, hold **`PART [2]`**, turn `[VALUE]` to **`110`**, then release.
 - Bars **`25–32`**: **A-G / B**, velocity **`110`**.
 
-**Pass 22 · `U36` · Part `3` · `OCTAVE -2` · Step velocity `110`, then `100`**
+```text
+U35 · Part 3 · OCT -2
+Bars 1-8: REST
+
+Odd 9-16,25-32: A-G
+Pad  1e&a 2e&a 3e&a 4e&a
+02   X~~~ ~~.. .... ....
+14   .... ...X ~~X~ ....
+09   .... .... .... X...
+11   .... .... .... .X~~
+
+Odd 17,19,21,23: A-D
+Pad  1e&a 2e&a 3e&a 4e&a
+02   X~~~ ~~.. .... ....
+14   .... ...X ~... ....
+09   .... .... ..X~ ~...
+11   .... .... .... .X~~
+
+Even 10,12,...,32: B
+Pad  1e&a 2e&a 3e&a 4e&a
+06   X~~~ ~~.. .... ....
+11   .... ...X ~... .X~~
+13   .... .... ..X~ ~...
+```
+
+**Pass 40 · `U36` · Part `3` · `OCTAVE -2` · Step velocity `110`, then `100`**
 
 - Before entering bar 1, hold **`PART [2]`**, turn `[VALUE]` to **`110`**, then release.
 - Bars **`1–8`**: **A-D / B**, velocity **`110`**.
 - Before bar **9**, hold **`PART [2]`**, turn `[VALUE]` to **`100`**, then release.
 - Bars **`9–12`**: **A-G / B**, velocity **`100`**.
 - Bars **`13–32`**: blank bars.
-- **No bass pass in `U37`.**
+
+```text
+U36 · Part 3 · OCT -2
+Odd 1,3,5,7: A-D
+Pad  1e&a 2e&a 3e&a 4e&a
+02   X~~~ ~~.. .... ....
+14   .... ...X ~... ....
+09   .... .... ..X~ ~...
+11   .... .... .... .X~~
+
+Odd 9,11: A-G
+Pad  1e&a 2e&a 3e&a 4e&a
+02   X~~~ ~~.. .... ....
+14   .... ...X ~~X~ ....
+09   .... .... .... X...
+11   .... .... .... .X~~
+
+Even 2,4,...,12: B
+Pad  1e&a 2e&a 3e&a 4e&a
+06   X~~~ ~~.. .... ....
+11   .... ...X ~... .X~~
+13   .... .... ..X~ ~...
+
+Bars 13-32: REST
+```
+
+**`U37` · Part 3:** no bass in bars `1–10`; no pass to record.
 
 33. **Lower the bass by five semitones, once in each of `U31`–`U36`:**
     - Stopped, select the pattern.
@@ -385,101 +833,6 @@ The recorded pads now give these final bass notes:
 Pad     2  6  9 11 13 14
 Note   G1 B1 D2 E2 F#2 G2
 ```
-
-## Phase 8: Record the Drums · Part R
-
-Return to realtime routine **A–H**. All cards use **`d07`**, **`OCTAVE -2`**, **GRID on**, **`LGH 32`**.
-
-**These are sound pads:** `2` kick, `5` clap, `12` open hat. Keep pressing the same sound pad at the listed timing steps.
-
-### Hats
-
-**Pass 23 · `U31` · Part `R` · `OCTAVE -2` · Velocity `80`**
-
-- Hat pad **`12`** · steps **`7 15`** · bars **`9–32`**.
-
-**Pass 24 · `U32` · Part `R` · `OCTAVE -2` · Velocity `80`**
-
-- Hat pad **`12`** · steps **`3 7 11 15`** · bars **`1–24`**.
-
-**Pass 25 · `U33` · Part `R` · `OCTAVE -2` · Velocity `80`**
-
-- Hat pad **`12`** · steps **`3 7 11 15`** · bars **`1–24`**.
-
-**Pass 26 · `U34` · Part `R` · `OCTAVE -2` · Velocity `80`**
-
-- Hat pad **`12`** · steps **`3 7 11 15`** · bars **`1–32`**.
-
-**Pass 27 · `U35` · Part `R` · `OCTAVE -2` · Velocity `80`**
-
-- Hat pad **`12`** · steps **`3 7 11 15`** · bars **`9–24`**.
-
-**Pass 28 · `U36` · Part `R` · `OCTAVE -2` · Velocity `80`**
-
-- Hat pad **`12`** · steps **`3 7 11 15`** · bars **`9–24`**.
-
-**Pass 29 · `U36` · Part `R` · `OCTAVE -2` · Velocity `60`**
-
-- Hat pad **`12`** · steps **`7 15`** · bars **`1–8`**.
-
-### Main Kick and Clap
-
-Where both play, press **pads `2+5` together on steps `5` and `13`**.
-
-**Pass 30 · `U31` · Part `R` · `OCTAVE -2` · Velocity `110`**
-
-- Kick pad **`2`** · steps **`1 5 9 13`** · bars **`9–32`**.
-- Clap pad **`5`** · steps **`5 13`** · bars **`1–32`**.
-
-**Pass 31 · `U32` · Part `R` · `OCTAVE -2` · Velocity `110`**
-
-- Kick pad **`2`** · steps **`1 5 9 13`** · bars **`1–24`**.
-- Clap pad **`5`** · steps **`5 13`** · bars **`1–32`**.
-
-**Pass 32 · `U33` · Part `R` · `OCTAVE -2` · Velocity `110`**
-
-- Kick pad **`2`** · steps **`1 5 9 13`** · bars **`1–24`**.
-- Clap pad **`5`** · steps **`5 13`** · bars **`1–32`**.
-
-**Pass 33 · `U34` · Part `R` · `OCTAVE -2` · Velocity `110`**
-
-- Kick pad **`2`** · steps **`1 5 9 13`** · bars **`1–32`**.
-- Clap pad **`5`** · steps **`5 13`** · bars **`1–32`**.
-
-**Pass 34 · `U35` · Part `R` · `OCTAVE -2` · Velocity `110`**
-
-- Kick pad **`2`** · steps **`1 5 9 13`** · bars **`9–24`**.
-- Clap pad **`5`** · steps **`5 13`** · bars **`1–32`**.
-
-**Pass 35 · `U36` · Part `R` · `OCTAVE -2` · Velocity `110`**
-
-- Kick pad **`2`** · steps **`1 5 9 13`** · bars **`9–24`**.
-- Clap pad **`5`** · steps **`5 13`** · bars **`1–32`**.
-
-### Quieter Kick Sections
-
-These add hits only in bars left empty by the main kick passes.
-
-**Pass 36 · `U33` · Part `R` · `OCTAVE -2` · Velocity `80`**
-
-- Kick pad **`2`** · step **`1`** · bars **`25–32`**.
-
-**Pass 37 · `U35` · Part `R` · `OCTAVE -2` · Velocity `80`**
-
-- Kick pad **`2`** · step **`1`** · bars **`25–32`**.
-
-**Pass 38 · `U33` · Part `R` · `OCTAVE -2` · Velocity `45`**
-
-- Kick pad **`2`** · steps **`5 9 13`** · bars **`25–32`**.
-
-**Pass 39 · `U35` · Part `R` · `OCTAVE -2` · Velocity `45`**
-
-- Kick pad **`2`** · steps **`5 9 13`** · bars **`25–32`**.
-
-**Pass 40 · `U36` · Part `R` · `OCTAVE -2` · Velocity `90`**
-
-- Kick pad **`2`** · steps **`1 5 9 13`** · bars **`1–8`**.
-- **No drums pass in `U37`.**
 
 ## Phase 9: Lock Timing and Check the Patterns
 
